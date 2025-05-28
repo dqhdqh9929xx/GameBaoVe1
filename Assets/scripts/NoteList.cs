@@ -5,11 +5,11 @@ using UnityEngine.Rendering.Universal;
 public class NoteList : MonoBehaviour, IPointerClickHandler
 {
     public GameObject Mui;
-    public GameObject Ruoi;
-    public GameObject Beo;
-    public GameObject Gay;
+    public GameObject Mat;
+    public GameObject KhuonMat;
+    public GameObject Mieng;
     public GameObject Mu;
-    public GameObject LongMay;
+    public GameObject PhuKien;
     public GameObject HistoryList;
 
 
@@ -17,16 +17,16 @@ public class NoteList : MonoBehaviour, IPointerClickHandler
     {
         if (Mui != null)
             Mui.SetActive(true);
-        if (Ruoi != null)
-            Ruoi.SetActive(true);
-        if (Beo != null)
-            Beo.SetActive(true);
-        if (Gay != null)
-            Gay.SetActive(true);
+        if (Mat != null)
+            Mat.SetActive(true);
+        if (KhuonMat != null)
+            KhuonMat.SetActive(true);
+        if (Mieng != null)
+            Mieng.SetActive(true);
         if (Mu != null)
             Mu.SetActive(true);
-        if (LongMay != null)
-            LongMay.SetActive(true);
+        if (PhuKien != null)
+            PhuKien.SetActive(true);
         if (HistoryList != null)
             HistoryList.SetActive(false);
     }

@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
-public class AnimationController1 : MonoBehaviour
+public class AnimationController2 : MonoBehaviour
 {
-    public int id = 1;
+    public int id = 2;
     // Nhan Vat 1
     public Image imageFace;
     public Image imageSideWayCome;
@@ -16,7 +16,6 @@ public class AnimationController1 : MonoBehaviour
     public HistoryList historyList;
     public bool isCome = false;
     public TextMeshProUGUI chatTextComponent;
-    public GameObject Nv2;
     void Start()
     {
         if (NvChat != null)
@@ -52,7 +51,7 @@ public class AnimationController1 : MonoBehaviour
             ShowNvChatLeft();
         }
     }
-    public IEnumerator SideWayLeft()
+    public IEnumerator SideWayLeft2()
     {
         if (historyList != null)
         {
@@ -99,10 +98,6 @@ public class AnimationController1 : MonoBehaviour
             imageFace.enabled = false;
             imageSideWayLeft.enabled = false;
             imageSideWayLeft.enabled = false;
-            Instantiate(Nv2);
-
-
-
         }
         else
         {

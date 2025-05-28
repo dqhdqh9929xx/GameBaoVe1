@@ -3,16 +3,20 @@ using TMPro;
 
 public class HistoryList : MonoBehaviour
 {
-    public AnimationController animController;
+    public AnimationController1 animController;
+    public AnimationController2 animController2;
 
     public CheckBoxManeger CheckBoxManagerMui;
-    public CheckBoxManeger CheckBoxManagerRuoi;
-    public CheckBoxManeger CheckBoxManagerBeo;
-    public CheckBoxManeger CheckBoxManagerGay;
+    public CheckBoxManeger CheckBoxManagerMat;
+    public CheckBoxManeger CheckBoxManagerKhuonMat;
+    public CheckBoxManeger CheckBoxManagerMieng;
     public CheckBoxManeger CheckBoxManagerMu;
-    public CheckBoxManeger CheckBoxManagerLongMay;
+    public CheckBoxManeger CheckBoxManagerPhuKien;
 
-    private TMP_Text chatText;
+    public TMP_Text chatText;
+
+    public bool isSnapshotSaved = false;
+    public bool isSnapshotSaved2 = false;
 
     void Start()
     {
@@ -23,61 +27,170 @@ public class HistoryList : MonoBehaviour
             return;
         }
 
-        // Đăng ký lắng nghe sự kiện thay đổi trạng thái checkbox
-        if (CheckBoxManagerMui != null)
-            CheckBoxManagerMui.CheckmarkChanged += UpdateText;
+        if (animController2 != null || chatText == null )
+        {
+            Debug.LogWarning("HistoryList: TMP_Text component or AnimationController2 missing!");
+            return;
+        }
 
-        if (CheckBoxManagerRuoi != null)
-            CheckBoxManagerRuoi.CheckmarkChanged += UpdateText;
+        if (!isSnapshotSaved)
+        {
+            if (CheckBoxManagerMui != null)
+                CheckBoxManagerMui.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMat != null)
+                CheckBoxManagerMat.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerKhuonMat != null)
+                CheckBoxManagerKhuonMat.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMieng != null)
+                CheckBoxManagerMieng.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMu != null)
+                CheckBoxManagerMu.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerPhuKien != null)
+                CheckBoxManagerPhuKien.CheckmarkChanged += UpdateText;
 
-        if (CheckBoxManagerBeo != null)
-            CheckBoxManagerBeo.CheckmarkChanged += UpdateText;
+            UpdateText(true);
+        }
 
-        if (CheckBoxManagerGay != null)
-            CheckBoxManagerGay.CheckmarkChanged += UpdateText;
+        if (!isSnapshotSaved2)
+        {
+            if (CheckBoxManagerMui != null)
+                CheckBoxManagerMui.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMat != null)
+                CheckBoxManagerMat.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerKhuonMat != null)
+                CheckBoxManagerKhuonMat.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMieng != null)
+                CheckBoxManagerMieng.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerMu != null)
+                CheckBoxManagerMu.CheckmarkChanged += UpdateText;
+            if (CheckBoxManagerPhuKien != null)
+                CheckBoxManagerPhuKien.CheckmarkChanged += UpdateText;
 
-        if (CheckBoxManagerMu != null)
-            CheckBoxManagerMu.CheckmarkChanged += UpdateText;
-
-        if (CheckBoxManagerLongMay != null)
-            CheckBoxManagerLongMay.CheckmarkChanged += UpdateText;
-
-        // Cập nhật lần đầu
-        UpdateText(true);
+            UpdateText2(true);
+        }
     }
 
-    // Hàm này sẽ được gọi khi bất kỳ checkbox nào thay đổi trạng thái
     void UpdateText(bool _)
     {
-        chatText.text = "Khách hàng biển " + animController.id.ToString();
+        if (isSnapshotSaved) return;
 
-        chatText.text += CheckBoxManagerMui != null && CheckBoxManagerMui.checkmarkEnabled ? " - Đã chọn Mũi" : " - Chưa chọn Mũi";
-        chatText.text += CheckBoxManagerRuoi != null && CheckBoxManagerRuoi.checkmarkEnabled ? " - Đã chọn Ruồi" : " - Chưa chọn Ruồi";
-        chatText.text += CheckBoxManagerBeo != null && CheckBoxManagerBeo.checkmarkEnabled ? " - Đã chọn Béo" : " - Chưa chọn Béo";
-        chatText.text += CheckBoxManagerGay != null && CheckBoxManagerGay.checkmarkEnabled ? " - Đã chọn Gầy" : " - Chưa chọn Gầy";
-        chatText.text += CheckBoxManagerMu != null && CheckBoxManagerMu.checkmarkEnabled ? " - Đã chọn Mũ" : " - Chưa chọn Mũ";
-        chatText.text += CheckBoxManagerLongMay != null && CheckBoxManagerLongMay.checkmarkEnabled ? " - Đã chọn Long Mày" : " - Chưa chọn Long Mày";
+        chatText.text = "#" + animController.id.ToString();
+
+        chatText.text += CheckBoxManagerMui != null && CheckBoxManagerMui.checkmarkEnabled ? " /V Nose/ " : " /X Nose/ ";
+        chatText.text += CheckBoxManagerMat != null && CheckBoxManagerMat.checkmarkEnabled ? " /V Eyes/ " : " /X Eyes/ ";
+        chatText.text += CheckBoxManagerKhuonMat != null && CheckBoxManagerKhuonMat.checkmarkEnabled ? " /V Face/ " : " /X Face/ ";
+        chatText.text += CheckBoxManagerMieng != null && CheckBoxManagerMieng.checkmarkEnabled ? " /V Mouth/ " : " /X Mouth/ ";
+        chatText.text += CheckBoxManagerMu != null && CheckBoxManagerMu.checkmarkEnabled ? " /V Cap/ " : " /X Cap/ ";
+        chatText.text += CheckBoxManagerPhuKien != null && CheckBoxManagerPhuKien.checkmarkEnabled ? " /V Jewelry / " : " /X Jewelry/ ";
     }
 
-    // Nên unsubscribe event khi object bị hủy để tránh lỗi
-    private void OnDestroy()
+    void UpdateText2(bool _)
     {
+        if (isSnapshotSaved2) return;
+
+        chatText.text = "#" + animController2.id.ToString();
+
+        chatText.text += CheckBoxManagerMui != null && CheckBoxManagerMui.checkmarkEnabled ? " /V Nose/ " : " /X Nose/ ";
+        chatText.text += CheckBoxManagerMat != null && CheckBoxManagerMat.checkmarkEnabled ? " /V Eyes/ " : " /X Eyes/ ";
+        chatText.text += CheckBoxManagerKhuonMat != null && CheckBoxManagerKhuonMat.checkmarkEnabled ? " /V Face/ " : " /X Face/ ";
+        chatText.text += CheckBoxManagerMieng != null && CheckBoxManagerMieng.checkmarkEnabled ? " /V Mouth/ " : " /X Mouth/ ";
+        chatText.text += CheckBoxManagerMu != null && CheckBoxManagerMu.checkmarkEnabled ? " /V Cap/ " : " /X Cap/ ";
+        chatText.text += CheckBoxManagerPhuKien != null && CheckBoxManagerPhuKien.checkmarkEnabled ? " /V Jewelry / " : " /X Jewelry/ ";
+    }
+
+    public void SaveSnapshot()
+    {
+        isSnapshotSaved = true;
+
+        string snapshot = "#" + animController.id.ToString();
+
+        snapshot += CheckBoxManagerMui != null && CheckBoxManagerMui.checkmarkEnabled ? " /V Nose/ " : " /X Nose/ ";
+        snapshot += CheckBoxManagerMat != null && CheckBoxManagerMat.checkmarkEnabled ? " /V Eyes/ " : " /X Eyes/ ";
+        snapshot += CheckBoxManagerKhuonMat != null && CheckBoxManagerKhuonMat.checkmarkEnabled ? " /V Face/ " : " /X Face/ ";
+        snapshot += CheckBoxManagerMieng != null && CheckBoxManagerMieng.checkmarkEnabled ? " /V Mouth/ " : " /X Mouth/ ";
+        snapshot += CheckBoxManagerMu != null && CheckBoxManagerMu.checkmarkEnabled ? " /V Cap/ " : " /X Cap/ ";
+        snapshot += CheckBoxManagerPhuKien != null && CheckBoxManagerPhuKien.checkmarkEnabled ? " /V Jewelry / " : " /X Jewelry/ ";
+
+        chatText.text = snapshot;
+
         if (CheckBoxManagerMui != null)
             CheckBoxManagerMui.CheckmarkChanged -= UpdateText;
-
-        if (CheckBoxManagerRuoi != null)
-            CheckBoxManagerRuoi.CheckmarkChanged -= UpdateText;
-
-        if (CheckBoxManagerBeo != null)
-            CheckBoxManagerBeo.CheckmarkChanged -= UpdateText;
-
-        if (CheckBoxManagerGay != null)
-            CheckBoxManagerGay.CheckmarkChanged -= UpdateText;
-
+        if (CheckBoxManagerMat != null)
+            CheckBoxManagerMat.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerKhuonMat != null)
+            CheckBoxManagerKhuonMat.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerMieng != null)
+            CheckBoxManagerMieng.CheckmarkChanged -= UpdateText;
         if (CheckBoxManagerMu != null)
             CheckBoxManagerMu.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerPhuKien != null)
+            CheckBoxManagerPhuKien.CheckmarkChanged -= UpdateText;
+    }
 
-        if (CheckBoxManagerLongMay != null)
-            CheckBoxManagerLongMay.CheckmarkChanged -= UpdateText;
+    public void SaveSnapshot2()
+    {
+        isSnapshotSaved2 = true;
+
+        string snapshot = "#" + animController2.id.ToString();
+
+        snapshot += CheckBoxManagerMui != null && CheckBoxManagerMui.checkmarkEnabled ? " /V Nose/ " : " /X Nose/ ";
+        snapshot += CheckBoxManagerMat != null && CheckBoxManagerMat.checkmarkEnabled ? " /V Eyes/ " : " /X Eyes/ ";
+        snapshot += CheckBoxManagerKhuonMat != null && CheckBoxManagerKhuonMat.checkmarkEnabled ? " /V Face/ " : " /X Face/ ";
+        snapshot += CheckBoxManagerMieng != null && CheckBoxManagerMieng.checkmarkEnabled ? " /V Mouth/ " : " /X Mouth/ ";
+        snapshot += CheckBoxManagerMu != null && CheckBoxManagerMu.checkmarkEnabled ? " /V Cap/ " : " /X Cap/ ";
+        snapshot += CheckBoxManagerPhuKien != null && CheckBoxManagerPhuKien.checkmarkEnabled ? " /V Jewelry / " : " /X Jewelry/ ";
+
+        chatText.text = snapshot;
+
+        if (CheckBoxManagerMui != null)
+            CheckBoxManagerMui.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerMat != null)
+            CheckBoxManagerMat.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerKhuonMat != null)
+            CheckBoxManagerKhuonMat.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerMieng != null)
+            CheckBoxManagerMieng.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerMu != null)
+            CheckBoxManagerMu.CheckmarkChanged -= UpdateText;
+        if (CheckBoxManagerPhuKien != null)
+            CheckBoxManagerPhuKien.CheckmarkChanged -= UpdateText;
+    }
+
+    public void OnDestroy()
+    {
+        if (!isSnapshotSaved)
+        {
+            if (CheckBoxManagerMui != null)
+                CheckBoxManagerMui.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMat != null)
+                CheckBoxManagerMat.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerKhuonMat != null)
+                CheckBoxManagerKhuonMat.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMieng != null)
+                CheckBoxManagerMieng.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMu != null)
+                CheckBoxManagerMu.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerPhuKien != null)
+                CheckBoxManagerPhuKien.CheckmarkChanged -= UpdateText;
+        }
+    }
+
+    public void OnDestroy2()
+    {
+        if (!isSnapshotSaved2)
+        {
+            if (CheckBoxManagerMui != null)
+                CheckBoxManagerMui.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMat != null)
+                CheckBoxManagerMat.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerKhuonMat != null)
+                CheckBoxManagerKhuonMat.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMieng != null)
+                CheckBoxManagerMieng.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerMu != null)
+                CheckBoxManagerMu.CheckmarkChanged -= UpdateText;
+            if (CheckBoxManagerPhuKien != null)
+                CheckBoxManagerPhuKien.CheckmarkChanged -= UpdateText;
+        }
     }
 }

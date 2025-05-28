@@ -6,7 +6,7 @@ public class GameClickManeger : MonoBehaviour
     public GameObject NoteBookFullScreenPanel;
     public GameObject listFullScreenPanel;
     public GameObject NvChat;
-    public GameObject OffNvChat;
+    //public GameObject OffNvChat;
     public GameObject NoteBook;
 
 
@@ -37,7 +37,7 @@ public class GameClickManeger : MonoBehaviour
         {
             Debug.Log("OnPointerClick1");
             NvChat.SetActive(false);
-            OffNvChat.SetActive(false);
+            //OffNvChat.SetActive(false);
         }
     }
 
