@@ -29,5 +29,7 @@ public class NoteList : MonoBehaviour, IPointerClickHandler
             PhuKien.SetActive(true);
         if (HistoryList != null)
             HistoryList.SetActive(false);
+
+
     }
 }
