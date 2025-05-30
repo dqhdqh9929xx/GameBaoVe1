@@ -8,13 +8,13 @@ public class GameClickManeger : MonoBehaviour
     public GameObject NvChat;
     //public GameObject OffNvChat;
     public GameObject NoteBook;
-    public GameObject HistoryList;
-    public GameObject Mui;
-    public GameObject Mat;
-    public GameObject KhuonMat;
-    public GameObject Mieng;
-    public GameObject Mu;
-    public GameObject PhuKien;
+    //public GameObject HistoryList;
+    //public GameObject Mui;
+    //public GameObject Mat;
+    //public GameObject KhuonMat;
+    //public GameObject Mieng;
+    //public GameObject Mu;
+    //public GameObject PhuKien;
 
 
     void Start()
@@ -55,22 +55,7 @@ public class GameClickManeger : MonoBehaviour
         if (NoteBookFullScreenPanel != null)
         {
             NoteBookFullScreenPanel.SetActive(true);
-            if (HistoryList != null)
-            {
-                HistoryList.SetActive(true);
-            }
-            if (Mui != null)
-                Mui.SetActive(false);
-            if (Mat != null)
-                Mat.SetActive(false);
-            if (KhuonMat != null)
-                KhuonMat.SetActive(false);
-            if (Mieng != null)
-                Mieng.SetActive(false);
-            if (Mu != null)
-                Mu.SetActive(false);
-            if (PhuKien != null)
-                PhuKien.SetActive(false);
+            Debug.Log("OpenNoteBookFullScreen called, NoteBookFullScreenPanel is now active: " + NoteBookFullScreenPanel.activeSelf);
 
         }
     }

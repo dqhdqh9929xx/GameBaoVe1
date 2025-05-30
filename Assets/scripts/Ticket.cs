@@ -16,22 +16,17 @@ public class Ticket : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (ticket != null && !isDestroying)
+        if (ticket != null)
         {
+            ticket.SetActive(true);
             Debug.Log("Ticket clicked");
             animator.SetTrigger("ticket");
-            isDestroying = true;
             StartCoroutine(WaitForAnimationEnd());
 
             if (animationController != null && animationController.enabled==true)
             {
                 StartCoroutine(animationController.SideWayLeft());
-                //checkBoxManeger.ResetCheckBox();
             }
-            //else if (animationController2 != null && animationController2.enabled == true)
-            //{
-            //    StartCoroutine(animationController2.SideWayLeft2());
-            //}
             else
             {
                 Debug.LogWarning("AnimationController is not assigned.");
@@ -44,7 +39,7 @@ public class Ticket : MonoBehaviour, IPointerClickHandler
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float animationLength = stateInfo.length;
         yield return new WaitForSeconds(animationLength);
-        Destroy(ticket);
+        ticket.SetActive(false);
     }
 }
 

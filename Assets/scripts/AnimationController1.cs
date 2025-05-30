@@ -17,6 +17,7 @@ public class AnimationController1 : MonoBehaviour
     public HistoryList historyList;
     public bool isCome = false;
     public bool isCome2 = false;
+    //public bool NextNv = false;
     public TextMeshProUGUI chatTextComponent;
 
     // Nhan Vat 2
@@ -58,6 +59,7 @@ public class AnimationController1 : MonoBehaviour
             if (imageSideWayCome != null) imageSideWayCome.enabled = false;
             if (imageFace != null) imageFace.enabled = false;
             StartCoroutine(PlayComeAnimationAndShowChat());
+            //NextNv = true;
         }
     }
 
