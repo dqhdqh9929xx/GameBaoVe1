@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1064763539768388540}
   - component: {fileID: 2597498584067884106}
   - component: {fileID: 1146815730631698398}
-  - component: {fileID: 8264412882452929970}
   m_Layer: 7
   m_Name: Come
   m_TagString: Untagged
@@ -76,28 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &8264412882452929970
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674417309453543150}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8da4b0e8b03867046b7a220633fa60ef, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &758211607911382249
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,17 +227,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1058853d280cc4888bea3b9f41c438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   id: 1
   imageFace: {fileID: 8040113742643492213}
   imageSideWayCome: {fileID: 1146815730631698398}
   imageSideWayLeft: {fileID: 5932963167425711434}
-  AnimatorCome: {fileID: 8264412882452929970}
-  AnimatorLeft: {fileID: 4418950356329850251}
   NvChat: {fileID: 0}
   historyList: {fileID: 0}
   isCome: 0
   isCome2: 0
-  NextNv: 0
   chatTextComponent: {fileID: 0}
   imageFace2: {fileID: 8848293409422114374}
   imageSideWayCome2: {fileID: 6840343213242059155}

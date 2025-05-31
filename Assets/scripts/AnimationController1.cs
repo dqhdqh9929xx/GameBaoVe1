@@ -6,25 +6,28 @@ using Unity.VisualScripting;
 
 public class AnimationController1 : MonoBehaviour
 {
+    public GameObject Player;
     public int id = 1;
-    // Nhan Vat 1
-    public Image imageFace;
-    public Image imageSideWayCome;
-    public Image imageSideWayLeft;
-    public Animator AnimatorCome;
-    public Animator AnimatorLeft;
-    public GameObject NvChat; // Chỉ 1 GameObject duy nhất chứa TextMeshProUGUI
-    public HistoryList historyList;
-    public bool isCome = false;
-    public bool isCome2 = false;
-    //public bool NextNv = false;
     public TextMeshProUGUI chatTextComponent;
+    public GameObject NvChat;
+    public Animator Animator;
+
+
+    // Nhan Vat 1
+    public Image image1;
+    public bool isCome = false;
+
 
     // Nhan Vat 2
-    public Image imageFace2;
-    public Image imageSideWayCome2;
-    public Image imageSideWayLeft2;
-    //public TextMeshProUGUI chatTextComponent2;
+    public Image image2;
+    public bool isCome2 = false;
+
+    // Nhan Vat 3
+    public Image image3;
+    public bool isCome3 = false;
+
+    public bool NextNv = false;
+
 
 
 
@@ -36,28 +39,39 @@ public class AnimationController1 : MonoBehaviour
             if (NvChat != null)
                 chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
 
-            if (imageSideWayCome != null) imageSideWayCome.enabled = true;
-            if (imageSideWayLeft != null) imageSideWayLeft.enabled = false;
-            if (imageFace != null) imageFace.enabled = false;
-            if (imageSideWayLeft2 != null) imageSideWayLeft2.enabled = false;
-            if (imageSideWayCome2 != null) imageSideWayCome2.enabled = false;
-            if (imageFace2 != null) imageFace2.enabled = false;
+            image1.enabled=true;
+            image2.enabled = false;
+            image3.enabled = false;
+            NextNv = false;
 
             StartCoroutine(PlayComeAnimationAndShowChat());
         }
     }
     public void StartNv2()
     {
-        if (id == 2)
+        if (id == 2 && image2 != null)
         {
             if (NvChat != null)
                 chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
-            if (imageSideWayCome2 != null) imageSideWayCome2.enabled = true;
-            if (imageSideWayLeft2 != null) imageSideWayLeft2.enabled = false;
-            if (imageFace2 != null) imageFace2.enabled = false;
-            if (imageSideWayLeft != null) imageSideWayLeft.enabled = false;
-            if (imageSideWayCome != null) imageSideWayCome.enabled = false;
-            if (imageFace != null) imageFace.enabled = false;
+            image2.enabled = true;
+            image1.enabled = false;
+            NextNv = true;
+
+            StartCoroutine(PlayComeAnimationAndShowChat());
+            //NextNv = true;
+        }
+    }
+
+    public void StartNv3()
+    {
+        if (id == 3 && image3 != null)
+        {
+            if (NvChat != null)
+                chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
+            image3.enabled = true;
+            image1.enabled = false;
+            image2.enabled = false;
+            NextNv = true;
             StartCoroutine(PlayComeAnimationAndShowChat());
             //NextNv = true;
         }
@@ -67,27 +81,31 @@ public class AnimationController1 : MonoBehaviour
     {
         if(id == 1)
         {
-            if (AnimatorCome != null && imageSideWayCome != null && !isCome)
+            if (image1 != null && !isCome)
             {
-                Debug.Log("Bắt đầu animation Come ID " + id);
-                AnimatorCome.SetTrigger("Come");
-                yield return new WaitForSecondsRealtime(1.8f);
+                Animator.Play("ComeA");
                 isCome = true;
-                imageSideWayCome.enabled = false;
-                if (imageFace != null) imageFace.enabled = true;
+                yield return new WaitForSecondsRealtime(2.5f);
                 ShowNvChatCome();
             }
         }
         else if (id == 2)
         {
-            if (AnimatorCome != null && imageSideWayCome2 != null && !isCome2)
+            if (image2 != null && !isCome2)
             {
-                Debug.Log("Bắt đầu animation Come ID2 " + id);
-                AnimatorCome.SetTrigger("Come");
-                yield return new WaitForSecondsRealtime(1.8f);
                 isCome2 = true;
-                imageSideWayCome2.enabled = false;
-                if (imageFace2 != null) imageFace2.enabled = true;
+                Animator.Play("ComeA");
+                yield return new WaitForSecondsRealtime(2.5f);
+                ShowNvChatCome();
+            }
+        }
+        else if (id == 3)
+        {
+            if (image3 != null && !isCome3)
+            {
+                isCome3 = true;
+                Animator.Play("ComeA");
+                yield return new WaitForSecondsRealtime(2.5f);
                 ShowNvChatCome();
             }
         }
@@ -102,27 +120,28 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 1)
         {
-            if (AnimatorLeft != null && imageSideWayLeft != null)
-            {
-                yield return new WaitForSecondsRealtime(1.8f);
-                Debug.Log("Bắt đầu animation Left ID " + id);
-                AnimatorLeft.SetTrigger("Left");
-                if (imageFace != null) imageFace.enabled = false;
-                imageSideWayLeft.enabled = true;
                 ShowNvChatLeft();
-            }
+                Animator.Play("LeftA");
+                yield return new WaitForSecondsRealtime(2.5f);
+                image1.enabled = false;
+                id++;
+                StartNv2();
         }
         else if (id == 2)
         {
-            if (AnimatorLeft != null && imageSideWayLeft2 != null)
-            {
-                yield return new WaitForSecondsRealtime(1.8f);
-                Debug.Log("Bắt đầu animation Left ID2 " + id);
-                AnimatorLeft.SetTrigger("Left");
-                if (imageFace2 != null) imageFace2.enabled = false;
-                imageSideWayLeft2.enabled = true;
                 ShowNvChatLeft();
-            }
+                Animator.Play("LeftA");
+                yield return new WaitForSecondsRealtime(2.5f);
+                image2.enabled = false;
+                id++;
+                StartNv3();
+        }
+        else if (id == 3)
+        {
+            ShowNvChatLeft();
+            Animator.Play("LeftA");
+            yield return new WaitForSecondsRealtime(2.5f);
+            image2.enabled = false;
         }
         else
         {
@@ -132,16 +151,12 @@ public class AnimationController1 : MonoBehaviour
 
     public IEnumerator SideWayLeft()
     {
-        if (historyList != null)
-        {
-            historyList.SaveSnapshot();
-        }
         yield return StartCoroutine(PlayLeftAnimationAndShowChat());
     }
 
     public IEnumerator TimeShowChat()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         if (NvChat != null && chatTextComponent != null)
         {
             NvChat.SetActive(false);
@@ -151,7 +166,7 @@ public class AnimationController1 : MonoBehaviour
         {
             Debug.LogWarning("Loi TimeShowChat.");
         }
-    }
+    }  
 
     public void ShowNvChatCome()
     {
@@ -181,6 +196,19 @@ public class AnimationController1 : MonoBehaviour
                 Debug.LogWarning("Loi ShowNvChatCome.");
             }
         }
+        else if (id == 3)
+        {
+            if (NvChat != null && chatTextComponent != null)
+            {
+                NvChat.SetActive(true);
+                chatTextComponent.text = "Biển số xe tôi là " + id.ToString();
+                StartCoroutine(TimeShowChat());
+            }
+            else
+            {
+                Debug.LogWarning("Loi ShowNvChatCome.");
+            }
+        }
         else
         {
             Debug.LogWarning("ID không hợp lệ: " + id);
@@ -196,10 +224,6 @@ public class AnimationController1 : MonoBehaviour
                 NvChat.SetActive(true);
                 chatTextComponent.text = "Thanks ";
                 StartCoroutine(TimeShowChat());
-                imageFace.enabled = false;
-                imageSideWayLeft.enabled = false;
-                id++;
-                StartNv2();
             }
             else
             {
@@ -213,9 +237,19 @@ public class AnimationController1 : MonoBehaviour
                 NvChat.SetActive(true);
                 chatTextComponent.text = "Thanks 2";
                 StartCoroutine(TimeShowChat());
-                imageFace2.enabled = false;
-                imageSideWayLeft2.enabled = false;
-                
+            }
+            else
+            {
+                Debug.LogWarning("Loi ShowNvChatLeft.");
+            }
+        }
+        else if (id == 3)
+        {
+            if (NvChat != null && chatTextComponent != null)
+            {
+                NvChat.SetActive(true);
+                chatTextComponent.text = "Thanks 3";
+                StartCoroutine(TimeShowChat());
             }
             else
             {

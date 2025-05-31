@@ -9,7 +9,6 @@ public class Ticket : MonoBehaviour, IPointerClickHandler
     public GameObject ticket;
     public Animator animator;
     public AnimationController1 animationController;
-    //public AnimationController2 animationController2;
     public CheckBoxManeger checkBoxManeger;
 
     public bool isDestroying = false;
@@ -22,15 +21,7 @@ public class Ticket : MonoBehaviour, IPointerClickHandler
             Debug.Log("Ticket clicked");
             animator.SetTrigger("ticket");
             StartCoroutine(WaitForAnimationEnd());
-
-            if (animationController != null && animationController.enabled==true)
-            {
-                StartCoroutine(animationController.SideWayLeft());
-            }
-            else
-            {
-                Debug.LogWarning("AnimationController is not assigned.");
-            }
+            StartCoroutine(animationController.SideWayLeft());
         }
     }
 
