@@ -1814,6 +1814,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4263066497368356594}
     - target: {fileID: 5760022077244326585, guid: b7827bc31d9c02949bdda11540284493, type: 3}
+      propertyPath: SpawnLocal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760022077244326585, guid: b7827bc31d9c02949bdda11540284493, type: 3}
       propertyPath: animationController
       value: 
       objectReference: {fileID: 4263066497368356594}
