@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GameClickManeger : MonoBehaviour
@@ -6,15 +7,10 @@ public class GameClickManeger : MonoBehaviour
     public GameObject NoteBookFullScreenPanel;
     public GameObject listFullScreenPanel;
     public GameObject NvChat;
-    //public GameObject OffNvChat;
     public GameObject NoteBook;
-    //public GameObject HistoryList;
-    //public GameObject Mui;
-    //public GameObject Mat;
-    //public GameObject KhuonMat;
-    //public GameObject Mieng;
-    //public GameObject Mu;
-    //public GameObject PhuKien;
+    public GameObject TicketNv;
+    public GameObject TicketNvFullScreen;
+
 
 
     void Start()
@@ -28,25 +24,46 @@ public class GameClickManeger : MonoBehaviour
         if (listFullScreenPanel != null)
             listFullScreenPanel.SetActive(false);
 
+        if (TicketNv != null)
+            TicketNv.SetActive(true);
+        if (TicketNvFullScreen != null)
+            TicketNvFullScreen.SetActive(false);
     }
+
+    public void OpenTicketNvTrueFullScreen()
+    {
+        if (TicketNvFullScreen != null)
+        {
+            TicketNvFullScreen.SetActive(true);
+            StartCoroutine(TimeToCheckTicket());
+
+        }
+    }
+
+    public IEnumerator TimeToCheckTicket()
+    {
+        yield return new WaitForSeconds(3);
+        TicketNvFullScreen.SetActive(false);
+        Debug.Log("TicketNvFullScreen đã được tắt sau 3 giây.");
+    }    
 
     
 
-    public void OnPointerClick(BaseEventData eventData)
-    {
-        Debug.Log("OnPointerClick");
-        PointerEventData pointerData = eventData as PointerEventData;
-        // Kiểm tra nếu click không nằm trong NvChat
-        if (!RectTransformUtility.RectangleContainsScreenPoint(
-                NvChat.GetComponent<RectTransform>(),
-                pointerData.position,
-                Camera.main))
-        {
-            Debug.Log("OnPointerClick1");
-            NvChat.SetActive(false);
-            //OffNvChat.SetActive(false);
-        }
-    }
+    //public void OnPointerClick(BaseEventData eventData)
+    //{
+    //    Debug.Log("OnPointerClick");
+    //    PointerEventData pointerData = eventData as PointerEventData;
+    //   // Kiểm tra nếu click không nằm trong NvChat
+    //    if (!RectTransformUtility.RectangleContainsScreenPoint(
+    //            NvChat.GetComponent<RectTransform>(),
+    //            pointerData.position,
+    //           Camera.main))
+    //    {
+    //        Debug.Log("OnPointerClick1");
+    //        NvChat.SetActive(false);
+    //        //OffNvChat.SetActive(false);
+    //    }
+    //}
 
 
     public void OpenNoteBookFullScreen()
