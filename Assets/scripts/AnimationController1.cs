@@ -18,7 +18,8 @@ public class AnimationController1 : MonoBehaviour
     public GameObject TicketNvFullScreen;
     public GameObject TicketNv;
     public GameObject Coin;
-
+    public bool IsTicket = false;
+    public GameObject newPrefabTicket;
     // Nhan Vat 1
     public Image image1;
     public bool isCome = false;
@@ -37,13 +38,34 @@ public class AnimationController1 : MonoBehaviour
     public bool NextNv = false;
 
 
-
+    private void Update()
+    {
+        if (hasInstantiatedTicket == false && TicketNv != null && IsTicket == true)
+        {
+            hasInstantiatedTicket = true;
+            Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
+            Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y - 300f, localPosTicket.z);
+            newPrefabTicket = Instantiate(TicketNv);
+            newPrefabTicket.transform.SetParent(KhayDungDo, false);
+            newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
+            newPrefabTicket.SetActive(true);
+            TicketComponent = TicketNvFullScreen.GetComponentInChildren<TextMeshProUGUI>();
+            TicketComponent.transform.SetParent(TicketNvFullScreen.transform, false);
+            TicketComponent.text = "#" + id.ToString();
+        }
+        if (IsTicket == false)
+        {
+            newPrefabTicket.SetActive(false);
+        }
+        
+    }
 
 
     void Start()
     {
         if (id == 1)
         {
+            IsTicket = false;
             if (NvChat != null)
                 chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -59,6 +81,7 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 2 && image2 != null)
         {
+            IsTicket = false;
             if (NvChat != null)
                 chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
             image2.enabled = true;
@@ -74,6 +97,7 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 3 && image3 != null)
         {
+            IsTicket = false;
             if (NvChat != null)
                 chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
             image3.enabled = true;
@@ -89,6 +113,8 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 4)
         {
+            IsTicket = false;
+            hasInstantiatedTicket = false;
             chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
             image1.enabled = true;
             NextNv = false;
@@ -99,17 +125,22 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 5)
         {
+            IsTicket = false;
+            hasInstantiatedTicket = false;
             Debug.Log("StartNv2B called, id: " + id);
             chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
             image2.enabled = true;
             NextNv = false;
             StartCoroutine(PlayComeAnimationAndShowChatB());
+
         }
     }
     public void StartNv3B()
     {
         if (id == 6)
         {
+            hasInstantiatedTicket = false;
+            IsTicket = false;
             Debug.Log("StartNv3B called, id: " + id);
             chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
             image3.enabled = true;
@@ -118,24 +149,11 @@ public class AnimationController1 : MonoBehaviour
         }
     }
 
-    public void InstantiateTicketTrue()
-    {
-        if (hasInstantiatedTicket == false && TicketNv != null)
-        {
-            hasInstantiatedTicket = true;
-            Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
-            Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y - 300f, localPosTicket.z);
-            GameObject newPrefabTicket = Instantiate(TicketNv);
-            newPrefabTicket.transform.SetParent(KhayDungDo, false);
-            newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
-            //newPrefabTicket.SetActive(true);
-            TicketComponent = TicketNvFullScreen.GetComponentInChildren<TextMeshProUGUI>();
-            TicketComponent.transform.SetParent(TicketNvFullScreen.transform, false);
-            TicketComponent.text = "#" + id.ToString();
-
-
-        }
-    }
+    //public void InstantiateTicketTrue()
+    //{
+    //
+    //}
+    
 
     public void InstantiateCoin()
     {
@@ -158,8 +176,9 @@ public class AnimationController1 : MonoBehaviour
                 Animator.Play("ComeB");
                 isLeft = true;
                 yield return new WaitForSecondsRealtime(2.5f);
+                IsTicket = true;
                 ShowNvChatLeftB();
-                InstantiateTicketTrue();
+                //InstantiateTicketTrue();
                 InstantiateCoin();
 
             }
@@ -171,8 +190,9 @@ public class AnimationController1 : MonoBehaviour
                 Animator.Play("ComeB");
                 isLeft2 = true;
                 yield return new WaitForSecondsRealtime(2.5f);
+                IsTicket = true;
                 ShowNvChatLeftB();
-                InstantiateTicketTrue();
+                //InstantiateTicketTrue();
                 InstantiateCoin();
             }
         }
@@ -183,8 +203,9 @@ public class AnimationController1 : MonoBehaviour
                 Animator.Play("ComeB");
                 isLeft3 = true;
                 yield return new WaitForSecondsRealtime(2.5f);
+                IsTicket = true;
                 ShowNvChatLeftB();
-                InstantiateTicketTrue();
+                //InstantiateTicketTrue();
                 InstantiateCoin();
             }
             else
@@ -306,6 +327,7 @@ public class AnimationController1 : MonoBehaviour
             Animator.Play("LeftB");
             yield return new WaitForSecondsRealtime(2.5f);
             image3.enabled = false;
+
         }
 
         else

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TuiDungDo_0: -2884327316437545744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -58,7 +58,6 @@ public class GameClickManeger : MonoBehaviour
         {
             StartCoroutine(animationController.SideWayLeft());
             Coin.SetActive(false);
-            TicketNv.SetActive(false);
         }
         else
         {
