@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &618140218801369577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -223,17 +223,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35f837512f489c4f821faf98358117e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 0}
   NoteBookFullScreenPanel: {fileID: 1188417890752859209}
   listFullScreenPanel: {fileID: 0}
   NvChat: {fileID: 0}
   NoteBook: {fileID: 0}
-  HistoryList: {fileID: 0}
-  Mui: {fileID: 0}
-  Mat: {fileID: 0}
-  KhuonMat: {fileID: 0}
-  Mieng: {fileID: 0}
-  Mu: {fileID: 0}
-  PhuKien: {fileID: 0}
+  TicketNv: {fileID: 0}
+  TicketNvFullScreen: {fileID: 0}
+  Coin: {fileID: 0}
 --- !u!1 &6060767973452161336
 GameObject:
   m_ObjectHideFlags: 0

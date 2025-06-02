@@ -1,15 +1,19 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GameClickManeger : MonoBehaviour
 {
+    public AnimationController1 animationController;
     public GameObject NoteBookFullScreenPanel;
     public GameObject listFullScreenPanel;
     public GameObject NvChat;
     public GameObject NoteBook;
     public GameObject TicketNv;
     public GameObject TicketNvFullScreen;
+    public GameObject Coin;
+    
 
 
 
@@ -28,6 +32,8 @@ public class GameClickManeger : MonoBehaviour
             TicketNv.SetActive(true);
         if (TicketNvFullScreen != null)
             TicketNvFullScreen.SetActive(false);
+        if (Coin != null)
+            Coin.SetActive(true);
     }
 
     public void OpenTicketNvTrueFullScreen()
@@ -36,7 +42,6 @@ public class GameClickManeger : MonoBehaviour
         {
             TicketNvFullScreen.SetActive(true);
             StartCoroutine(TimeToCheckTicket());
-
         }
     }
 
@@ -47,6 +52,19 @@ public class GameClickManeger : MonoBehaviour
         Debug.Log("TicketNvFullScreen đã được tắt sau 3 giây.");
     }    
 
+    public void AcceptCoinToLeft()
+    {
+        if (animationController != null)
+        {
+            StartCoroutine(animationController.SideWayLeft());
+            Coin.SetActive(false);
+            TicketNv.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("AnimationController1 is not assigned.");
+        }
+    }
     
 
     //public void OnPointerClick(BaseEventData eventData)

@@ -10,6 +10,8 @@ public class Ticket : MonoBehaviour, IPointerClickHandler
     public Animator animator;
     public AnimationController1 animationController;
     public CheckBoxManeger checkBoxManeger;
+    public Transform KhayDungDo;
+
 
     public bool isDestroying = false;
 

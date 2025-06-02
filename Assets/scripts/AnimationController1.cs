@@ -11,10 +11,13 @@ public class AnimationController1 : MonoBehaviour
     public TextMeshProUGUI chatTextComponent;
     public GameObject NvChat;
     public Animator Animator;
-    public GameClickManeger TicketToInstantiateTrue;
+    public GameClickManeger GameClickManager1;
     public bool hasInstantiatedTicket = false;
     public Transform KhayDungDo;
-
+    public TextMeshProUGUI TicketComponent;
+    public GameObject TicketNvFullScreen;
+    public GameObject TicketNv;
+    public GameObject Coin;
 
     // Nhan Vat 1
     public Image image1;
@@ -94,41 +97,100 @@ public class AnimationController1 : MonoBehaviour
     }
     public void StartNv2B()
     {
-
+        if (id == 5)
+        {
+            Debug.Log("StartNv2B called, id: " + id);
+            chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
+            image2.enabled = true;
+            NextNv = false;
+            StartCoroutine(PlayComeAnimationAndShowChatB());
+        }
+    }
+    public void StartNv3B()
+    {
+        if (id == 6)
+        {
+            Debug.Log("StartNv3B called, id: " + id);
+            chatTextComponent = NvChat.GetComponentInChildren<TextMeshProUGUI>();
+            image3.enabled = true;
+            NextNv = false;
+            StartCoroutine(PlayComeAnimationAndShowChatB());
+        }
     }
 
     public void InstantiateTicketTrue()
     {
-        if (hasInstantiatedTicket == false && TicketToInstantiateTrue.TicketNv != null)
+        if (hasInstantiatedTicket == false && TicketNv != null)
         {
             hasInstantiatedTicket = true;
             Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y - 300f, localPosTicket.z);
-            GameObject newPrefabTicket = Instantiate(TicketToInstantiateTrue.TicketNv);
+            GameObject newPrefabTicket = Instantiate(TicketNv);
             newPrefabTicket.transform.SetParent(KhayDungDo, false);
             newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
-            newPrefabTicket.SetActive(true);
-        
+            //newPrefabTicket.SetActive(true);
+            TicketComponent = TicketNvFullScreen.GetComponentInChildren<TextMeshProUGUI>();
+            TicketComponent.transform.SetParent(TicketNvFullScreen.transform, false);
+            TicketComponent.text = "#" + id.ToString();
+
+
         }
+    }
+
+    public void InstantiateCoin()
+    {
+        Vector3 localPosCoin = KhayDungDo.InverseTransformPoint(transform.position);
+        Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x - 200f, localPosCoin.y - 300f, localPosCoin.z);
+        GameObject newPrefabCoin = Instantiate(Coin);
+        newPrefabCoin.transform.SetParent(KhayDungDo, false);
+        newPrefabCoin.GetComponent<RectTransform>().localPosition = spawnLocalPosCoin;
+        //newPrefabCoin.SetActive(true);
+        Debug.Log("InstantiateCoin called, coin instantiated at position: " + spawnLocalPosCoin);
+
     }
 
     public IEnumerator PlayComeAnimationAndShowChatB()
     {
         if (id == 4)
         {
-            if(!isLeft)
+            if (!isLeft)
             {
                 Animator.Play("ComeB");
                 isLeft = true;
                 yield return new WaitForSecondsRealtime(2.5f);
-                ShowNvChatComeB();
+                ShowNvChatLeftB();
                 InstantiateTicketTrue();
+                InstantiateCoin();
 
             }
         }
-        else
+        else if (id == 5)
         {
-            Debug.LogWarning("ID không hợp lệ: " + id);
+            if (!isLeft2)
+            {
+                Animator.Play("ComeB");
+                isLeft2 = true;
+                yield return new WaitForSecondsRealtime(2.5f);
+                ShowNvChatLeftB();
+                InstantiateTicketTrue();
+                InstantiateCoin();
+            }
+        }
+        else if (id == 6)
+        {
+            if (!isLeft3)
+            {
+                Animator.Play("ComeB");
+                isLeft3 = true;
+                yield return new WaitForSecondsRealtime(2.5f);
+                ShowNvChatLeftB();
+                InstantiateTicketTrue();
+                InstantiateCoin();
+            }
+            else
+            {
+                Debug.LogWarning("ID không hợp lệ: " + id);
+            }
         }
     }
 
@@ -173,7 +235,7 @@ public class AnimationController1 : MonoBehaviour
 
     public IEnumerator PlayLeftAnimationAndShowChatB()
     {
-        if (id == 4)
+        if (id == 4 && image1 != null)
         {
                 ShowNvChatLeft();
                 Animator.Play("LeftB");
@@ -219,10 +281,38 @@ public class AnimationController1 : MonoBehaviour
             StartNv1B();
 
         }
+        else if (id == 4)
+        {
+            ShowNvChatLeft();
+
+            Animator.Play("LeftB");
+            yield return new WaitForSecondsRealtime(2.5f);
+            image1.enabled = false;
+            id++;
+            StartNv2B();
+        }
+        else if (id == 5)
+        {
+            ShowNvChatLeft();
+            Animator.Play("LeftB");
+            yield return new WaitForSecondsRealtime(2.5f);
+            image2.enabled = false;
+            id++;
+            StartNv3B();
+        }
+        else if (id == 6)
+        {
+            ShowNvChatLeft();
+            Animator.Play("LeftB");
+            yield return new WaitForSecondsRealtime(2.5f);
+            image3.enabled = false;
+        }
+
         else
         {
             Debug.LogWarning("ID không hợp lệ: " + id);
         }
+
     }
 
 
@@ -230,6 +320,7 @@ public class AnimationController1 : MonoBehaviour
     public IEnumerator SideWayLeft()
     {
         yield return StartCoroutine(PlayLeftAnimationAndShowChat());
+        Debug.Log("SideWayLeft called, waiting for animation to finish." +id);
     }
 
     public IEnumerator TimeShowChat()
@@ -246,7 +337,7 @@ public class AnimationController1 : MonoBehaviour
         }
     }
     
-    public void ShowNvChatComeB()
+    public void ShowNvChatLeftB()
     {
             if (NvChat != null && chatTextComponent != null)
             {
@@ -342,6 +433,19 @@ public class AnimationController1 : MonoBehaviour
             {
                 NvChat.SetActive(true);
                 chatTextComponent.text = "Thanks 3";
+                StartCoroutine(TimeShowChat());
+            }
+            else
+            {
+                Debug.LogWarning("Loi ShowNvChatLeft.");
+            }
+        }
+        else if (id == 4)
+        {
+            if (NvChat != null && chatTextComponent != null)
+            {
+                NvChat.SetActive(true);
+                chatTextComponent.text = "Thanks 4";
                 StartCoroutine(TimeShowChat());
             }
             else

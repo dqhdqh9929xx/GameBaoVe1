@@ -227,19 +227,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1058853d280cc4888bea3b9f41c438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 1938610143691017812}
   id: 1
-  imageFace: {fileID: 8040113742643492213}
-  imageSideWayCome: {fileID: 1146815730631698398}
-  imageSideWayLeft: {fileID: 5932963167425711434}
-  NvChat: {fileID: 0}
-  historyList: {fileID: 0}
-  isCome: 0
-  isCome2: 0
   chatTextComponent: {fileID: 0}
-  imageFace2: {fileID: 8848293409422114374}
-  imageSideWayCome2: {fileID: 6840343213242059155}
-  imageSideWayLeft2: {fileID: 4836180050466423337}
+  NvChat: {fileID: 7644315241461679709, guid: b0237045bbf57f0499d8a3d3e7a5c4c0, type: 3}
+  Animator: {fileID: 0}
+  GameClickManager1: {fileID: 8435878080306559452, guid: f4d9e69349b247c4880612f168f96af6, type: 3}
+  hasInstantiatedTicket: 0
+  KhayDungDo: {fileID: 2164037012812951322, guid: 598d25d3d1cae6c4bba77a186d931e12, type: 3}
+  TicketComponent: {fileID: 0}
+  TicketNvFullScreen: {fileID: 34861401776958875, guid: 84a06befcc8b6c84a8284e98fe3ca073, type: 3}
+  TicketNv: {fileID: 6619336033554667299, guid: 60a331101d3d7e945b49b6b1c8b213c0, type: 3}
+  Coin: {fileID: 275797697880683997, guid: 075738aeb478d0e468228879438182c7, type: 3}
+  image1: {fileID: 0}
+  isCome: 0
+  isLeft: 0
+  image2: {fileID: 0}
+  isCome2: 0
+  isLeft2: 0
+  image3: {fileID: 0}
+  isCome3: 0
+  isLeft3: 0
+  NextNv: 0
 --- !u!1 &4728391336220840606
 GameObject:
   m_ObjectHideFlags: 0
