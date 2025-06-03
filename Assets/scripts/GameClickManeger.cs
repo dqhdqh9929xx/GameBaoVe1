@@ -13,6 +13,10 @@ public class GameClickManeger : MonoBehaviour
     public GameObject TicketNv;
     public GameObject TicketNvFullScreen;
     public GameObject Coin;
+    public GameObject BinhXitCay;
+    public Transform BinhXitCayT;
+    public bool isBinhXit = false;
+
     
 
 
@@ -34,6 +38,23 @@ public class GameClickManeger : MonoBehaviour
             TicketNvFullScreen.SetActive(false);
         if (Coin != null)
             Coin.SetActive(true);
+        if (BinhXitCay != null)
+            BinhXitCay.SetActive(true);
+    }
+    private void Update()
+    {
+        if (isBinhXit == true)
+        {
+            Vector2 mousePos = Input.mousePosition;
+            BinhXitCayT.position = mousePos;
+        }
+    }   
+
+
+    public void SelectBinhXitHoiCay()
+    {
+        isBinhXit = true;
+        Debug.Log("Da Select");
     }
 
     public void OpenTicketNvTrueFullScreen()

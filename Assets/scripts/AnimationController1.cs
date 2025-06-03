@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
 using TMPro;
-using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class AnimationController1 : MonoBehaviour
 {
@@ -22,16 +23,19 @@ public class AnimationController1 : MonoBehaviour
     public GameObject newPrefabTicket;
     // Nhan Vat 1
     public Image image1;
+    public Image image1_cay;
     public bool isCome = false;
     public bool isLeft = false;
 
     // Nhan Vat 2
     public Image image2;
+    public Image image2_cay;
     public bool isCome2 = false;
     public bool isLeft2 = false;
 
     // Nhan Vat 3
     public Image image3;
+    public Image image3_cay;
     public bool isCome3 = false;
     public bool isLeft3 = false;
 
@@ -57,8 +61,8 @@ public class AnimationController1 : MonoBehaviour
         {
             newPrefabTicket.SetActive(false);
         }
-        
     }
+
 
 
     void Start()
@@ -72,7 +76,11 @@ public class AnimationController1 : MonoBehaviour
             image1.enabled=true;
             image2.enabled = false;
             image3.enabled = false;
+            image1_cay.enabled=false;
+            image2_cay.enabled=false;
+            image3_cay.enabled=false;
             NextNv = false;
+            //TicketNv.SetActive(true);
 
             StartCoroutine(PlayComeAnimationAndShowChat());
         }
@@ -149,10 +157,6 @@ public class AnimationController1 : MonoBehaviour
         }
     }
 
-    //public void InstantiateTicketTrue()
-    //{
-    //
-    //}
     
 
     public void InstantiateCoin()
@@ -175,10 +179,10 @@ public class AnimationController1 : MonoBehaviour
             {
                 Animator.Play("ComeB");
                 isLeft = true;
-                yield return new WaitForSecondsRealtime(2.5f);
                 IsTicket = true;
+                yield return new WaitForSecondsRealtime(2.5f);
+                //IsTicket = true;
                 ShowNvChatLeftB();
-                //InstantiateTicketTrue();
                 InstantiateCoin();
 
             }
@@ -189,10 +193,10 @@ public class AnimationController1 : MonoBehaviour
             {
                 Animator.Play("ComeB");
                 isLeft2 = true;
-                yield return new WaitForSecondsRealtime(2.5f);
                 IsTicket = true;
+                yield return new WaitForSecondsRealtime(2.5f);
+                //IsTicket = true;
                 ShowNvChatLeftB();
-                //InstantiateTicketTrue();
                 InstantiateCoin();
             }
         }
@@ -202,10 +206,9 @@ public class AnimationController1 : MonoBehaviour
             {
                 Animator.Play("ComeB");
                 isLeft3 = true;
-                yield return new WaitForSecondsRealtime(2.5f);
                 IsTicket = true;
+                yield return new WaitForSecondsRealtime(2.5f);
                 ShowNvChatLeftB();
-                //InstantiateTicketTrue();
                 InstantiateCoin();
             }
             else
@@ -254,23 +257,6 @@ public class AnimationController1 : MonoBehaviour
 
     }
 
-    public IEnumerator PlayLeftAnimationAndShowChatB()
-    {
-        if (id == 4 && image1 != null)
-        {
-                ShowNvChatLeft();
-                Animator.Play("LeftB");
-                yield return new WaitForSecondsRealtime(2.5f);
-                image1.enabled = false;
-                id++;
-                StartNv2B();
-
-        }
-        else
-        {
-            Debug.LogWarning("ID không hợp lệ: " + id);
-        }
-    }
 
     public IEnumerator PlayLeftAnimationAndShowChat()
     {
@@ -305,7 +291,6 @@ public class AnimationController1 : MonoBehaviour
         else if (id == 4)
         {
             ShowNvChatLeft();
-
             Animator.Play("LeftB");
             yield return new WaitForSecondsRealtime(2.5f);
             image1.enabled = false;

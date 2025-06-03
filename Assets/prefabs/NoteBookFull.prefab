@@ -231,6 +231,9 @@ MonoBehaviour:
   TicketNv: {fileID: 0}
   TicketNvFullScreen: {fileID: 0}
   Coin: {fileID: 0}
+  BinhXitCay: {fileID: 0}
+  BinhXitCayT: {fileID: 0}
+  isBinhXit: 0
 --- !u!1 &6060767973452161336
 GameObject:
   m_ObjectHideFlags: 0
