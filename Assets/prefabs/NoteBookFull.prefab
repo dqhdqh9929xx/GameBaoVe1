@@ -233,6 +233,8 @@ MonoBehaviour:
   Coin: {fileID: 0}
   BinhXitCay: {fileID: 0}
   BinhXitCayT: {fileID: 0}
+  GameWinMenu: {fileID: 0}
+  GameLoseMenu: {fileID: 0}
   isBinhXit: 0
 --- !u!1 &6060767973452161336
 GameObject:

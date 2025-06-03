@@ -61,6 +61,11 @@ public class AnimationController1 : MonoBehaviour
         {
             newPrefabTicket.SetActive(false);
         }
+
+        if (id == 7)
+        {
+            GameClickManager1.ShowGameWinMenu();
+        }
     }
 
 
@@ -312,7 +317,7 @@ public class AnimationController1 : MonoBehaviour
             Animator.Play("LeftB");
             yield return new WaitForSecondsRealtime(2.5f);
             image3.enabled = false;
-
+            id++;
         }
 
         else

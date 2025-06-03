@@ -15,6 +15,8 @@ public class GameClickManeger : MonoBehaviour
     public GameObject Coin;
     public GameObject BinhXitCay;
     public Transform BinhXitCayT;
+    public GameObject GameWinMenu;
+    public GameObject GameLoseMenu;
     public bool isBinhXit = false;
 
     
@@ -40,6 +42,8 @@ public class GameClickManeger : MonoBehaviour
             Coin.SetActive(true);
         if (BinhXitCay != null)
             BinhXitCay.SetActive(true);
+        GameWinMenu.SetActive(false);
+        GameLoseMenu.SetActive(false);
     }
     private void Update()
     {
@@ -85,6 +89,15 @@ public class GameClickManeger : MonoBehaviour
             Debug.LogWarning("AnimationController1 is not assigned.");
         }
     }
+
+    public void ShowGameWinMenu()
+    {
+         GameWinMenu.SetActive(true);
+    }
+    public void ShowGameLoseMenu()
+    {
+        GameLoseMenu.SetActive(true);
+    }    
     
 
     //public void OnPointerClick(BaseEventData eventData)
