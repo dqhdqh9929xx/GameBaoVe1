@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.XR;
 
 public class GameClickManeger : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameClickManeger : MonoBehaviour
     public Transform BinhXitCayT;
     public GameObject GameWinMenu;
     public GameObject GameLoseMenu;
+    public GameObject BinhXitPoint;
     public bool isBinhXit = false;
 
     
@@ -51,8 +53,38 @@ public class GameClickManeger : MonoBehaviour
         {
             Vector2 mousePos = Input.mousePosition;
             BinhXitCayT.position = mousePos;
+            
         }
-    }   
+    }
+
+    public void BinhXitPointClicked()
+    {
+        if (isBinhXit == true)
+        {
+            Debug.Log("isBinhXit == true");
+        }
+        Debug.Log("Da click vao nhan vat");
+        if (isBinhXit == true && animationController.isLeft == true && animationController.image1.enabled == true)
+        {
+
+            animationController.image1.enabled = false;
+            animationController.image1_cay.enabled = true;
+            isBinhXit = false;
+            Debug.Log("Da du dieu kien de xit");
+        }
+        else if (isBinhXit == true && animationController.isLeft2 == true && animationController.image2.enabled == true)
+        {
+            animationController.image2.enabled = false;
+            animationController.image2_cay.enabled = true;
+            isBinhXit = false;
+        }
+        else if (isBinhXit == true && animationController.isLeft3 == true && animationController.image3.enabled == true)
+        {
+            animationController.image3.enabled = false;
+            animationController.image3_cay.enabled = true;
+            isBinhXit = false;
+        }
+    }
 
 
     public void SelectBinhXitHoiCay()
@@ -99,22 +131,6 @@ public class GameClickManeger : MonoBehaviour
         GameLoseMenu.SetActive(true);
     }    
     
-
-    //public void OnPointerClick(BaseEventData eventData)
-    //{
-    //    Debug.Log("OnPointerClick");
-    //    PointerEventData pointerData = eventData as PointerEventData;
-    //   // Kiểm tra nếu click không nằm trong NvChat
-    //    if (!RectTransformUtility.RectangleContainsScreenPoint(
-    //            NvChat.GetComponent<RectTransform>(),
-    //            pointerData.position,
-    //           Camera.main))
-    //    {
-    //        Debug.Log("OnPointerClick1");
-    //        NvChat.SetActive(false);
-    //        //OffNvChat.SetActive(false);
-    //    }
-    //}
 
 
     public void OpenNoteBookFullScreen()
