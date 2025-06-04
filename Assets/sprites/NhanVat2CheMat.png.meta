@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NhanVat2CheMat_0: 5771982738253600551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

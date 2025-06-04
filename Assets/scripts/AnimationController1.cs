@@ -20,7 +20,9 @@ public class AnimationController1 : MonoBehaviour
     public GameObject TicketNv;
     public GameObject Coin;
     public bool IsTicket = false;
+    public bool IsCoin = false;
     public GameObject newPrefabTicket;
+    public GameObject newPrefabCoin;
     // Nhan Vat 1
     public Image image1;
     public Image image1_cay;
@@ -48,7 +50,7 @@ public class AnimationController1 : MonoBehaviour
         {
             hasInstantiatedTicket = true;
             Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
-            Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y - 300f, localPosTicket.z);
+            Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x , localPosTicket.y - 300f, localPosTicket.z);
             newPrefabTicket = Instantiate(TicketNv);
             newPrefabTicket.transform.SetParent(KhayDungDo, false);
             newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
@@ -61,14 +63,15 @@ public class AnimationController1 : MonoBehaviour
         {
             newPrefabTicket.SetActive(false);
         }
-
+        if (IsCoin == false)
+        {
+            newPrefabCoin.SetActive(false);
+        }
         if (id == 7)
         {
             GameClickManager1.ShowGameWinMenu();
         }
     }
-
-
 
     void Start()
     {
@@ -162,18 +165,16 @@ public class AnimationController1 : MonoBehaviour
         }
     }
 
-    
+
 
     public void InstantiateCoin()
     {
         Vector3 localPosCoin = KhayDungDo.InverseTransformPoint(transform.position);
         Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x - 200f, localPosCoin.y - 300f, localPosCoin.z);
-        GameObject newPrefabCoin = Instantiate(Coin);
+        newPrefabCoin = Instantiate(Coin);
         newPrefabCoin.transform.SetParent(KhayDungDo, false);
         newPrefabCoin.GetComponent<RectTransform>().localPosition = spawnLocalPosCoin;
-        //newPrefabCoin.SetActive(true);
-        Debug.Log("InstantiateCoin called, coin instantiated at position: " + spawnLocalPosCoin);
-
+        newPrefabCoin.SetActive(true);
     }
 
     public IEnumerator PlayComeAnimationAndShowChatB()
@@ -183,10 +184,11 @@ public class AnimationController1 : MonoBehaviour
             if (!isLeft)
             {
                 Animator.Play("ComeB");
+                yield return new WaitForSecondsRealtime(2.5f);
                 isLeft = true;
                 IsTicket = true;
-                yield return new WaitForSecondsRealtime(2.5f);
-                //IsTicket = true;
+                IsCoin = true;
+                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
 
@@ -197,10 +199,11 @@ public class AnimationController1 : MonoBehaviour
             if (!isLeft2)
             {
                 Animator.Play("ComeB");
+                yield return new WaitForSecondsRealtime(2.5f);
                 isLeft2 = true;
                 IsTicket = true;
-                yield return new WaitForSecondsRealtime(2.5f);
-                //IsTicket = true;
+                IsCoin = true;
+                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
             }
@@ -210,9 +213,11 @@ public class AnimationController1 : MonoBehaviour
             if (!isLeft3)
             {
                 Animator.Play("ComeB");
+                yield return new WaitForSecondsRealtime(2.5f);
                 isLeft3 = true;
                 IsTicket = true;
-                yield return new WaitForSecondsRealtime(2.5f);
+                IsCoin = true;
+                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
             }
@@ -297,8 +302,12 @@ public class AnimationController1 : MonoBehaviour
         {
             ShowNvChatLeft();
             Animator.Play("LeftB");
+            //newPrefabTicket.SetActive(false);
+            IsTicket = false;
+            IsCoin = false;
             yield return new WaitForSecondsRealtime(2.5f);
             image1.enabled = false;
+            image1_cay.enabled = false;
             id++;
             StartNv2B();
         }
@@ -306,8 +315,12 @@ public class AnimationController1 : MonoBehaviour
         {
             ShowNvChatLeft();
             Animator.Play("LeftB");
+            //newPrefabTicket.SetActive(false);
+            IsTicket = false;
+            IsCoin = false;
             yield return new WaitForSecondsRealtime(2.5f);
             image2.enabled = false;
+            image2_cay.enabled = false;
             id++;
             StartNv3B();
         }
@@ -315,16 +328,18 @@ public class AnimationController1 : MonoBehaviour
         {
             ShowNvChatLeft();
             Animator.Play("LeftB");
+            //newPrefabTicket.SetActive(false);
+            IsTicket = false;
+            IsCoin = false;
             yield return new WaitForSecondsRealtime(2.5f);
             image3.enabled = false;
+            image3_cay.enabled = false;
             id++;
         }
-
         else
         {
             Debug.LogWarning("ID không hợp lệ: " + id);
         }
-
     }
 
 

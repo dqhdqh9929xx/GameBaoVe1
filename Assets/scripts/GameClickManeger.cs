@@ -19,11 +19,8 @@ public class GameClickManeger : MonoBehaviour
     public GameObject GameWinMenu;
     public GameObject GameLoseMenu;
     public GameObject BinhXitPoint;
-    public bool isBinhXit = false;
-
-    
-
-
+    public static bool isBinhXit = false;
+    //public static bool isBinhXitPointClicked = false;
 
     void Start()
     {
@@ -53,44 +50,44 @@ public class GameClickManeger : MonoBehaviour
         {
             Vector2 mousePos = Input.mousePosition;
             BinhXitCayT.position = mousePos;
-            
+        }
+        if (isBinhXit == false)
+        {
+            BinhXitCayT.position = new Vector2(1500, 300);
         }
     }
-
     public void BinhXitPointClicked()
     {
-        if (isBinhXit == true)
-        {
-            Debug.Log("isBinhXit == true");
-        }
-        Debug.Log("Da click vao nhan vat");
+
         if (isBinhXit == true && animationController.isLeft == true && animationController.image1.enabled == true)
         {
-
             animationController.image1.enabled = false;
             animationController.image1_cay.enabled = true;
             isBinhXit = false;
-            Debug.Log("Da du dieu kien de xit");
+            //isBinhXitPointClicked = true;
+            StartCoroutine(animationController.PlayLeftAnimationAndShowChat());
         }
         else if (isBinhXit == true && animationController.isLeft2 == true && animationController.image2.enabled == true)
         {
             animationController.image2.enabled = false;
             animationController.image2_cay.enabled = true;
             isBinhXit = false;
+            //isBinhXitPointClicked = true;
+            StartCoroutine(animationController.PlayLeftAnimationAndShowChat());
         }
         else if (isBinhXit == true && animationController.isLeft3 == true && animationController.image3.enabled == true)
         {
             animationController.image3.enabled = false;
             animationController.image3_cay.enabled = true;
             isBinhXit = false;
+            //isBinhXitPointClicked = true;
+            StartCoroutine(animationController.PlayLeftAnimationAndShowChat()); 
         }
     }
-
 
     public void SelectBinhXitHoiCay()
     {
         isBinhXit = true;
-        Debug.Log("Da Select");
     }
 
     public void OpenTicketNvTrueFullScreen()
@@ -115,6 +112,7 @@ public class GameClickManeger : MonoBehaviour
         {
             StartCoroutine(animationController.SideWayLeft());
             Coin.SetActive(false);
+            animationController.IsTicket = false;
         }
         else
         {
