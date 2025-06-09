@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,13 +16,13 @@ public class AnimationController1 : MonoBehaviour
     public GameClickManeger GameClickManager1;
     public bool hasInstantiatedTicket = false;
     public Transform KhayDungDo;
-    public TextMeshProUGUI TicketComponent;
-    public GameObject TicketNvFullScreen;
-    public GameObject TicketNv;
+    //public TextMeshProUGUI TicketComponent;
+    //public GameObject TicketNvFullScreen;
+    //public GameObject TicketNv;
     public GameObject Coin;
     public bool IsTicket = false;
     public bool IsCoin = false;
-    public GameObject newPrefabTicket;
+    //public GameObject newPrefabTicket;
     public GameObject newPrefabCoin;
     // Choice
 
@@ -51,23 +52,23 @@ public class AnimationController1 : MonoBehaviour
 
     private void Update()
     {
-        if (hasInstantiatedTicket == false && TicketNv != null && IsTicket == true)
-        {
-            hasInstantiatedTicket = true;
-            Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
-            Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x , localPosTicket.y - 300f, localPosTicket.z);
-            newPrefabTicket = Instantiate(TicketNv);
-            newPrefabTicket.transform.SetParent(KhayDungDo, false);
-            newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
-            newPrefabTicket.SetActive(true);
-            TicketComponent = TicketNvFullScreen.GetComponentInChildren<TextMeshProUGUI>();
-            TicketComponent.transform.SetParent(TicketNvFullScreen.transform, false);
-            TicketComponent.text = "#" + id.ToString();
-        }
-        if (IsTicket == false)
-        {
-            newPrefabTicket.SetActive(false);
-        }
+        //if (hasInstantiatedTicket == false && TicketNv != null && IsTicket == true)
+        //{
+        //    hasInstantiatedTicket = true;
+        //    Vector3 localPosTicket = KhayDungDo.InverseTransformPoint(transform.position);
+        //    Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x , localPosTicket.y - 300f, localPosTicket.z);
+        //    newPrefabTicket = Instantiate(TicketNv);
+        //    newPrefabTicket.transform.SetParent(KhayDungDo, false);
+        //    newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
+        //    newPrefabTicket.SetActive(true);
+        //    TicketComponent = TicketNvFullScreen.GetComponentInChildren<TextMeshProUGUI>();
+        //    TicketComponent.transform.SetParent(TicketNvFullScreen.transform, false);
+        //    TicketComponent.text = "#" + id.ToString();
+        //}
+        //if (IsTicket == false)
+        //{
+        //    newPrefabTicket.SetActive(false);
+        //}
         if (IsCoin == false)
         {
             newPrefabCoin.SetActive(false);
@@ -79,7 +80,7 @@ public class AnimationController1 : MonoBehaviour
 
         if (isTrueChoice == false && isDetermine == true)
         {
-            GameClickManager1.ShowGameLoseMenu();
+            StartCoroutine(GameClickManager1.ShowGameLoseMenu());
             isDetermine = false;
         }
     }
@@ -100,7 +101,6 @@ public class AnimationController1 : MonoBehaviour
             image3_cay.enabled=false;
             NextNv = false;
             //TicketNv.SetActive(true);
-
             StartCoroutine(PlayComeAnimationAndShowChat());
         }
     }
@@ -114,7 +114,6 @@ public class AnimationController1 : MonoBehaviour
             image2.enabled = true;
             image1.enabled = false;
             NextNv = true;
-
             StartCoroutine(PlayComeAnimationAndShowChat());
             //NextNv = true;
         }
@@ -152,6 +151,10 @@ public class AnimationController1 : MonoBehaviour
     {
         if (id == 5)
         {
+            //if (GameClickManager1.GameLoseMenu.activeSelf)
+            //{
+            //    return;
+            //}
             IsTicket = false;
             hasInstantiatedTicket = false;
             Debug.Log("StartNv2B called, id: " + id);
@@ -159,7 +162,6 @@ public class AnimationController1 : MonoBehaviour
             image2.enabled = true;
             NextNv = false;
             StartCoroutine(PlayComeAnimationAndShowChatB());
-
         }
     }
     public void StartNv3B()
@@ -199,10 +201,8 @@ public class AnimationController1 : MonoBehaviour
                 isLeft = true;
                 IsTicket = true;
                 IsCoin = true;
-                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
-
             }
         }
         else if (id == 5)
@@ -214,7 +214,6 @@ public class AnimationController1 : MonoBehaviour
                 isLeft2 = true;
                 IsTicket = true;
                 IsCoin = true;
-                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
             }
@@ -228,7 +227,6 @@ public class AnimationController1 : MonoBehaviour
                 isLeft3 = true;
                 IsTicket = true;
                 IsCoin = true;
-                //hasInstantiatedTicket = false;
                 ShowNvChatLeftB();
                 InstantiateCoin();
             }
@@ -275,7 +273,6 @@ public class AnimationController1 : MonoBehaviour
         {
             Debug.LogWarning("ID không hợp lệ: " + id);
         }
-
     }
 
 
@@ -324,8 +321,8 @@ public class AnimationController1 : MonoBehaviour
             image1.enabled = false;
             image1_cay.enabled = false;
             id++;
-            isDetermine = true;
             StartNv2B();
+            isDetermine = true;
         }
         else if (id == 5)
         {
