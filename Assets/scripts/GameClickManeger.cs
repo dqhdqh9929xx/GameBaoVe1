@@ -20,7 +20,7 @@ public class GameClickManeger : MonoBehaviour
     public GameObject GameLoseMenu;
     public GameObject BinhXitPoint;
     public static bool isBinhXit = false;
-    //public static bool isBinhXitPointClicked = false;
+
 
     void Start()
     {
@@ -44,6 +44,8 @@ public class GameClickManeger : MonoBehaviour
         GameWinMenu.SetActive(false);
         GameLoseMenu.SetActive(false);
     }
+
+
     private void Update()
     {
         if (isBinhXit == true)
@@ -58,13 +60,12 @@ public class GameClickManeger : MonoBehaviour
     }
     public void BinhXitPointClicked()
     {
-
         if (isBinhXit == true && animationController.isLeft == true && animationController.image1.enabled == true)
         {
             animationController.image1.enabled = false;
             animationController.image1_cay.enabled = true;
             isBinhXit = false;
-            //isBinhXitPointClicked = true;
+            AnimationController1.isTrueChoice = false;
             StartCoroutine(animationController.PlayLeftAnimationAndShowChat());
         }
         else if (isBinhXit == true && animationController.isLeft2 == true && animationController.image2.enabled == true)
@@ -72,7 +73,6 @@ public class GameClickManeger : MonoBehaviour
             animationController.image2.enabled = false;
             animationController.image2_cay.enabled = true;
             isBinhXit = false;
-            //isBinhXitPointClicked = true;
             StartCoroutine(animationController.PlayLeftAnimationAndShowChat());
         }
         else if (isBinhXit == true && animationController.isLeft3 == true && animationController.image3.enabled == true)
@@ -80,8 +80,8 @@ public class GameClickManeger : MonoBehaviour
             animationController.image3.enabled = false;
             animationController.image3_cay.enabled = true;
             isBinhXit = false;
-            //isBinhXitPointClicked = true;
-            StartCoroutine(animationController.PlayLeftAnimationAndShowChat()); 
+            AnimationController1.isTrueChoice = false;
+            StartCoroutine(animationController.PlayLeftAnimationAndShowChat());
         }
     }
 

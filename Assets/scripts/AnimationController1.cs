@@ -23,6 +23,11 @@ public class AnimationController1 : MonoBehaviour
     public bool IsCoin = false;
     public GameObject newPrefabTicket;
     public GameObject newPrefabCoin;
+    // Choice
+
+    public static bool isTrueChoice = true;
+    public static bool isDetermine = false;
+
     // Nhan Vat 1
     public Image image1;
     public Image image1_cay;
@@ -70,6 +75,12 @@ public class AnimationController1 : MonoBehaviour
         if (id == 7)
         {
             GameClickManager1.ShowGameWinMenu();
+        }
+
+        if (isTrueChoice == false && isDetermine == true)
+        {
+            GameClickManager1.ShowGameLoseMenu();
+            isDetermine = false;
         }
     }
 
@@ -277,7 +288,9 @@ public class AnimationController1 : MonoBehaviour
                 yield return new WaitForSecondsRealtime(2.5f);
                 image1.enabled = false;
                 id++;
-                StartNv2();
+                isDetermine = true;
+
+            StartNv2();
         }
         else if (id == 2)
         {
@@ -287,6 +300,7 @@ public class AnimationController1 : MonoBehaviour
                 image2.enabled = false;
                 id++;
                 StartNv3();
+                isDetermine = true;
         }
         else if (id == 3)
         {
@@ -295,6 +309,7 @@ public class AnimationController1 : MonoBehaviour
             yield return new WaitForSecondsRealtime(2.5f);
             image3.enabled = false;
             id++;
+            isDetermine = true;
             StartNv1B();
 
         }
@@ -309,6 +324,7 @@ public class AnimationController1 : MonoBehaviour
             image1.enabled = false;
             image1_cay.enabled = false;
             id++;
+            isDetermine = true;
             StartNv2B();
         }
         else if (id == 5)
@@ -322,6 +338,8 @@ public class AnimationController1 : MonoBehaviour
             image2.enabled = false;
             image2_cay.enabled = false;
             id++;
+            isDetermine = true;
+            isTrueChoice = false;
             StartNv3B();
         }
         else if (id == 6)
@@ -335,6 +353,7 @@ public class AnimationController1 : MonoBehaviour
             image3.enabled = false;
             image3_cay.enabled = false;
             id++;
+            isDetermine = true;
         }
         else
         {
