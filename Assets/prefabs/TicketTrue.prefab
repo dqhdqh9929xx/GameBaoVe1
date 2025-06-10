@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7554456216774607569}
   - component: {fileID: 7708560224991204617}
   - component: {fileID: 741404600616936732}
-  - component: {fileID: 7398111675601893534}
+  - component: {fileID: -6326197243083212536}
   m_Layer: 7
   m_Name: TicketTrue
   m_TagString: Untagged
@@ -94,8 +94,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7398111675601893534}
-          m_TargetAssemblyTypeName: GameClickManeger, Assembly-CSharp
+        - m_Target: {fileID: -6326197243083212536}
+          m_TargetAssemblyTypeName: TicketNv, Assembly-CSharp
           m_MethodName: OpenTicketNvTrueFullScreen
           m_Mode: 1
           m_Arguments:
@@ -106,7 +106,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &7398111675601893534
+--- !u!114 &-6326197243083212536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6619336033554667299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35f837512f489c4f821faf98358117e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4564d8b3ec1fdd5429f5812080d54092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TicketNv1: {fileID: 6619336033554667299}
   animationController: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
-  NvChat: {fileID: 7644315241461679709, guid: b0237045bbf57f0499d8a3d3e7a5c4c0, type: 3}
+  KhayDungDo: {fileID: 2164037012812951322, guid: 598d25d3d1cae6c4bba77a186d931e12, type: 3}
   TicketNvFullScreen: {fileID: 34861401776958875, guid: 84a06befcc8b6c84a8284e98fe3ca073, type: 3}
-  GameWinMenu: {fileID: 5846156206458210476, guid: bc6c3f1eb01c8d1419846082b4bd471d, type: 3}
-  GameLoseMenu: {fileID: 8204409701544830592, guid: 898a8beddc31ed84194f797c3d27248a, type: 3}
+  TicketComponent: {fileID: 0}
