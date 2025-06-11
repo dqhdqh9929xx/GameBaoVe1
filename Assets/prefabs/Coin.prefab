@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9037492228602113953}
   - component: {fileID: 1497388999267826367}
   - component: {fileID: 6800395793470792764}
-  - component: {fileID: 1969344586277777376}
+  - component: {fileID: 3187083267768520806}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
@@ -94,8 +94,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1969344586277777376}
-          m_TargetAssemblyTypeName: GameClickManeger, Assembly-CSharp
+        - m_Target: {fileID: 3187083267768520806}
+          m_TargetAssemblyTypeName: Coin, Assembly-CSharp
           m_MethodName: AcceptCoinToLeft
           m_Mode: 1
           m_Arguments:
@@ -106,7 +106,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1969344586277777376
+--- !u!114 &3187083267768520806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,14 +115,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 275797697880683997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35f837512f489c4f821faf98358117e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c574f9b81ddaa947ba6c8c4f162f927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoteBookFullScreenPanel: {fileID: 1188417890752859209, guid: b7827bc31d9c02949bdda11540284493, type: 3}
-  listFullScreenPanel: {fileID: 1455879401172956692, guid: ed86e18aec2eab74387f8b679ab95b8b, type: 3}
-  NvChat: {fileID: 7644315241461679709, guid: b0237045bbf57f0499d8a3d3e7a5c4c0, type: 3}
-  NoteBook: {fileID: 5413866189409791000, guid: 3e03101c7211e984699d2123c777d935, type: 3}
-  TicketNv: {fileID: 6619336033554667299, guid: 60a331101d3d7e945b49b6b1c8b213c0, type: 3}
-  TicketNvFullScreen: {fileID: 34861401776958875, guid: 84a06befcc8b6c84a8284e98fe3ca073, type: 3}
-  Coin: {fileID: 275797697880683997}
   animationController: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
+  Coin1: {fileID: 275797697880683997}
+  KhayDungDo: {fileID: 2164037012812951322, guid: 598d25d3d1cae6c4bba77a186d931e12, type: 3}

@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 7554456216774607569}
   - component: {fileID: 7708560224991204617}
   - component: {fileID: 741404600616936732}
+<<<<<<< HEAD
   - component: {fileID: 4486438780313732724}
+=======
+  - component: {fileID: -6326197243083212536}
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
   m_Layer: 7
   m_Name: TicketTrue
   m_TagString: Untagged
@@ -94,7 +98,11 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+<<<<<<< HEAD
         - m_Target: {fileID: 4486438780313732724}
+=======
+        - m_Target: {fileID: -6326197243083212536}
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
           m_TargetAssemblyTypeName: TicketNv, Assembly-CSharp
           m_MethodName: OpenTicketNvTrueFullScreen
           m_Mode: 1
@@ -106,7 +114,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 --- !u!114 &4486438780313732724
+=======
+--- !u!114 &-6326197243083212536
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

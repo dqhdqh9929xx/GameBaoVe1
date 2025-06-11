@@ -293,7 +293,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 909990005}
-  - {fileID: 377245760}
+  - {fileID: 802915076}
   - {fileID: 1716376144}
   - {fileID: 7842205089606357100}
   - {fileID: 1651678090}
@@ -400,6 +400,7 @@ MonoBehaviour:
   BinhXitCayT: {fileID: 1413084143}
   animationController: {fileID: 4263066497368356594}
   BinhXitPoint: {fileID: 372927208}
+<<<<<<< HEAD
 --- !u!1001 &377245759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -550,6 +551,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2081314661894023243, guid: 075738aeb478d0e468228879438182c7, type: 3}
   m_PrefabInstance: {fileID: 377245759}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
 --- !u!114 &456114974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8435878080306559452, guid: f4d9e69349b247c4880612f168f96af6, type: 3}
@@ -904,25 +907,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &663463535 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 275797697880683997, guid: 075738aeb478d0e468228879438182c7, type: 3}
-  m_PrefabInstance: {fileID: 377245759}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &663463540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663463535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c574f9b81ddaa947ba6c8c4f162f927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationController: {fileID: 4263066497368356594}
-  Coin1: {fileID: 663463535}
 --- !u!1 &716655821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1067,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729648486}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+--- !u!1 &802915074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 802915076}
+  - component: {fileID: 802915075}
+  m_Layer: 5
+  m_Name: Coins
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &802915075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802915074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c574f9b81ddaa947ba6c8c4f162f927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationController: {fileID: 4263066497368356594}
+  Coin1: {fileID: 275797697880683997, guid: 075738aeb478d0e468228879438182c7, type: 3}
+  KhayDungDo: {fileID: 1711409115}
+--- !u!224 &802915076
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802915074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 183557816}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
 --- !u!1 &909990004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1719,12 @@ MonoBehaviour:
   TicketNv1: {fileID: 6619336033554667299, guid: 60a331101d3d7e945b49b6b1c8b213c0, type: 3}
   animationController: {fileID: 4263066497368356594}
   KhayDungDo: {fileID: 1711409115}
+<<<<<<< HEAD
   ticketNvFullScreen: {fileID: 0}
+=======
+  TicketNvFullScreen: {fileID: 34861401776958875, guid: 84a06befcc8b6c84a8284e98fe3ca073, type: 3}
+  TicketComponent: {fileID: 0}
+>>>>>>> 909a7db2d008ccda4b5f427ac83edacb1332b40e
 --- !u!114 &1868310081 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8848293409422114374, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
@@ -2279,7 +2322,7 @@ PrefabInstance:
     - target: {fileID: 1798620133807150856, guid: b7827bc31d9c02949bdda11540284493, type: 3}
       propertyPath: Coin
       value: 
-      objectReference: {fileID: 663463535}
+      objectReference: {fileID: 0}
     - target: {fileID: 1798620133807150856, guid: b7827bc31d9c02949bdda11540284493, type: 3}
       propertyPath: NvChat
       value: 
@@ -2886,7 +2929,7 @@ PrefabInstance:
     - target: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
       propertyPath: Coin
       value: 
-      objectReference: {fileID: 663463535}
+      objectReference: {fileID: 802915075}
     - target: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
       propertyPath: NvChat
       value: 
@@ -2958,7 +3001,7 @@ PrefabInstance:
     - target: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
       propertyPath: newPrefabCoin
       value: 
-      objectReference: {fileID: 663463535}
+      objectReference: {fileID: 0}
     - target: {fileID: 4138755600255137693, guid: a6b1d5577f356fc48829bf7fa57e0dc5, type: 3}
       propertyPath: AnimatorPlayer
       value: 

@@ -16,14 +16,15 @@ public class AnimationController1 : MonoBehaviour
     public GameClickManeger GameClickManager1;
     public bool hasInstantiatedTicket = false;
     public Transform KhayDungDo;
+    public Coin Coin;
     //public TextMeshProUGUI TicketComponent;
     //public GameObject TicketNvFullScreen;
     //public GameObject TicketNv;
-    public GameObject Coin;
+    //public GameObject Coin;
     public bool IsTicket = false;
     public bool IsCoin = false;
     //public GameObject newPrefabTicket;
-    public GameObject newPrefabCoin;
+    //public GameObject newPrefabCoin;
     // Choice
 
     public static bool isTrueChoice = true;
@@ -69,10 +70,10 @@ public class AnimationController1 : MonoBehaviour
         //{
         //    newPrefabTicket.SetActive(false);
         //}
-        if (IsCoin == false)
-        {
-            newPrefabCoin.SetActive(false);
-        }
+        //if (IsCoin == false)
+        //{
+        //    newPrefabCoin.SetActive(false);
+        //}
         if (id == 7)
         {
             GameClickManager1.ShowGameWinMenu();
@@ -180,15 +181,15 @@ public class AnimationController1 : MonoBehaviour
 
 
 
-    public void InstantiateCoin()
-    {
-        Vector3 localPosCoin = KhayDungDo.InverseTransformPoint(transform.position);
-        Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x - 200f, localPosCoin.y - 300f, localPosCoin.z);
-        newPrefabCoin = Instantiate(Coin);
-        newPrefabCoin.transform.SetParent(KhayDungDo, false);
-        newPrefabCoin.GetComponent<RectTransform>().localPosition = spawnLocalPosCoin;
-        newPrefabCoin.SetActive(true);
-    }
+    //public void InstantiateCoin()
+    //{
+    //    Vector3 localPosCoin = KhayDungDo.InverseTransformPoint(transform.position);
+    //    Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x - 200f, localPosCoin.y - 300f, localPosCoin.z);
+    //    newPrefabCoin = Instantiate(Coin);
+    //    newPrefabCoin.transform.SetParent(KhayDungDo, false);
+    //    newPrefabCoin.GetComponent<RectTransform>().localPosition = spawnLocalPosCoin;
+    //    newPrefabCoin.SetActive(true);
+    //}
 
     public IEnumerator PlayComeAnimationAndShowChatB()
     {
@@ -202,7 +203,7 @@ public class AnimationController1 : MonoBehaviour
                 IsTicket = true;
                 IsCoin = true;
                 ShowNvChatLeftB();
-                InstantiateCoin();
+                Coin.InstantiateCoin();
             }
         }
         else if (id == 5)
@@ -215,7 +216,7 @@ public class AnimationController1 : MonoBehaviour
                 IsTicket = true;
                 IsCoin = true;
                 ShowNvChatLeftB();
-                InstantiateCoin();
+                Coin.InstantiateCoin();
             }
         }
         else if (id == 6)
@@ -228,7 +229,7 @@ public class AnimationController1 : MonoBehaviour
                 IsTicket = true;
                 IsCoin = true;
                 ShowNvChatLeftB();
-                InstantiateCoin();
+                Coin.InstantiateCoin();
             }
             else
             {

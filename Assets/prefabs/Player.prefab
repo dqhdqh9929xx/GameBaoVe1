@@ -237,18 +237,19 @@ MonoBehaviour:
   GameClickManager1: {fileID: 8435878080306559452, guid: f4d9e69349b247c4880612f168f96af6, type: 3}
   hasInstantiatedTicket: 0
   KhayDungDo: {fileID: 2164037012812951322, guid: 598d25d3d1cae6c4bba77a186d931e12, type: 3}
-  TicketComponent: {fileID: 0}
-  TicketNvFullScreen: {fileID: 34861401776958875, guid: 84a06befcc8b6c84a8284e98fe3ca073, type: 3}
-  TicketNv: {fileID: 6619336033554667299, guid: 60a331101d3d7e945b49b6b1c8b213c0, type: 3}
-  Coin: {fileID: 275797697880683997, guid: 075738aeb478d0e468228879438182c7, type: 3}
+  Coin: {fileID: 3187083267768520806, guid: 075738aeb478d0e468228879438182c7, type: 3}
   IsTicket: 0
+  IsCoin: 0
   image1: {fileID: 0}
+  image1_cay: {fileID: 0}
   isCome: 0
   isLeft: 0
   image2: {fileID: 0}
+  image2_cay: {fileID: 0}
   isCome2: 0
   isLeft2: 0
   image3: {fileID: 0}
+  image3_cay: {fileID: 0}
   isCome3: 0
   isLeft3: 0
   NextNv: 0
