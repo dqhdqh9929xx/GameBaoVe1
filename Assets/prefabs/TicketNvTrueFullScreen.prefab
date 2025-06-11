@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4962943881241778162}
   - component: {fileID: 1687228397494693706}
   - component: {fileID: 8944793347174936729}
+  - component: {fileID: 2176685818144302922}
   m_Layer: 5
   m_Name: TicketNvTrueFullScreen
   m_TagString: Untagged
@@ -76,6 +77,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2176685818144302922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34861401776958875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df59a2641b9c2ba4384db8355fe3c229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TicketNvFullScreen1: {fileID: 34861401776958875}
+  newPrefabTicketFullScreen: {fileID: 0}
+  KhayDungDo: {fileID: 0}
+  animationController: {fileID: 0}
+  TicketComponent: {fileID: 0}
 --- !u!1 &3542728340906514964
 GameObject:
   m_ObjectHideFlags: 0

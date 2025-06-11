@@ -4,7 +4,7 @@ public class BinhXit : MonoBehaviour
 {
     public GameObject BinhXitCay;
     public Transform BinhXitCayT;
-    public bool isBinhXit = false;
+    public static bool isBinhXit = false;
     public AnimationController1 animationController;
     public GameObject BinhXitPoint;
     void Start()

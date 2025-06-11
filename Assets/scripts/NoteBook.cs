@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NoteBook : MonoBehaviour
+public class NoteBookx : MonoBehaviour
 {
     public GameObject NoteBook1;
     public GameObject NoteBookFullScreenPanel;
