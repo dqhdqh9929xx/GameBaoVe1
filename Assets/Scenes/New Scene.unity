@@ -1083,7 +1083,7 @@ MonoBehaviour:
   - {fileID: 8144997963238858826, guid: 9adc26d6667463c49815bd68cec3419f, type: 3}
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
   oldCharaters: []
-  characterNoteManager: {fileID: 0}
+  characterNoteManager: {fileID: 1465169037}
 --- !u!1 &1326762209
 GameObject:
   m_ObjectHideFlags: 0

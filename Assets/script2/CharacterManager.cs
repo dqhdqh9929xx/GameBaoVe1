@@ -18,7 +18,7 @@ public class CharacterManager : MonoBehaviour
     public List<GameObject> oldCharaters = new();
     private System.Random random = new System.Random();
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
-    private CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
+    public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
 
     void Start()
     {
