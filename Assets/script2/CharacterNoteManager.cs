@@ -5,6 +5,7 @@ public class CharacterNoteManager : MonoBehaviour
     [SerializeField] GameObject prefabsCharacterNote;
     public CharacterManager characterManager;
     private GameObject newPrefabsNote;
+    private bool isInstantiate = false;
     void Start()
     {
         

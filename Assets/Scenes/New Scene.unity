@@ -266,7 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea37eed5c79ba64fb795ee3a5d4593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notebookUI: {fileID: 848163314}
 --- !u!114 &238090485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,14 +924,13 @@ GameObject:
   - component: {fileID: 848163315}
   - component: {fileID: 848163317}
   - component: {fileID: 848163316}
-  - component: {fileID: 848163318}
   m_Layer: 5
   m_Name: NoteBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &848163315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -991,20 +989,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848163314}
   m_CullTransparentMesh: 1
---- !u!114 &848163318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848163314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0793210191712244198ee6f0cf8837b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabsCharacterNote: {fileID: 4638421553011363917, guid: def7302185ebe674cbf29b3c5aebbd7b, type: 3}
-  characterManager: {fileID: 0}
 --- !u!1 &1051149720
 GameObject:
   m_ObjectHideFlags: 0

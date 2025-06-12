@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -60,7 +61,7 @@ public class CharacterManager : MonoBehaviour
         // Khởi tạo nhân vật đầu tiên
         int randomIndex = random.Next(characters.Count);
         CharacterData randomCharacter = characters[randomIndex];
-        characters.RemoveAt(randomIndex); // Fix: Use RemoveAt instead of Remove to remove by index
+        characters.RemoveAt(randomIndex); 
         Debug.Log($"RemoveAtIndexList: {randomIndex}");
         CurrentCharater = Instantiate(CharacterPrefab, this.transform);
         var nv = CurrentCharater.GetComponent<NhanVat>();
@@ -91,6 +92,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (characters.Count <= 0)
         {
+            Debug.Log($"oldCharacter has: {oldCharaters.Count}");
+            Destroy(CurrentCharater); // Xóa nhân vật hiện tại sau khi rời đi
             StartCoroutine(StartFirstCharacterB()); // Nếu không còn nhân vật nào, bắt đầu nhân vật mới
         }
         else
@@ -117,6 +120,7 @@ public class CharacterManager : MonoBehaviour
         GameObject randomCharacter = oldCharaters[randomIndex];
         oldCharaters.RemoveAt(randomIndex);
         Debug.Log($"RemoveAt: {randomIndex}");
+        CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.normalImage = NormalImages[randomIndex];
         nv.attackImage = AttackImages[randomIndex];
