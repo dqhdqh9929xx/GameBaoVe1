@@ -17,6 +17,8 @@ public class CharacterManager : MonoBehaviour
     public List<CharacterData> characters = new();
     public List<GameObject> oldCharaters = new();
     private System.Random random = new System.Random();
+    public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
+    private CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
 
     void Start()
     {
@@ -56,8 +58,10 @@ public class CharacterManager : MonoBehaviour
         
     }
 
+
     public IEnumerator StartFirstCharacterA()
     {
+        characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
         // Khởi tạo nhân vật đầu tiên
         int randomIndex = random.Next(characters.Count);
         CharacterData randomCharacter = characters[randomIndex];
@@ -73,6 +77,8 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         StartCoroutine(CharacterLeftA());
     }
+
+  
 
     public IEnumerator CharacterLeftA()
     {
@@ -98,6 +104,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
+            characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
             int randomIndex = random.Next(characters.Count);
             CharacterData randomCharacter = characters[randomIndex];
             characters.RemoveAt(randomIndex);
