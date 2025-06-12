@@ -1,18 +1,20 @@
 ﻿using Assets.script2;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class CharacterManager : MonoBehaviour
 {
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
-    [SerializeField] GameObject CharacterPrefab;
+    [SerializeField] GameObject CharacterPrefab; // prefab xử lý thay đổi sprites
 
     private GameObject CurrentCharater;
-    private List<CharacterData> characters = new();
-    private List<GameObject> oldCharaters = new();
+    public List<CharacterData> characters = new();
+    public List<GameObject> oldCharaters = new();
     private System.Random random = new System.Random();
 
     void Start()
@@ -45,7 +47,7 @@ public class CharacterManager : MonoBehaviour
             IsTrueChoiceLeft = true
         });
 
-        StartFirstCharacter();
+        StartCoroutine(StartFirstCharacterA());
     }
 
     void Update()
@@ -53,18 +55,13 @@ public class CharacterManager : MonoBehaviour
         
     }
 
-    private void StartFirstCharacter()
+    public IEnumerator StartFirstCharacterA()
     {
         // Khởi tạo nhân vật đầu tiên
         int randomIndex = random.Next(characters.Count);
         CharacterData randomCharacter = characters[randomIndex];
-        characters.RemoveAt(randomIndex);
-
-        if(CurrentCharater != null)
-        {
-            oldCharaters.Add(CurrentCharater);
-        }
-
+        characters.RemoveAt(randomIndex); // Fix: Use RemoveAt instead of Remove to remove by index
+        Debug.Log($"RemoveAtIndexList: {randomIndex}");
         CurrentCharater = Instantiate(CharacterPrefab, this.transform);
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.normalImage = randomCharacter.NormalImage;
@@ -72,12 +69,95 @@ public class CharacterManager : MonoBehaviour
         nv.OnNormal();
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("ComeA");
-        
+        yield return new WaitForSecondsRealtime(5f);
+        StartCoroutine(CharacterLeftA());
+    }
 
+    public IEnumerator CharacterLeftA()
+    {
+        Animator animator = CurrentCharater.GetComponent<Animator>();
+        animator.SetTrigger("LeftA");
+        yield return new WaitForSecondsRealtime(5f);
+        var nv = CurrentCharater.GetComponent<NhanVat>();
+        nv.OnInvisible();
+        if (CurrentCharater != null)
+        {
+            oldCharaters.Add(CurrentCharater); // Lưu nhân vật vào danh sách đã đi qua, xem xét có cần xóa không vì có thể nhân vật có thể ko được đi qua
+        }
+        StartCoroutine(NextCharacterA());
+    }
 
+    public IEnumerator NextCharacterA()
+    {
+        if (characters.Count <= 0)
+        {
+            StartCoroutine(StartFirstCharacterB()); // Nếu không còn nhân vật nào, bắt đầu nhân vật mới
+        }
+        else
+        {
+            int randomIndex = random.Next(characters.Count);
+            CharacterData randomCharacter = characters[randomIndex];
+            characters.RemoveAt(randomIndex);
+            Debug.Log($"RemoveAtIndexList: {randomIndex}");
+            var nv = CurrentCharater.GetComponent<NhanVat>();
+            nv.normalImage = randomCharacter.NormalImage;
+            nv.attackImage = randomCharacter.AttackImage;
+            Animator animator = CurrentCharater.GetComponent<Animator>();
+            animator.SetTrigger("ComeA");
+            yield return new WaitForSecondsRealtime(1f); // Đợi 1 giây để tránh hình ảnh giật về từ phải qua trái
+            nv.OnNormal();
+            yield return new WaitForSecondsRealtime(5f);
+            StartCoroutine(CharacterLeftA());
+        }
+    }
 
+    public IEnumerator StartFirstCharacterB()
+    {
+        int randomIndex = random.Next(oldCharaters.Count);
+        GameObject randomCharacter = oldCharaters[randomIndex];
+        oldCharaters.RemoveAt(randomIndex);
+        Debug.Log($"RemoveAt: {randomIndex}");
+        var nv = CurrentCharater.GetComponent<NhanVat>();
+        nv.normalImage = NormalImages[randomIndex];
+        nv.attackImage = AttackImages[randomIndex];
+        Animator animator = CurrentCharater.GetComponent<Animator>();
+        animator.SetTrigger("ComeB");
+        nv.OnNormal();
+        yield return new WaitForSecondsRealtime(5f);
+        StartCoroutine(LeftCharacterB());
+    }
+    
+    public IEnumerator LeftCharacterB()
+    {
+        Animator animator = CurrentCharater.GetComponent<Animator>();
+        animator.SetTrigger("LeftB");
+        yield return new WaitForSecondsRealtime(5f);
+        var nv = CurrentCharater.GetComponent<NhanVat>();
+        nv.OnInvisible();
+        StartCoroutine(NextCharacterB());
+    }
 
-
-
+    public IEnumerator NextCharacterB()
+    {
+        if (oldCharaters.Count <= 0)
+        {
+            Debug.Log("No more characters to show in B sequence.");
+        }
+        else
+        {
+            int randomIndex = random.Next(oldCharaters.Count);
+            GameObject randomCharacter = oldCharaters[randomIndex];
+            oldCharaters.RemoveAt(randomIndex);
+            Debug.Log($"RemoveAt: {randomIndex}");
+            var nv = CurrentCharater.GetComponent<NhanVat>();
+            nv.normalImage = NormalImages[randomIndex];
+            nv.attackImage = AttackImages[randomIndex];
+            Animator animator = CurrentCharater.GetComponent<Animator>();
+            animator.SetTrigger("ComeB");
+            yield return new WaitForSecondsRealtime(1f); // Đợi 1 giây để tránh hình ảnh giật về từ phải qua trái
+            nv.OnNormal();
+            yield return new WaitForSecondsRealtime(5f);
+            StartCoroutine(LeftCharacterB());
+        }
     }
 }

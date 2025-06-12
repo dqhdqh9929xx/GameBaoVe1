@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.script2
 {
-    public class CharacterData
+    public class OldCharacterData
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,10 +11,5 @@ namespace Assets.script2
         public Sprite AttackImage { get; set; }
         public bool IsTrueChoiceCome { get; set; } = true;
         public bool IsTrueChoiceLeft { get; set; } = true;
-
-        public static implicit operator CharacterData(GameObject v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -6,7 +6,6 @@ public class ButtonNoteBook : MonoBehaviour
 
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
@@ -20,6 +19,11 @@ public class ButtonNoteBook : MonoBehaviour
 
     public void OpenNoteBook()
     {
+        NoteBook.SetActive(true);
+    }
 
+    public void CloseNoteBook()
+    {
+        NoteBook.SetActive(false);
     }
 }

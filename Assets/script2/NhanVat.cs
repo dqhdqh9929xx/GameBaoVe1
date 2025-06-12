@@ -21,11 +21,19 @@ public class NhanVat : MonoBehaviour
     {
         var image = GetComponent<Image>();
         image.sprite = normalImage;
+        image.enabled = true; 
     }
 
     public void OnAttack()
     {
         var image = GetComponent<Image>();
         image.sprite = attackImage;
+        image.enabled = true; 
+    }
+
+    public void OnInvisible()
+    {
+        var image = GetComponent<Image>();
+        image.enabled = false;
     }
 }
