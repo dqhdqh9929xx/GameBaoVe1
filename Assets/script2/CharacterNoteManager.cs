@@ -6,17 +6,13 @@ public class CharacterNoteManager : MonoBehaviour
     [SerializeField] GameObject prefabsCharacterNote;
     private GameObject newPrefabsNote;
     public Transform FirstNoteCharacter;
-
     public int SpawnLocal = 0;
-
-
     public void InstantiateCharacterNote()
     {
         Vector3 localPos = FirstNoteCharacter.InverseTransformPoint(transform.position);
         Vector3 spawnLocalPos = new Vector3(localPos.x, localPos.y - SpawnLocal, localPos.z);
         newPrefabsNote = Instantiate(prefabsCharacterNote, spawnLocalPos, Quaternion.identity);
         newPrefabsNote.transform.SetParent(FirstNoteCharacter, false);
-        newPrefabsNote.GetComponent<RectTransform>().localPosition = spawnLocalPos;
         SpawnLocal += 100;
     }
 

@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
+    // tạo mảng 2D chứa các kết quả của nhân vật
     [SerializeField] GameObject CharacterPrefab; // prefab xử lý thay đổi sprites
 
     private GameObject CurrentCharater;
@@ -19,6 +20,8 @@ public class CharacterManager : MonoBehaviour
     private System.Random random = new System.Random();
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
     public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
+    public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
+    public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
 
     void Start()
     {
@@ -55,7 +58,13 @@ public class CharacterManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (CanBtnTicket == true && btnTicket.btnTicketClicked == true)
+        {
+            StartCoroutine(CharacterLeftA()); // Bắt đầu rời nhân vật sau khi bấm nút Ticket
+            btnTicket.btnTicketClicked = false; // Reset trạng thái nút Ticket sau khi bấm
+            CanBtnTicket = false; // Reset trạng thái không cho spam nút Ticket
+            btnTicket.btnTicketClicked = false; // Đặt lại trạng thái nút Ticket sau khi bấm
+        }
     }
 
 
@@ -71,11 +80,13 @@ public class CharacterManager : MonoBehaviour
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.normalImage = randomCharacter.NormalImage;
         nv.attackImage = randomCharacter.AttackImage;
+        //nv.isTrueChoiceCome = randomCharacter.IsTrueChoiceCome;  // Lưu trạng thái lựa chọn đúng của nhân vật
         nv.OnNormal();
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("ComeA");
         yield return new WaitForSecondsRealtime(5f);
-        StartCoroutine(CharacterLeftA());
+        CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
+        //OnClickBtnTicket();
     }
 
   
@@ -91,6 +102,10 @@ public class CharacterManager : MonoBehaviour
         {
             oldCharaters.Add(CurrentCharater); // Lưu nhân vật vào danh sách đã đi qua, xem xét có cần xóa không vì có thể nhân vật có thể ko được đi qua
         }
+        //if(nv.isTrueChoiceCome == false)
+        //{
+        //    Debug.Log($"GameOver.");       // Nếu nhân vật không phải là lựa chọn đúng, có thể xử lý Game Over hoặc thông báo
+        //}
         StartCoroutine(NextCharacterA());
     }
 
@@ -117,7 +132,8 @@ public class CharacterManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f); // Đợi 1 giây để tránh hình ảnh giật về từ phải qua trái
             nv.OnNormal();
             yield return new WaitForSecondsRealtime(5f);
-            StartCoroutine(CharacterLeftA());
+            CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
+            //OnClickBtnTicket();
         }
     }
 
