@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class spray : MonoBehaviour
 {
-    private bool isSprayActive = false;
+    public bool isSprayActive = false;
     [SerializeField] Transform SprayT;
     public void SelectSpray()
     {
@@ -17,7 +17,7 @@ public class spray : MonoBehaviour
         }
         if (isSprayActive == false)
         {
-            SprayT.position = SprayT.transform.position;
+            SprayT.position = new Vector2(1500, 200);
         }
     }
 }

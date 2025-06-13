@@ -12,7 +12,11 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
     // tạo mảng 2D chứa các kết quả của nhân vật
+    [SerializeField] bool [] ComeBoolens; // Mảng chứa các kết quả của nhân vật khi đến vị trí đúng
+    [SerializeField] bool [] LeftBoolen; // Mảng chứa các kết quả của nhân vật khi rời đi
+
     [SerializeField] GameObject CharacterPrefab; // prefab xử lý thay đổi sprites
+    public SprayRange SprayRange; // Tham chiếu đến SprayRange để xử lý nhân vật bị attack
 
     private GameObject CurrentCharater;
     public List<CharacterData> characters = new();
@@ -21,6 +25,7 @@ public class CharacterManager : MonoBehaviour
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
     public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
     public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
+    public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
 
     void Start()
@@ -31,8 +36,8 @@ public class CharacterManager : MonoBehaviour
             Name = "Name 1 ",
             AttackImage = AttackImages[0],
             NormalImage = NormalImages[0],
-            IsTrueChoiceCome = true,
-            IsTrueChoiceLeft = true
+            IsTrueChoiceCome = ComeBoolens[0],
+            IsTrueChoiceLeft = LeftBoolen[0],
         });
         characters.Add(new CharacterData()
         {
@@ -40,8 +45,8 @@ public class CharacterManager : MonoBehaviour
             Name = "Name 2 ",
             AttackImage = AttackImages[1],
             NormalImage = NormalImages[1],
-            IsTrueChoiceCome = true,
-            IsTrueChoiceLeft = false
+            IsTrueChoiceCome = ComeBoolens[1],
+            IsTrueChoiceLeft = LeftBoolen[1]
         });
         characters.Add(new CharacterData()
         {
@@ -49,8 +54,8 @@ public class CharacterManager : MonoBehaviour
             Name = "Name 3 ",
             AttackImage = AttackImages[2],
             NormalImage = NormalImages[2],
-            IsTrueChoiceCome = false,
-            IsTrueChoiceLeft = true
+            IsTrueChoiceCome = ComeBoolens[2],
+            IsTrueChoiceLeft = LeftBoolen[2]
         });
 
         StartCoroutine(StartFirstCharacterA());
@@ -63,8 +68,14 @@ public class CharacterManager : MonoBehaviour
             StartCoroutine(CharacterLeftA()); // Bắt đầu rời nhân vật sau khi bấm nút Ticket
             btnTicket.btnTicketClicked = false; // Reset trạng thái nút Ticket sau khi bấm
             CanBtnTicket = false; // Reset trạng thái không cho spam nút Ticket
-            btnTicket.btnTicketClicked = false; // Đặt lại trạng thái nút Ticket sau khi bấm
         }
+        if (SprayRange.characterAttacked == true && CanBtnSpray == true)
+        {
+            SprayRange.characterAttacked = false;
+            CanBtnSpray = false;
+            StartCoroutine(CharacterAttackedAndLeft()); // Khởi động hàm rời nhân vật sau khi bị attack
+
+        }    
     }
 
 
@@ -80,13 +91,13 @@ public class CharacterManager : MonoBehaviour
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.normalImage = randomCharacter.NormalImage;
         nv.attackImage = randomCharacter.AttackImage;
-        //nv.isTrueChoiceCome = randomCharacter.IsTrueChoiceCome;  // Lưu trạng thái lựa chọn đúng của nhân vật
+        nv.isTrueChoiceCome = randomCharacter.IsTrueChoiceCome;  // Lấy kết quả lựa chọn khi đến
         nv.OnNormal();
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("ComeA");
         yield return new WaitForSecondsRealtime(5f);
         CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
-        //OnClickBtnTicket();
+        CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
     }
 
   
@@ -97,15 +108,26 @@ public class CharacterManager : MonoBehaviour
         animator.SetTrigger("LeftA");
         yield return new WaitForSecondsRealtime(5f);
         var nv = CurrentCharater.GetComponent<NhanVat>();
+        Debug.Log($"nv CharacterLeftA: {nv.name} {nv.isTrueChoiceCome}");
         nv.OnInvisible();
         if (CurrentCharater != null)
         {
             oldCharaters.Add(CurrentCharater); // Lưu nhân vật vào danh sách đã đi qua, xem xét có cần xóa không vì có thể nhân vật có thể ko được đi qua
         }
-        //if(nv.isTrueChoiceCome == false)
-        //{
-        //    Debug.Log($"GameOver.");       // Nếu nhân vật không phải là lựa chọn đúng, có thể xử lý Game Over hoặc thông báo
-        //}
+        if(nv.isTrueChoiceCome == false)
+        {
+            Debug.Log($"GameOver.");       // Nếu nhân vật không phải là lựa chọn đúng, có thể xử lý Game Over hoặc thông báo
+        }
+        StartCoroutine(NextCharacterA());
+    }
+
+    public IEnumerator CharacterAttackedAndLeft()
+    {
+        Animator animator = CurrentCharater.GetComponent<Animator>();
+        animator.SetTrigger("LeftB");
+        var nv = CurrentCharater.GetComponent<NhanVat>();
+        nv.OnAttack();
+        yield return new WaitForSecondsRealtime(5f);
         StartCoroutine(NextCharacterA());
     }
 
@@ -127,13 +149,14 @@ public class CharacterManager : MonoBehaviour
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = randomCharacter.NormalImage;
             nv.attackImage = randomCharacter.AttackImage;
+            nv.isTrueChoiceCome = randomCharacter.IsTrueChoiceCome; // Lấy kết quả lựa chọn khi đến
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeA");
             yield return new WaitForSecondsRealtime(1f); // Đợi 1 giây để tránh hình ảnh giật về từ phải qua trái
             nv.OnNormal();
             yield return new WaitForSecondsRealtime(5f);
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
-            //OnClickBtnTicket();
+            CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
         }
     }
 

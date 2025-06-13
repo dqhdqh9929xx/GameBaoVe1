@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 238090480}
   - component: {fileID: 238090483}
   - component: {fileID: 238090482}
-  - component: {fileID: 238090484}
   - component: {fileID: 238090481}
   - component: {fileID: 238090485}
   m_Layer: 5
@@ -254,18 +253,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238090479}
   m_CullTransparentMesh: 1
---- !u!114 &238090484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238090479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ea37eed5c79ba64fb795ee3a5d4593e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &238090485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e014473b4be73e419d373dc0fe386a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManager: {fileID: 0}
 --- !u!95 &645591044
 Animator:
   serializedVersion: 7
@@ -997,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &848163315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1066,6 +1052,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051149721}
+  - component: {fileID: 1051149722}
+  - component: {fileID: 1051149723}
+  - component: {fileID: 1051149724}
+  - component: {fileID: 1051149725}
   m_Layer: 5
   m_Name: SprayRange
   m_TagString: Untagged
@@ -1080,7 +1070,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051149720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1089,9 +1079,90 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.5426, y: 138.52}
+  m_AnchoredPosition: {x: -5.5426006, y: 138.52}
   m_SizeDelta: {x: 657.92, y: 377.04}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1051149722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051149720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64fa8a17d59bba4198470fa99520dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spray: {fileID: 1473822979}
+  CharacterManager: {fileID: 1237267673}
+--- !u!114 &1051149723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051149720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1051149722}
+          m_TargetAssemblyTypeName: SprayRange, Assembly-CSharp
+          m_MethodName: SprayClicked
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!222 &1051149724
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051149720}
+  m_CullTransparentMesh: 1
+--- !u!114 &1051149725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051149720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1237267671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,7 +1219,10 @@ MonoBehaviour:
   - {fileID: 7028912145048016332, guid: cd8b706c8b35be04b957f5f5f25a1d99, type: 3}
   - {fileID: 5771982738253600551, guid: 191fb2e9880727141a215a2618ba1fa4, type: 3}
   - {fileID: 8144997963238858826, guid: 9adc26d6667463c49815bd68cec3419f, type: 3}
+  ComeBoolens: 010100
+  LeftBoolen: 000000
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
+  SprayRange: {fileID: 1051149722}
   oldCharaters: []
   characterNoteManager: {fileID: 1465169037}
   btnTicket: {fileID: 645591043}
@@ -1251,11 +1325,11 @@ RectTransform:
   - {fileID: 810468032}
   - {fileID: 253268652}
   - {fileID: 327689648}
-  - {fileID: 1051149721}
   - {fileID: 1652308763}
   - {fileID: 1473822975}
   - {fileID: 645591038}
   - {fileID: 848163315}
+  - {fileID: 1051149721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1350,7 +1424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 416.239, y: -266}
+  m_AnchoredPosition: {x: 447, y: -293.68}
   m_SizeDelta: {x: 275.087, y: 248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473822976
@@ -1432,6 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b3684a63ebe5345bdb9dd2e10a3f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSprayActive: 0
   SprayT: {fileID: 1473822975}
 --- !u!1 &1498640242
 GameObject:
