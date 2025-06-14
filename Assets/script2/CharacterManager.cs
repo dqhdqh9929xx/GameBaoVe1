@@ -63,19 +63,40 @@ public class CharacterManager : MonoBehaviour
 
     void Update()
     {
+        //if (CanBtnTicket == true && btnTicket.btnTicketClicked == true)
+        //{
+        //    StartCoroutine(CharacterLeftA()); // Bắt đầu rời nhân vật sau khi bấm nút Ticket
+        //    btnTicket.btnTicketClicked = false; // Reset trạng thái nút Ticket sau khi bấm
+        //    CanBtnTicket = false; // Reset trạng thái không cho spam nút Ticket
+        //}
+        //if (SprayRange.characterAttacked == true && CanBtnSpray == true)
+        //{
+        //    SprayRange.characterAttacked = false;
+        //    CanBtnSpray = false;
+        //    StartCoroutine(CharacterAttackedAndLeft()); // Khởi động hàm rời nhân vật sau khi bị attack
+
+        //}    
+    }
+
+    public void isDeterminedTicket()
+    {
         if (CanBtnTicket == true && btnTicket.btnTicketClicked == true)
         {
             StartCoroutine(CharacterLeftA()); // Bắt đầu rời nhân vật sau khi bấm nút Ticket
             btnTicket.btnTicketClicked = false; // Reset trạng thái nút Ticket sau khi bấm
             CanBtnTicket = false; // Reset trạng thái không cho spam nút Ticket
+            CancelInvoke("isDeterminedTicket");
         }
+    }
+    public void isDeterminedSpray()
+    {
         if (SprayRange.characterAttacked == true && CanBtnSpray == true)
         {
             SprayRange.characterAttacked = false;
             CanBtnSpray = false;
             StartCoroutine(CharacterAttackedAndLeft()); // Khởi động hàm rời nhân vật sau khi bị attack
-
-        }    
+            CancelInvoke("isDeterminedSpray");
+        }
     }
 
 
@@ -98,6 +119,8 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
         CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
+        InvokeRepeating("isDeterminedTicket", 0f, 3f);
+        InvokeRepeating("isDeterminedSpray", 0f, 3f); // Lặp lại kiểm tra nút Ticket và Spray mỗi 3 giây
     }
 
   
@@ -157,6 +180,8 @@ public class CharacterManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(5f);
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
+            InvokeRepeating("isDeterminedTicket", 0f, 3f);
+            InvokeRepeating("isDeterminedSpray", 0f, 3f); // Lặp lại kiểm tra nút Ticket và Spray mỗi 3 giây
         }
     }
 
