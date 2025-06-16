@@ -2,7 +2,7 @@
 
 public class SprayRange : MonoBehaviour
 {
-    public spray Spray; // Tham chiếu đến đối tượng spray
+    public Spray Spray; // Tham chiếu đến đối tượng spray
     public CharacterManager CharacterManager;
     public static bool characterAttacked = false;
 

@@ -1,23 +1,31 @@
 using UnityEngine;
 
-public class spray : MonoBehaviour
+public class Spray : MonoBehaviour
 {
     public bool isSprayActive = false;
-    [SerializeField] Transform SprayT;
+
+    public Vector3 Origin;
+
+    private void Start()
+    {
+        Origin = transform.position;
+    }
+
     public void SelectSpray()
     {
         isSprayActive = true;
     }
+
     void Update()
     {
-        if (isSprayActive == true)
+        if (isSprayActive)
         {
             Vector2 mousePos = Input.mousePosition;
-            SprayT.position = mousePos;
+            transform.position = mousePos;
         }
-        if (isSprayActive == false)
+        else
         {
-            SprayT.position = new Vector2(1500, 200);
+            transform.position = Origin;
         }
     }
 }
