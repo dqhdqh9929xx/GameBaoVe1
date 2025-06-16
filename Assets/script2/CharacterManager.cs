@@ -25,6 +25,7 @@ public class CharacterManager : MonoBehaviour
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
     public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
     public CoinCharacterManager CoinCharacterManager; // Tham chiếu đến CoinCharacterManager để tạo tiền cho nhân vật
+    public TicketCharacterManager TicketCharacterManager; // Tham chiếu đến TicketCharacterManager để tạo Ticket cho nhân vật
     public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
@@ -205,11 +206,12 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         CoinCharacterManager.InstantiateCoin();
         InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
-
+        TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
     }
     
     public IEnumerator LeftCharacterB()
     {
+        TicketCharacterManager.Destroyticket(); // Xóa Ticket khi nhân vật rời đi
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("LeftB");
         yield return new WaitForSecondsRealtime(5f);
@@ -241,6 +243,7 @@ public class CharacterManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(5f);
             CoinCharacterManager.InstantiateCoin();
             InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
+            TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
         }
     }
 

@@ -6,7 +6,6 @@ public class CoinCharacterManager : MonoBehaviour
     public GameObject coinPrefab;
     public Transform KhayDungDo;
     public static CoinCharacter CoinCharacter;
-
     public static bool isClickedCoinS = false;
 
     public void InstantiateCoin()
@@ -25,7 +24,7 @@ public class CoinCharacterManager : MonoBehaviour
         {
             isClickedCoinS = true;
             CoinCharacter.isClickedCoin = false;
-            CancelInvoke("AcceptCoinToCharacterLeft");
+            CancelInvoke("InstantiateCoin");
         }
     }
 }
