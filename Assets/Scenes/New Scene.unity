@@ -794,6 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e014473b4be73e419d373dc0fe386a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 0}
 --- !u!95 &645591044
 Animator:
   serializedVersion: 7
@@ -925,8 +926,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5786297}
-  m_AnchoredPosition: {x: -5.5424, y: 96.0577}
-  m_SizeDelta: {x: 657.9253, y: 292.1154}
+  m_AnchoredPosition: {x: -2.7725, y: 107.11245}
+  m_SizeDelta: {x: 663.47, y: 314.23514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813134326
 MonoBehaviour:
@@ -1163,6 +1164,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1069278935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069278936}
+  - component: {fileID: 1069278937}
+  m_Layer: 5
+  m_Name: CoinCharacterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1069278936
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069278935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1326762213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1069278937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069278935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4842a200eafb1ee4db3884896e886e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 4162004399921234881, guid: eac1f425eba6b9d46b8a7eb668c8ec7a, type: 3}
+  KhayDungDo: {fileID: 1652308763}
 --- !u!1 &1237267671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,11 +1271,12 @@ MonoBehaviour:
   - {fileID: 5771982738253600551, guid: 191fb2e9880727141a215a2618ba1fa4, type: 3}
   - {fileID: 8144997963238858826, guid: 9adc26d6667463c49815bd68cec3419f, type: 3}
   ComeBoolens: 010100
-  LeftBoolen: 000000
+  LeftBoolen: 010101
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
   SprayRange: {fileID: 1051149722}
   oldCharaters: []
   characterNoteManager: {fileID: 1465169037}
+  CoinCharacterManager: {fileID: 1069278937}
   btnTicket: {fileID: 645591043}
 --- !u!1 &1326762209
 GameObject:
@@ -1330,6 +1382,7 @@ RectTransform:
   - {fileID: 645591038}
   - {fileID: 848163315}
   - {fileID: 1051149721}
+  - {fileID: 1069278936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

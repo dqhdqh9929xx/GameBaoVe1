@@ -24,9 +24,11 @@ public class CharacterManager : MonoBehaviour
     private System.Random random = new System.Random();
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
     public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
+    public CoinCharacterManager CoinCharacterManager; // Tham chiếu đến CoinCharacterManager để tạo tiền cho nhân vật
     public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
+    private static int randomIndex; // Khai báo là biến toàn cục để lưu chỉ số ngẫu nhiên của nhân vật hiện tại
 
     void Start()
     {
@@ -104,7 +106,7 @@ public class CharacterManager : MonoBehaviour
     {
         characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
         // Khởi tạo nhân vật đầu tiên
-        int randomIndex = random.Next(characters.Count);
+        randomIndex = random.Next(characters.Count);
         CharacterData randomCharacter = characters[randomIndex];
         characters.RemoveAt(randomIndex); 
         Debug.Log($"RemoveAtIndexList: {randomIndex}");
@@ -165,7 +167,7 @@ public class CharacterManager : MonoBehaviour
         else
         {
             characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
-            int randomIndex = random.Next(characters.Count);
+            randomIndex = random.Next(characters.Count);
             CharacterData randomCharacter = characters[randomIndex];
             characters.RemoveAt(randomIndex);
             Debug.Log($"RemoveAtIndexList: {randomIndex}");
@@ -187,7 +189,8 @@ public class CharacterManager : MonoBehaviour
 
     public IEnumerator StartFirstCharacterB()
     {
-        int randomIndex = random.Next(oldCharaters.Count);
+        Debug.Log($"StartFirstCharacterB: {oldCharaters.Count}");
+        randomIndex = random.Next(oldCharaters.Count);
         GameObject randomCharacter = oldCharaters[randomIndex];
         oldCharaters.RemoveAt(randomIndex);
         Debug.Log($"RemoveAt: {randomIndex}");
@@ -195,11 +198,14 @@ public class CharacterManager : MonoBehaviour
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.normalImage = NormalImages[randomIndex];
         nv.attackImage = AttackImages[randomIndex];
+        nv.isTrueChoiceLeft = LeftBoolen[randomIndex]; // Lấy kết quả lựa chọn khi rời đi
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("ComeB");
         nv.OnNormal();
         yield return new WaitForSecondsRealtime(5f);
-        StartCoroutine(LeftCharacterB());
+        CoinCharacterManager.InstantiateCoin();
+        InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
+
     }
     
     public IEnumerator LeftCharacterB()
@@ -220,19 +226,31 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            int randomIndex = random.Next(oldCharaters.Count);
+            randomIndex = random.Next(oldCharaters.Count);
             GameObject randomCharacter = oldCharaters[randomIndex];
             oldCharaters.RemoveAt(randomIndex);
             Debug.Log($"RemoveAt: {randomIndex}");
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = NormalImages[randomIndex];
             nv.attackImage = AttackImages[randomIndex];
+            nv.isTrueChoiceLeft = LeftBoolen[randomIndex]; // Lấy kết quả lựa chọn khi rời đi
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeB");
             yield return new WaitForSecondsRealtime(1f); // Đợi 1 giây để tránh hình ảnh giật về từ phải qua trái
             nv.OnNormal();
             yield return new WaitForSecondsRealtime(5f);
-            StartCoroutine(LeftCharacterB());
+            CoinCharacterManager.InstantiateCoin();
+            InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
+        }
+    }
+
+    public void AcceptCoinToCharacterLeft()
+    {
+        if (CoinCharacterManager.isClickedCoinS == true)
+        {
+            CoinCharacterManager.isClickedCoinS = false; // Reset trạng thái sau khi nhận tiền
+            StartCoroutine(LeftCharacterB()); // Bắt đầu rời nhân vật sau khi nhận tiền
+            CancelInvoke("AcceptCoinToCharacterLeft");
         }
     }
 }
