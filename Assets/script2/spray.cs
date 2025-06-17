@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Spray : MonoBehaviour
 {
-    public bool isSprayActive = false;
+    public static bool isSprayActive = false;
 
     public Vector3 Origin;
 
