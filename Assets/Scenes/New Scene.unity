@@ -1320,8 +1320,8 @@ MonoBehaviour:
   - {fileID: 7028912145048016332, guid: cd8b706c8b35be04b957f5f5f25a1d99, type: 3}
   - {fileID: 5771982738253600551, guid: 191fb2e9880727141a215a2618ba1fa4, type: 3}
   - {fileID: 8144997963238858826, guid: 9adc26d6667463c49815bd68cec3419f, type: 3}
-  ComeBoolens: 000000
-  LeftBoolen: 000000
+  ComeBoolens: 010100
+  LeftBoolen: 000101
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
   SprayRange: {fileID: 1051149722}
   characterNoteManager: {fileID: 1465169037}
@@ -1425,7 +1425,6 @@ RectTransform:
   - {fileID: 813134325}
   - {fileID: 1237267672}
   - {fileID: 810468032}
-  - {fileID: 1051149721}
   - {fileID: 253268652}
   - {fileID: 327689648}
   - {fileID: 1652308763}
@@ -1434,6 +1433,7 @@ RectTransform:
   - {fileID: 848163315}
   - {fileID: 1069278936}
   - {fileID: 788817946}
+  - {fileID: 1051149721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

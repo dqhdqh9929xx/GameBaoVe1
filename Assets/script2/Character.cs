@@ -11,7 +11,7 @@ namespace Assets.script2
         public Sprite NormalImage { get; set; }
         public Sprite AttackImage { get; set; }
         public bool IsTrueChoiceCome { get; set; } = true;
-        public bool IsTrueChoiceLeft { get; set; } = true;
+        public bool IsTrueChoiceOut { get; set; } = true;
 
         public static implicit operator CharacterData(GameObject v)
         {

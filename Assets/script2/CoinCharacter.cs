@@ -9,4 +9,9 @@ public class CoinCharacter : MonoBehaviour
         isClickedCoin = true;
         Destroy(gameObject);
     }
+    public void DestroyCoin()
+    {
+        isClickedCoin = false;
+        Destroy(gameObject);
+    }
 }

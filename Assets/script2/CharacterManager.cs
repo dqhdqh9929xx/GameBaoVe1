@@ -18,6 +18,7 @@ public class CharacterManager : MonoBehaviour
     private GameObject CurrentCharater;
     public List<CharacterData> characters = new();
     public List<CharacterData> oldCharaters = new();
+    public List<CharacterData> oldOldCharaters = new(); // Trả về danh sách nhân vật đã rời đi để có thể sử dụng ở nơi khác
     private System.Random random = new System.Random();
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
     public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
@@ -27,6 +28,11 @@ public class CharacterManager : MonoBehaviour
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
     private static int randomIndex; // Khai báo là biến toàn cục để lưu chỉ số ngẫu nhiên của nhân vật hiện tại
+    private static int characterToRemove; // Biến để lưu chỉ số của nhân vật cần xóa khỏi danh sách
+    private static int indexCharacterInToCheck = 0; // Chỉ số của nhân vật cần kiểm tra
+    private static int indexCharacterOutToCheck = 0; // Chỉ số của nhân vật cần kiểm tra kết quả lựa chọn khi rời đi
+    private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
+
 
     void Start()
     {
@@ -37,7 +43,7 @@ public class CharacterManager : MonoBehaviour
             AttackImage = AttackImages[0],
             NormalImage = NormalImages[0],
             IsTrueChoiceCome = ComeBoolens[0],
-            IsTrueChoiceLeft = LeftBoolen[0],
+            IsTrueChoiceOut = LeftBoolen[0],
         });
         characters.Add(new CharacterData()
         {
@@ -46,7 +52,7 @@ public class CharacterManager : MonoBehaviour
             AttackImage = AttackImages[1],
             NormalImage = NormalImages[1],
             IsTrueChoiceCome = ComeBoolens[1],
-            IsTrueChoiceLeft = LeftBoolen[1]
+            IsTrueChoiceOut = LeftBoolen[1]
         });
         characters.Add(new CharacterData()
         {
@@ -55,12 +61,29 @@ public class CharacterManager : MonoBehaviour
             AttackImage = AttackImages[2],
             NormalImage = NormalImages[2],
             IsTrueChoiceCome = ComeBoolens[2],
-            IsTrueChoiceLeft = LeftBoolen[2]
+            IsTrueChoiceOut = LeftBoolen[2]
         });
 
         StartCoroutine(StartCharacterIn());
     }
 
+    public void isTrueChoiceIn()
+    {
+        if (oldCharaters[indexCharacterInToCheck].IsTrueChoiceCome == false)
+         {
+             Debug.Log("GameOver!");
+         }
+        indexCharacterInToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
+    }
+
+    public void isTrueChoiceOut()
+    {
+        if (oldOldCharaters[indexCharacterOutToCheck].IsTrueChoiceOut == false)
+        {
+            Debug.Log("GameOver!");
+        }
+        indexCharacterOutToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
+    }
 
     public void isDeterminedTicket()
     {
@@ -72,14 +95,30 @@ public class CharacterManager : MonoBehaviour
             CancelInvoke("isDeterminedTicket");
         }
     }
-    public void isDeterminedSpray()
+    public void isDeterminedSprayIn()
     {
         if (SprayRange.characterAttacked == true && CanBtnSpray == true)
         {
             SprayRange.characterAttacked = false;
             CanBtnSpray = false;
-            StartCoroutine(CharacterAttackedAndLeft()); // Khởi động hàm rời nhân vật sau khi bị attack
-            CancelInvoke("isDeterminedSpray");
+            oldCharaters.RemoveAt(indexCharacterInToCheck);
+            isSprayed = true; // Đánh dấu là đã có nhân vật bị attack
+            StartCoroutine(CharacterAttackedAndLeftIn()); // Khởi động hàm rời nhân vật sau khi bị attack
+            CancelInvoke("isDeterminedSprayIn");
+        }
+    }
+
+    public void isDeterminedSprayOut()
+    {
+        if (SprayRange.characterAttacked == true && CanBtnSpray == true)
+        {
+            SprayRange.characterAttacked = false;
+            CanBtnSpray = false;
+            oldOldCharaters.RemoveAt(indexCharacterOutToCheck);
+            isSprayed = true; // Đánh dấu là đã có nhân vật bị attack
+            CoinCharacterManager.DestroyCoin(); // Xóa Coin khi nhân vật bị attack
+            StartCoroutine(CharacterAttackedAndLeftOut()); // Khởi động hàm rời nhân vật sau khi bị attack
+            CancelInvoke("isDeterminedSprayOut");
         }
     }
 
@@ -94,14 +133,17 @@ public class CharacterManager : MonoBehaviour
             var nv = CurrentCharater.GetComponent<NhanVat>();
             Debug.Log($"nv CharacterLeftA: {nv.name} {nv.isTrueChoiceCome}");
             nv.OnInvisible();
-            if (nv.isTrueChoiceCome == false)
-            {
-                Debug.Log($"GameOver.");       // Nếu nhân vật không phải là lựa chọn đúng, có thể xử lý Game Over hoặc thông báo
-                //yield break;
-            }
-
             Destroy(CurrentCharater);
             CurrentCharater = null;
+            if (isSprayed == true)
+            {
+                isSprayed = false; // Reset trạng thái sau khi nhân vật đã bị attack
+            }
+            else
+            {
+                isTrueChoiceIn(); // Nếu nhân vật không bị attack, kiểm tra kết quả lựa chọn 
+                CancelInvoke("isDeterminedSprayIn");
+            }
         }
 
         if (characters.Any())
@@ -112,6 +154,7 @@ public class CharacterManager : MonoBehaviour
             CharacterData randomCharacter = characters[randomIndex];
             characters.RemoveAt(randomIndex);
             oldCharaters.Add(randomCharacter);
+            characterToRemove = randomIndex; // Lưu chỉ số của nhân vật đã được chọn để nếu cần thì xóa khỏi danh sách
             Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
             var nv = CurrentCharater.GetComponent<NhanVat>();
@@ -125,7 +168,8 @@ public class CharacterManager : MonoBehaviour
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
             InvokeRepeating("isDeterminedTicket", 0f, 3f);
-            InvokeRepeating("isDeterminedSpray", 0f, 3f); // Lặp lại kiểm tra nút Ticket và Spray mỗi 3 giây
+            InvokeRepeating("isDeterminedSprayIn", 0f, 1.5f); // Lặp lại kiểm tra nút Ticket và Spray mỗi 3 giây
+            
         }
         else
         {
@@ -137,6 +181,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (CurrentCharater != null)
         {
+
             TicketCharacterManager.Destroyticket(); // Xóa Ticket khi nhân vật rời đi
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("LeftB");
@@ -145,6 +190,15 @@ public class CharacterManager : MonoBehaviour
             nv.OnInvisible();
             Destroy(CurrentCharater);
             CurrentCharater = null;
+            if (isSprayed == true)
+            {
+                isSprayed = false; // Reset trạng thái sau khi nhân vật đã bị attack
+            }
+            else
+            {
+                isTrueChoiceOut(); // Nếu nhân vật không bị attack, kiểm tra kết quả lựa chọn
+                //CancelInvoke("isDeterminedSprayOut");
+            }
         }
 
         if (oldCharaters.Any())
@@ -153,12 +207,13 @@ public class CharacterManager : MonoBehaviour
             randomIndex = random.Next(oldCharaters.Count);
             CharacterData oldCharacter = oldCharaters[randomIndex];
             oldCharaters.RemoveAt(randomIndex);
+            oldOldCharaters.Add(oldCharacter); // Thêm nhân vật đã rời đi vào danh sách oldOldCharaters
             Debug.Log($"RemoveAt: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = oldCharacter.NormalImage;
             nv.attackImage = oldCharacter.AttackImage;
-            nv.isTrueChoiceLeft = oldCharacter.IsTrueChoiceLeft; // Lấy kết quả lựa chọn khi rời đi
+            nv.isTrueChoiceOut = oldCharacter.IsTrueChoiceOut; // Lấy kết quả lựa chọn khi rời đi
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeB");
             nv.OnNormal();
@@ -166,6 +221,8 @@ public class CharacterManager : MonoBehaviour
             CoinCharacterManager.InstantiateCoin();
             InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
             TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
+            InvokeRepeating("isDeterminedSprayOut", 0f, 1.5f); // Lặp lại kiểm tra nút Spray mỗi 3 giây
+
         }
         else
         {
@@ -173,14 +230,26 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    public IEnumerator CharacterAttackedAndLeft()
+    public IEnumerator CharacterAttackedAndLeftIn()
     {
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("LeftB");
         var nv = CurrentCharater.GetComponent<NhanVat>();
         nv.OnAttack();
         yield return new WaitForSecondsRealtime(5f);
+        nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
         StartCoroutine(StartCharacterIn());
+    }
+
+    public IEnumerator CharacterAttackedAndLeftOut()
+    {
+        Animator animator = CurrentCharater.GetComponent<Animator>();
+        animator.SetTrigger("LeftB");
+        var nv = CurrentCharater.GetComponent<NhanVat>();
+        nv.OnAttack();
+        yield return new WaitForSecondsRealtime(5f);
+        nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
+        StartCoroutine(StartCharacterOut());
     }
 
     public void AcceptCoinToCharacterLeft()
