@@ -37,6 +37,11 @@ public class CharacterManager : MonoBehaviour
     private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
     CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
     public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
+    public CharacterNoteName CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
+    public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
+    public int endIndexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai cuối cùng của người chơi
+    public GameObject GameWinMenu; // Tham chiếu đến menu chiến thắng
+    public GameObject GameOverMenu; // Tham chiếu đến menu game over
     void Start()
     {
         for (int i = 0; i < NormalImages.Length; i++)
@@ -60,8 +65,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (oldCharaters[indexCharacterInTicketToCheck].IsTrueChoiceCome == false)
          {
-             Debug.Log("GameOver!");
-         }
+            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+        }
         indexCharacterInTicketToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
     }
 
@@ -69,8 +74,9 @@ public class CharacterManager : MonoBehaviour
     {
         if (SprayedCharacter[indexCharacterInSprayedToCheck].IsTrueChoiceCome == true)
         {
-            Debug.Log("GameOver!");
-        }   
+            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+
+        }
         indexCharacterInSprayedToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
     }
 
@@ -78,7 +84,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (sprayedOldCharacter[indexCharacterOutSprayedToCheck].IsTrueChoiceOut == true)
         {
-            Debug.Log("GameOver!");
+            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+
         }
         indexCharacterOutSprayedToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
     }
@@ -87,7 +94,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (sprayedOldCharacter[indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
         {
-            Debug.Log("GameOver!");
+            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+
         }
         indexCharacterOutCoinToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
     }
@@ -173,7 +181,7 @@ public class CharacterManager : MonoBehaviour
             animator.SetTrigger("ComeA");
             yield return new WaitForSecondsRealtime(5f);
             characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
-            characterNoteManager.InstantiateCharacterName(); // Tạo tên cho nhân vật nếu cần thiết
+            CharacterNoteName.InstantiateCharacterName(); // Tạo tên cho nhân vật nếu cần thiết
             characterChatManager.StartCoroutine(characterChatManager.InstantiateChatIn()); // Tạo lời thoại cho nhân vật khi vào
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
@@ -241,7 +249,7 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No more characters to show in B sequence.");
+            CheckWinOrLose();
         }
     }
     public IEnumerator CharacterAttackedAndLeftIn()
@@ -273,4 +281,17 @@ public class CharacterManager : MonoBehaviour
             CancelInvoke("AcceptCoinToCharacterLeft");
         }
     }
+
+    public void CheckWinOrLose()
+    {
+        if (indexWrongChoice > 0)
+        {
+            endIndexWrongChoice = indexWrongChoice; // Lưu chỉ số lựa chọn sai cuối cùng
+            GameOverMenu.SetActive(true);
+        }
+        else
+        {
+            GameWinMenu.SetActive(true);
+        }
+    }    
 }
