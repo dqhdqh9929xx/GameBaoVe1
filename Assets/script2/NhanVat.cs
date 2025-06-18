@@ -9,6 +9,13 @@ public class NhanVat : MonoBehaviour
     public bool isTrueChoiceCome { get; internal set; }
     public bool isTrueChoiceOut { get; internal set; }
 
+    public string characterNames { get; internal set; }
+    public int characterId { get; internal set; }
+    public string characterChatIn { get; internal set; }
+    public string characterChatOut { get; internal set; }
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

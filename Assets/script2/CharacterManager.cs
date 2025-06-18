@@ -8,13 +8,14 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
-    // tạo mảng 2D chứa các kết quả của nhân vật
+    [SerializeField] string[] CharacterNames; // Mảng chứa tên của các nhân vật
+    [SerializeField] string[] CharacterChatIn; // Mảng chứa lời thoại nhân vật khi vào
+    [SerializeField] string[] CharacterChatOut; // Mảng chứa lời thoại nhân vật khi rời đi
+    [SerializeField] int[] CharacterId; // Mảng chứa id nhân vật
     [SerializeField] bool[] ComeBoolens; // Mảng chứa các kết quả của nhân vật khi đến vị trí đúng
     [SerializeField] bool[] LeftBoolen; // Mảng chứa các kết quả của nhân vật khi rời đi
-
     [SerializeField] GameObject CharacterPrefab; // prefab xử lý thay đổi sprites
     public SprayRange SprayRange; // Tham chiếu đến SprayRange để xử lý nhân vật bị attack
-
     private GameObject CurrentCharater;
     public List<CharacterData> characters = new();
     public List<CharacterData> oldCharaters = new();
@@ -28,45 +29,30 @@ public class CharacterManager : MonoBehaviour
     public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
-    private static int randomIndex; // Khai báo là biến toàn cục để lưu chỉ số ngẫu nhiên của nhân vật hiện tại
+    public int randomIndex; // Khai báo là biến toàn cục để lưu chỉ số ngẫu nhiên của nhân vật hiện tại
     private static int indexCharacterInTicketToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi đến vị trí đúng
     private static int indexCharacterOutCoinToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi rời đi
     private static int indexCharacterInSprayedToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi bị attack
     private static int indexCharacterOutSprayedToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi bị attack
     private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
-   CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
-
-
+    CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
+    public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
     void Start()
     {
-        characters.Add(new CharacterData()
+        for (int i = 0; i < NormalImages.Length; i++)
         {
-            Id = 1,
-            Name = "Name 1 ",
-            AttackImage = AttackImages[0],
-            NormalImage = NormalImages[0],
-            IsTrueChoiceCome = ComeBoolens[0],
-            IsTrueChoiceOut = LeftBoolen[0],
-        });
-        characters.Add(new CharacterData()
-        {
-            Id = 2,
-            Name = "Name 2 ",
-            AttackImage = AttackImages[1],
-            NormalImage = NormalImages[1],
-            IsTrueChoiceCome = ComeBoolens[1],
-            IsTrueChoiceOut = LeftBoolen[1]
-        });
-        characters.Add(new CharacterData()
-        {
-            Id = 3,
-            Name = "Name 3 ",
-            AttackImage = AttackImages[2],
-            NormalImage = NormalImages[2],
-            IsTrueChoiceCome = ComeBoolens[2],
-            IsTrueChoiceOut = LeftBoolen[2]
-        });
-
+            characters.Add(new CharacterData
+            {
+                Id = CharacterId[i],
+                Name = CharacterNames[i],
+                NormalImage = NormalImages[i],
+                AttackImage = AttackImages[i],
+                IsTrueChoiceCome = ComeBoolens[i],
+                IsTrueChoiceOut = LeftBoolen[i],
+                CharacterChatIn = CharacterChatIn[i],
+                CharacterChatOut = CharacterChatOut[i]
+            });
+        }
         StartCoroutine(StartCharacterIn());
     }
 
@@ -128,7 +114,6 @@ public class CharacterManager : MonoBehaviour
             CancelInvoke("isDeterminedSprayIn");
         }
     }
-
     public void isDeterminedSprayOut()
     {
         if (SprayRange.characterAttacked == true && CanBtnSpray == true)
@@ -162,8 +147,6 @@ public class CharacterManager : MonoBehaviour
                 isSprayed = false; // Reset trạng thái sau khi nhân vật đã bị attack
                 CancelInvoke("isDeterminedSprayIn"); // 1
                 isTrueChoiceInSprayed(); // Nếu nhân vật bị attack, kiểm tra kết quả lựa chọn
-
-
             }
             else
             {
@@ -171,15 +154,13 @@ public class CharacterManager : MonoBehaviour
                 CancelInvoke("isDeterminedSprayIn");
             }
         }
-
         if (characters.Any())
         {
-            characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
-                                                             // Khởi tạo nhân vật đầu tiên
+            //characterNoteManager.InstantiateCharacterNoteAndName(); // Tạo ghi chú cho nhân vật nếu cần thiết
             randomIndex = random.Next(characters.Count);
             CharacterData randomCharacter = characters[randomIndex];
             currentCharacterData = randomCharacter; // Lưu dữ liệu của nhân vật hiện tại để check kết quả lựa chọn
-            characters.RemoveAt(randomIndex);
+            //characters.RemoveAt(randomIndex);
             oldCharaters.Add(randomCharacter);
             Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
@@ -191,23 +172,25 @@ public class CharacterManager : MonoBehaviour
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeA");
             yield return new WaitForSecondsRealtime(5f);
+            characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
+            characterNoteManager.InstantiateCharacterName(); // Tạo tên cho nhân vật nếu cần thiết
+            characterChatManager.StartCoroutine(characterChatManager.InstantiateChatIn()); // Tạo lời thoại cho nhân vật khi vào
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
             InvokeRepeating("isDeterminedTicket", 0f, 3f);
             InvokeRepeating("isDeterminedSprayIn", 0f, 1.5f); // Lặp lại kiểm tra nút Ticket và Spray mỗi 3 giây
-            
+            characters.RemoveAt(randomIndex);
+
         }
         else
         {
             StartCoroutine(StartCharacterOut());
         }
     }
-
     public IEnumerator StartCharacterOut()
     {
         if (CurrentCharater != null)
         {
-
             TicketCharacterManager.Destroyticket(); // Xóa Ticket khi nhân vật rời đi
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("LeftB");
@@ -229,14 +212,13 @@ public class CharacterManager : MonoBehaviour
                 CancelInvoke("isDeterminedSprayOut"); // 3
             }
         }
-
         if (oldCharaters.Any())
         {
             Debug.Log($"StartFirstCharacterB: {oldCharaters.Count}");
             randomIndex = random.Next(oldCharaters.Count);
             CharacterData oldCharacter = oldCharaters[randomIndex];
             currentCharacterData = oldCharacter; // Lưu dữ liệu của nhân vật hiện tại để check kết quả lựa chọn
-            oldCharaters.RemoveAt(randomIndex);
+            //oldCharaters.RemoveAt(randomIndex);
             sprayedOldCharacter.Add(oldCharacter); // Thêm nhân vật out rời đi bằng sprayed vào danh sách sprayedOldCharacter
             Debug.Log($"RemoveAt: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
@@ -248,11 +230,13 @@ public class CharacterManager : MonoBehaviour
             animator.SetTrigger("ComeB");
             nv.OnNormal();
             yield return new WaitForSecondsRealtime(5f);
+            characterChatManager.StartCoroutine(characterChatManager.InstantiateChatOut()); // Tạo lời thoại cho nhân vật khi ra
             CoinCharacterManager.InstantiateCoin();
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
             InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
             TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
             InvokeRepeating("isDeterminedSprayOut", 0f, 1.5f); // Lặp lại kiểm tra nút Spray mỗi 3 giây
+            oldCharaters.RemoveAt(randomIndex);
 
         }
         else
@@ -260,7 +244,6 @@ public class CharacterManager : MonoBehaviour
             Debug.Log("No more characters to show in B sequence.");
         }
     }
-
     public IEnumerator CharacterAttackedAndLeftIn()
     {
         Animator animator = CurrentCharater.GetComponent<Animator>();
@@ -271,7 +254,6 @@ public class CharacterManager : MonoBehaviour
         nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
         StartCoroutine(StartCharacterIn());
     }
-
     public IEnumerator CharacterAttackedAndLeftOut()
     {
         Animator animator = CurrentCharater.GetComponent<Animator>();
@@ -282,7 +264,6 @@ public class CharacterManager : MonoBehaviour
         nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
         StartCoroutine(StartCharacterOut());
     }
-
     public void AcceptCoinToCharacterLeft()
     {
         if (CoinCharacterManager.isClickedCoinS == true)
