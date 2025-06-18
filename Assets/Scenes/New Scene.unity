@@ -1608,9 +1608,9 @@ MonoBehaviour:
   randomIndex: 0
   characterChatManager: {fileID: 1761562039}
   CharacterNoteName: {fileID: 674192477}
-  indexWrongChoice: 0
-  GameWinMenu: {fileID: 2035140381}
-  GameOverMenu: {fileID: 2136394760}
+  gameWinMenu: {fileID: 2136394760}
+  GameOverMenu: {fileID: 2035140385}
+  gameOverMenu: {fileID: 2035140381}
 --- !u!1 &1326762209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,7 +2634,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IndexWrongChoice: {fileID: 1566200523}
-  characterManager: {fileID: 1237267673}
 --- !u!1 &2136394760
 GameObject:
   m_ObjectHideFlags: 0

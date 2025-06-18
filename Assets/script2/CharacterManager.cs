@@ -39,9 +39,10 @@ public class CharacterManager : MonoBehaviour
     public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
     public CharacterNoteName CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
     public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
-    public int endIndexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai cuối cùng của người chơi
-    public GameObject GameWinMenu; // Tham chiếu đến menu chiến thắng
-    public GameObject GameOverMenu; // Tham chiếu đến menu game over
+    //public int endIndexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai cuối cùng của người chơi
+    public GameObject gameWinMenu; // Tham chiếu đến menu chiến thắng
+    public GameOverMenu GameOverMenu; // Tham chiếu đến menu game over
+    public GameObject gameOverMenu; // Tham chiếu đến menu game over
     void Start()
     {
         for (int i = 0; i < NormalImages.Length; i++)
@@ -286,12 +287,12 @@ public class CharacterManager : MonoBehaviour
     {
         if (indexWrongChoice > 0)
         {
-            endIndexWrongChoice = indexWrongChoice; // Lưu chỉ số lựa chọn sai cuối cùng
-            GameOverMenu.SetActive(true);
+            GameOverMenu.ShowWrongChoice();
+            gameOverMenu.SetActive(true);
         }
         else
         {
-            GameWinMenu.SetActive(true);
+            gameWinMenu.SetActive(true);
         }
-    }    
+    }
 }
