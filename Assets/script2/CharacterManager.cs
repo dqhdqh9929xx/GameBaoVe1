@@ -39,7 +39,7 @@ public class CharacterManager : MonoBehaviour
     CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
     public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
     public CharacterNoteName CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
-    public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
+    //public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
     //public int endIndexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai cuối cùng của người chơi
     public GameObject gameWinMenu; // Tham chiếu đến menu chiến thắng
     public GameOverMenu GameOverMenu; // Tham chiếu đến menu game over
@@ -71,7 +71,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (oldCharaters[indexCharacterInTicketToCheck].IsTrueChoiceCome == false)
          {
-            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceInTicket++; // Tăng chỉ số lựa chọn sai khi bấm Ticket cho nhân vật In
         }
         indexCharacterInTicketToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
@@ -81,7 +81,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (SprayedCharacter[indexCharacterInSprayedToCheck].IsTrueChoiceCome == true)
         {
-            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceInSprayed++; // Tăng chỉ số lựa chọn sai khi bấm Spray cho nhân vật In
 
         }
@@ -92,7 +92,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (sprayedOldCharacter[indexCharacterOutSprayedToCheck].IsTrueChoiceOut == true)
         {
-            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceOutSprayed++; // Tăng chỉ số lựa chọn sai khi bấm Spray cho nhân vật Out
 
         }
@@ -103,7 +103,7 @@ public class CharacterManager : MonoBehaviour
     {
         if (sprayedOldCharacter[indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
         {
-            indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceOutCoin++; // Tăng chỉ số lựa chọn sai khi bấm Coin cho nhân vật Out
 
         }
@@ -294,7 +294,7 @@ public class CharacterManager : MonoBehaviour
 
     public void CheckWinOrLose()
     {
-        if (indexWrongChoice > 0)
+        if ((indexWrongChoiceInTicket + indexWrongChoiceInSprayed + indexWrongChoiceOutSprayed + indexWrongChoiceOutCoin) > 0)
         {
             gameOverMenu.SetActive(true);
             GameOverMenu.ShowWrongChoice();
