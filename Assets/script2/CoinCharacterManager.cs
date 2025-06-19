@@ -4,17 +4,22 @@ using UnityEngine;
 public class CoinCharacterManager : MonoBehaviour
 {
     public GameObject coinPrefab;
-    public Transform KhayDungDo;
+    //public Transform KhayDungDo;
     public static CoinCharacter CoinCharacter;
     public static bool isClickedCoinS = false;
     public GameObject newPrefabCoin = null;
+    public Vector3 Origin;
+
+    private void Start()
+    {
+        Origin = GetComponent<RectTransform>().localPosition;
+    }
 
     public void InstantiateCoin()
     {
-        Vector3 localPosCoin = KhayDungDo.InverseTransformPoint(transform.position);
-        Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x - 200f, localPosCoin.y - 200f , localPosCoin.z);
-        newPrefabCoin = Instantiate(coinPrefab);
-        newPrefabCoin.transform.SetParent(KhayDungDo, false);
+        Vector3 localPosCoin = Origin;
+        Vector3 spawnLocalPosCoin = new Vector3(localPosCoin.x, localPosCoin.y , localPosCoin.z);
+        newPrefabCoin = Instantiate(coinPrefab, this.transform);
         newPrefabCoin.GetComponent<RectTransform>().localPosition = spawnLocalPosCoin;
         InvokeRepeating("IsClickedCoin", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
     }

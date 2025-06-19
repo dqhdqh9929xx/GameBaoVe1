@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ticketPrefabFullScreen: {fileID: 2274866560495341165, guid: efc87bc677f0c594680d374b137bc2db, type: 3}
+  KhayDungDo: {fileID: 3465498268523080740, guid: 3fde5bd4993743a4aad01c8bb1c9bb7a, type: 3}

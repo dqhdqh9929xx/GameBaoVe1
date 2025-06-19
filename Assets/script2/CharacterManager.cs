@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -30,10 +31,10 @@ public class CharacterManager : MonoBehaviour
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
     public int randomIndex; // Khai báo là biến toàn cục để lưu chỉ số ngẫu nhiên của nhân vật hiện tại
-    private static int indexCharacterInTicketToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi đến vị trí đúng
-    private static int indexCharacterOutCoinToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi rời đi
-    private static int indexCharacterInSprayedToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi bị attack
-    private static int indexCharacterOutSprayedToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi bị attack
+    public static int indexCharacterInTicketToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi đến vị trí đúng
+    public static int indexCharacterOutCoinToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi rời đi
+    public static int indexCharacterInSprayedToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi bị attack
+    public static int indexCharacterOutSprayedToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi bị attack
     private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
     CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
     public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
@@ -43,6 +44,10 @@ public class CharacterManager : MonoBehaviour
     public GameObject gameWinMenu; // Tham chiếu đến menu chiến thắng
     public GameOverMenu GameOverMenu; // Tham chiếu đến menu game over
     public GameObject gameOverMenu; // Tham chiếu đến menu game over
+    public static int indexWrongChoiceInTicket = 0; // lưu số lần chọn sai khi bấm ticket cho nhân vật in
+    public static int indexWrongChoiceOutCoin = 0; // lưu số lần chọn sai khi bấm coin cho nhân vật out
+    public static int indexWrongChoiceInSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật in
+    public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out                                                 
     void Start()
     {
         for (int i = 0; i < NormalImages.Length; i++)
@@ -67,6 +72,7 @@ public class CharacterManager : MonoBehaviour
         if (oldCharaters[indexCharacterInTicketToCheck].IsTrueChoiceCome == false)
          {
             indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            indexWrongChoiceInTicket++; // Tăng chỉ số lựa chọn sai khi bấm Ticket cho nhân vật In
         }
         indexCharacterInTicketToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
     }
@@ -76,6 +82,7 @@ public class CharacterManager : MonoBehaviour
         if (SprayedCharacter[indexCharacterInSprayedToCheck].IsTrueChoiceCome == true)
         {
             indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            indexWrongChoiceInSprayed++; // Tăng chỉ số lựa chọn sai khi bấm Spray cho nhân vật In
 
         }
         indexCharacterInSprayedToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
@@ -86,6 +93,7 @@ public class CharacterManager : MonoBehaviour
         if (sprayedOldCharacter[indexCharacterOutSprayedToCheck].IsTrueChoiceOut == true)
         {
             indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            indexWrongChoiceOutSprayed++; // Tăng chỉ số lựa chọn sai khi bấm Spray cho nhân vật Out
 
         }
         indexCharacterOutSprayedToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
@@ -96,6 +104,7 @@ public class CharacterManager : MonoBehaviour
         if (sprayedOldCharacter[indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
         {
             indexWrongChoice++; // Tăng chỉ số lựa chọn sai
+            indexWrongChoiceOutCoin++; // Tăng chỉ số lựa chọn sai khi bấm Coin cho nhân vật Out
 
         }
         indexCharacterOutCoinToCheck++; // Tăng chỉ số để kiểm tra nhân vật tiếp theo
@@ -287,8 +296,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (indexWrongChoice > 0)
         {
-            GameOverMenu.ShowWrongChoice();
             gameOverMenu.SetActive(true);
+            GameOverMenu.ShowWrongChoice();
         }
         else
         {
