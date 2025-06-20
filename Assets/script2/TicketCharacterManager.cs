@@ -18,6 +18,7 @@ public class TicketCharacterManager : MonoBehaviour
     private void Start()
     {
         Origin = GetComponent<RectTransform>().localPosition;
+        nameText.enabled = false;
     }
     public void InstantiateTicket()
     {
@@ -36,15 +37,15 @@ public class TicketCharacterManager : MonoBehaviour
 
     public void IsClickedTicketAndShowName()
     {
-        if (TicketCharacter.isClickedTicketFull == true)
+        if (TicketCharacter.isClickedTicketFull == true && nameText != null)
         {
-            nameText.enabled =true;
+            nameText.enabled = true;
             var nameIndex = characterManager.randomIndex;
             Debug.Log($"NameIndex: {nameIndex}");
             var currentChar = characterManager.currentCharacterData;
             Debug.Log($"Current Character: {currentChar.Name}");
-            var curentCharacterName = currentChar.Name;
-            nameText.text = $"{curentCharacterName}";
+            //var curentCharacterName = currentChar.Name;
+            nameText.text = $"{currentChar.Name}";
             StartCoroutine(timeShowNameInTicket());
             nameText.enabled = false;
             TicketCharacter.isClickedTicketFull = false;
