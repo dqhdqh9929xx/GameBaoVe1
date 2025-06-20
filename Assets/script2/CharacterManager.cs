@@ -155,7 +155,6 @@ public class CharacterManager : MonoBehaviour
             animator.SetTrigger("LeftA");
             yield return new WaitForSecondsRealtime(5f);
             var nv = CurrentCharater.GetComponent<NhanVat>();
-            Debug.Log($"nv CharacterLeftA: {nv.name} {nv.isTrueChoiceCome}");
             nv.OnInvisible();
             Destroy(CurrentCharater);
             CurrentCharater = null;
@@ -180,7 +179,7 @@ public class CharacterManager : MonoBehaviour
             currentCharacterData = randomCharacter; // Lưu dữ liệu của nhân vật hiện tại để check kết quả lựa chọn
             //characters.RemoveAt(randomIndex);
             oldCharaters.Add(randomCharacter);
-            Debug.Log($"RemoveAtIndexList: {randomIndex}");
+            //Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = randomCharacter.NormalImage;
@@ -232,13 +231,13 @@ public class CharacterManager : MonoBehaviour
         }
         if (oldCharaters.Any())
         {
-            Debug.Log($"StartFirstCharacterB: {oldCharaters.Count}");
+            //Debug.Log($"StartFirstCharacterB: {oldCharaters.Count}");
             randomIndex = random.Next(oldCharaters.Count);
             CharacterData oldCharacter = oldCharaters[randomIndex];
             currentCharacterData = oldCharacter; // Lưu dữ liệu của nhân vật hiện tại để check kết quả lựa chọn
             //oldCharaters.RemoveAt(randomIndex);
             sprayedOldCharacter.Add(oldCharacter); // Thêm nhân vật out rời đi bằng sprayed vào danh sách sprayedOldCharacter
-            Debug.Log($"RemoveAt: {randomIndex}");
+            //Debug.Log($"RemoveAt: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = oldCharacter.NormalImage;

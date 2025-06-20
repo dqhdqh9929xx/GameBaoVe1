@@ -1,22 +1,36 @@
-using TMPro;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class TicketCharacter : MonoBehaviour
 {
     public Vector3 Origin;
     public GameObject ticketPrefabFullScreen;
     private GameObject newPrefabFullScreen = null;
-    public static bool isClickedTicketFull = false;
+
+    public event Action TicketClicked;
+
+    private TicketCharacterFullScreen ticketCharacterFullScreen;
 
     public void IsClickedTicketAndShowFullScreen()
     {
-        isClickedTicketFull = true;
+        TicketClicked?.Invoke();
+    }
+
+    public void ShowFullscreen(string text)
+    {
         Vector3 localPosTicket = Origin;
         Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x - 200, localPosTicket.y + 700, localPosTicket.z);
         newPrefabFullScreen = Instantiate(ticketPrefabFullScreen, this.transform);
         newPrefabFullScreen.GetComponent<RectTransform>().anchoredPosition = spawnLocalPosTicket;
 
-        Destroy(newPrefabFullScreen, 3f);
+        ticketCharacterFullScreen = newPrefabFullScreen.GetComponent<TicketCharacterFullScreen>();
+        ticketCharacterFullScreen.SetText(text);
+    }
+
+
+    public void HideFullscreen()
+    {
+        Destroy(newPrefabFullScreen);
     }
 }

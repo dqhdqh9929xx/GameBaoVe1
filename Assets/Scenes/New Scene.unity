@@ -42,8 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1266,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ticketPrefab: {fileID: 5511481669311640113, guid: 924e91a71d09d3b40a8a742cb11d480a, type: 3}
-  Origin: {x: 0, y: -40, z: 0}
+  Origin: {x: 0, y: 0, z: 0}
   characterManager: {fileID: 1237267673}
   ticketCharacter: {fileID: -9107418248360535306, guid: 924e91a71d09d3b40a8a742cb11d480a, type: 3}
   nameText: {fileID: 391354983}
@@ -1676,7 +1675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 4162004399921234881, guid: eac1f425eba6b9d46b8a7eb668c8ec7a, type: 3}
   newPrefabCoin: {fileID: 0}
-  Origin: {x: 0, y: -40, z: 0}
+  Origin: {x: 0, y: 0, z: 0}
 --- !u!1 &1237267671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,9 +1756,9 @@ MonoBehaviour:
   randomIndex: 0
   characterChatManager: {fileID: 1761562039}
   CharacterNoteName: {fileID: 674192477}
-  gameWinMenu: {fileID: 2136394760}
-  GameOverMenu: {fileID: 2035140385}
-  gameOverMenu: {fileID: 2035140381}
+  gameWinMenu: {fileID: 0}
+  GameOverMenu: {fileID: 0}
+  gameOverMenu: {fileID: 0}
 --- !u!1 &1326762209
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,11 +6,6 @@ public class SprayRange : MonoBehaviour
     public CharacterManager CharacterManager;
     public static bool characterAttacked = false;
 
-    private void Start()
-    {
-        Debug.Log("SprayRange Start");
-    }
-
     public void SprayClicked()
     {
         Debug.Log("Spray clicked!");
