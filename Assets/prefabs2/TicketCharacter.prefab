@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2028059686757056517}
   - component: {fileID: 6777939537619992676}
   - component: {fileID: 330947219846089665}
-  - component: {fileID: 7546381294430692829}
+  - component: {fileID: -9107418248360535306}
   m_Layer: 5
   m_Name: TicketCharacter
   m_TagString: Untagged
@@ -94,7 +94,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7546381294430692829}
+        - m_Target: {fileID: -9107418248360535306}
           m_TargetAssemblyTypeName: TicketCharacter, Assembly-CSharp
           m_MethodName: IsClickedTicketAndShowFullScreen
           m_Mode: 1
@@ -106,7 +106,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &7546381294430692829
+--- !u!114 &-9107418248360535306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,5 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d254d1fc87c2bc46853b88e61e4c819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Origin: {x: 0, y: 0, z: 0}
   ticketPrefabFullScreen: {fileID: 2274866560495341165, guid: efc87bc677f0c594680d374b137bc2db, type: 3}
-  KhayDungDo: {fileID: 3465498268523080740, guid: 3fde5bd4993743a4aad01c8bb1c9bb7a, type: 3}
+  newPrefabFullScreen: {fileID: 0}

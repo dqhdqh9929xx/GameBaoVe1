@@ -1,24 +1,22 @@
-﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class TicketCharacter : MonoBehaviour
 {
-    public GameObject ticketPrefabFullScreen;
-    public Transform KhayDungDo;
     public Vector3 Origin;
-
-    private void Start()
-    {
-        Origin = transform.position;
-    }
+    public GameObject ticketPrefabFullScreen;
+    private GameObject newPrefabFullScreen = null;
+    public static bool isClickedTicketFull = false;
 
     public void IsClickedTicketAndShowFullScreen()
     {
-        Vector3 localPosTicketFull = Origin;
-        Vector3 spawnLocalPosTicketFull = new Vector3(localPosTicketFull.x , localPosTicketFull.y, localPosTicketFull.z);
-        GameObject newPrefabFullScreen = Instantiate(ticketPrefabFullScreen, this.transform);
-        newPrefabFullScreen.transform.SetParent(KhayDungDo, false);
-        newPrefabFullScreen.GetComponent<RectTransform>().localPosition = spawnLocalPosTicketFull;
+        isClickedTicketFull = true;
+        Vector3 localPosTicket = Origin;
+        Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x - 200, localPosTicket.y + 700, localPosTicket.z);
+        newPrefabFullScreen = Instantiate(ticketPrefabFullScreen, this.transform);
+        newPrefabFullScreen.GetComponent<RectTransform>().anchoredPosition = spawnLocalPosTicket;
+
         Destroy(newPrefabFullScreen, 3f);
     }
 }

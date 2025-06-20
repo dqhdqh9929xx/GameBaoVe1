@@ -36,7 +36,7 @@ public class CharacterManager : MonoBehaviour
     public static int indexCharacterInSprayedToCheck = 0; // Chỉ số của nhân vật In cần kiểm tra kết quả lựa chọn khi bị attack
     public static int indexCharacterOutSprayedToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi bị attack
     private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
-    CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
+    public CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
     public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
     public CharacterNoteName CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
     //public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
@@ -252,8 +252,8 @@ public class CharacterManager : MonoBehaviour
             CoinCharacterManager.InstantiateCoin();
             CanBtnSpray = true; // Cho phép nút Spray hoạt động sau khi nhân vật đến vị trí đúng
             InvokeRepeating("AcceptCoinToCharacterLeft", 0f, 3f); // Lặp lại kiểm tra nút Coin  mỗi 3 giây
-            TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
             InvokeRepeating("isDeterminedSprayOut", 0f, 1.5f); // Lặp lại kiểm tra nút Spray mỗi 3 giây
+            TicketCharacterManager.InstantiateTicket(); // Tạo Ticket cho nhân vật
             oldCharaters.RemoveAt(randomIndex);
 
         }
