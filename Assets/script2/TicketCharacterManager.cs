@@ -7,29 +7,49 @@ public class TicketCharacterManager : MonoBehaviour
     public GameObject ticketPrefab;
     public static bool isClickedExitTicket = false;
     private GameObject newPrefabTicket;
-    public Vector3 Origin;
+    //public Vector3 Origin;
     public CharacterManager characterManager;
     public TicketCharacter ticketCharacter = null;
-    public TMP_Text nameText;
+    //public TMP_Text nameText;
+    public Transform targetTransform; // Transform của Canvas Ticket 
+    public RectTransform CanvasRect; // RectTransform của Canvas Ticket 
+    public Transform targetRectTicketFullScreen; // Transform của Canvas TicketFullScreen nối với canvasRect của TicketCharacter.cs
+    public RectTransform CanvasRectTicketFullScreen; // RectTransform của Canvas TicketFullScreen
 
 
 
-    private void Start()
-    {
-        Origin = GetComponent<RectTransform>().localPosition;
-        nameText.enabled = false;
-    }
+    //private void Start()
+    //{
+    //    //Origin = GetComponent<RectTransform>().localPosition;
+    //    nameText.enabled = false;
+    //}
     public void InstantiateTicket()
     {
-        Vector3 localPosTicket = Origin;
-        Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y, localPosTicket.z);
-        newPrefabTicket = Instantiate(ticketPrefab, this.transform);
-        newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
-        ticketCharacter = newPrefabTicket.GetComponent<TicketCharacter>();
 
+        // Bước 1: Tạo UI object gắn vào canvas
+        newPrefabTicket = Instantiate(ticketPrefab, CanvasRect);
+        RectTransform uiRect = newPrefabTicket.GetComponent<RectTransform>();
+
+        // Bước 2: Chuyển WorldPos của đối tượng rỗng → ScreenPoint
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, targetTransform.position);
+
+        // Bước 3: Chuyển ScreenPoint → Local anchoredPosition trong Canvas
+        Vector2 anchoredPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(CanvasRect, screenPos, null, out anchoredPos);
+
+        // Bước 4: Gán vị trí
+        uiRect.anchoredPosition = anchoredPos;
+
+
+        //Vector3 localPosTicket = Origin;
+        //Vector3 spawnLocalPosTicket = new Vector3(localPosTicket.x, localPosTicket.y, localPosTicket.z);
+        //newPrefabTicket = Instantiate(ticketPrefab, this.transform);
+        //newPrefabTicket.GetComponent<RectTransform>().localPosition = spawnLocalPosTicket;
+        //ticketCharacter = newPrefabTicket.GetComponent<TicketCharacter>();
+        ticketCharacter.canvasRect = CanvasRectTicketFullScreen; // tham chiếu đến RectTransform của Canvas  TicketFullScreen
+        ticketCharacter = newPrefabTicket.GetComponent<TicketCharacter>();
         ticketCharacter.TicketClicked += TicketCharacter_TicketClicked;
-        //InvokeRepeating("IsClickedTicketAndShowName", 0f, 4f);
-        //Invoke("IsClickedTicketAndShowName", 0);
+
     }
 
     private void TicketCharacter_TicketClicked()
@@ -43,7 +63,8 @@ public class TicketCharacterManager : MonoBehaviour
 
         var nameIndex = characterManager.randomIndex;
         var currentChar = characterManager.currentCharacterData;
-        ticketCharacter.ShowFullscreen(currentChar.Name);
+        ticketCharacter.canvasRect = CanvasRectTicketFullScreen; // tham chiếu đến RectTransform của Canvas  TicketFullScreen
+        ticketCharacter.ShowFullscreen(currentChar.Name, targetRectTicketFullScreen.position); // truyền tên nhân vật và vị trí của đối tượng TicketFullScreen
         yield return new WaitForSecondsRealtime(3f);
         ticketCharacter.HideFullscreen();
 
@@ -53,34 +74,5 @@ public class TicketCharacterManager : MonoBehaviour
     {
         Destroy(newPrefabTicket);
     }
-
-
-    //public void IsClickedTicketAndShowName()
-    //{
-
-    //    Debug.Log($"TicketCharacter.isClickedTicketFul = {TicketCharacter.isClickedTicketFull}");
-    //    if (TicketCharacter.isClickedTicketFull == true && nameText != null)
-    //    {
-    //        Debug.Log("IsClickedTicketAndShowName nameText.enabled = true");
-    //        nameText.enabled = true;
-    //        var nameIndex = characterManager.randomIndex;
-    //        Debug.Log($"NameIndex: {nameIndex}");
-    //        var currentChar = characterManager.currentCharacterData;
-    //        Debug.Log($"Current Character: {currentChar.Name}");
-    //        //var curentCharacterName = currentChar.Name;
-    //        nameText.text = $"{currentChar.Name}";
-    //        StartCoroutine(timeShowNameInTicket());
-    //    }
-    //}
-
-    //public IEnumerator timeShowNameInTicket()
-    //{
-    //    yield return new WaitForSecondsRealtime(3f);
-    //    Debug.Log("IsClickedTicketAndShowName nameText.enabled = false");
-    //    nameText.enabled = false;
-    //    TicketCharacter.isClickedTicketFull = false;
-    //    CancelInvoke("IsClickedTicketAndShowName");
-
-    //}
 
 }
