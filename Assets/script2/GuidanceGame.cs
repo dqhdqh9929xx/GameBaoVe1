@@ -8,12 +8,13 @@ public class GuidanceGame : MonoBehaviour
     public GameObject guidance4;
     public GameObject guidance5;
     public GameObject guidance6;
+    public CharacterManager characterManager;
 
     public void OnClickedGuidance1()
     {
         guidance1.SetActive(false);
         guidance2.SetActive(true);
-        Destroy(guidance1); // Optionally destroy the first guidance object
+        Destroy(guidance1); // Optionally destroy the first guidance object]
     }
     public void OnClickedGuidance2()
     {
@@ -41,6 +42,7 @@ public class GuidanceGame : MonoBehaviour
     }
     public void OnClickedGuidance6()
     {
+        characterManager.isEndGuidanceGame();
         guidance6.SetActive(false);
         // Optionally, you can add code here to indicate the end of the guidance sequence
         Debug.Log("Guidance completed!");

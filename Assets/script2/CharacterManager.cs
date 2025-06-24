@@ -64,6 +64,11 @@ public class CharacterManager : MonoBehaviour
                 CharacterChatOut = CharacterChatOut[i]
             });
         }
+        //StartCoroutine(StartCharacterIn());
+    }
+
+    public void isEndGuidanceGame()
+    {
         StartCoroutine(StartCharacterIn());
     }
 
@@ -181,6 +186,10 @@ public class CharacterManager : MonoBehaviour
             oldCharaters.Add(randomCharacter);
             //Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
+            RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
+            rect.anchoredPosition =  new Vector3 (0, 130, 0); // Đặt vị trí của nhân vật mới
+            rect.sizeDelta = new Vector3 (520, 380);        // kích thước của nhân vật mới
+
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = randomCharacter.NormalImage;
             nv.attackImage = randomCharacter.AttackImage;
@@ -239,6 +248,9 @@ public class CharacterManager : MonoBehaviour
             sprayedOldCharacter.Add(oldCharacter); // Thêm nhân vật out rời đi bằng sprayed vào danh sách sprayedOldCharacter
             //Debug.Log($"RemoveAt: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
+            RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
+            rect.anchoredPosition = new Vector3(0, 130, 0); // Đặt vị trí của nhân vật mới
+            rect.sizeDelta = new Vector3(520, 380);        // kích thước của nhân vật mới
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = oldCharacter.NormalImage;
             nv.attackImage = oldCharacter.AttackImage;

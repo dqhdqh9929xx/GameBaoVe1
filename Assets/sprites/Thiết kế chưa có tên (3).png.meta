@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fb0faf6931fc7b545bd4e245c929f722
+guid: efbd81209a5c5b940b39f3c1ee558c2d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5192728201435208434
-    second: TranHaLinh_0
+      213: -8904232221461454811
+    second: "Thi\u1EBFt k\u1EBF ch\u01B0a c\xF3 t\xEAn (3)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TranHaLinh_0
+      name: "Thi\u1EBFt k\u1EBF ch\u01B0a c\xF3 t\xEAn (3)_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 736
-        height: 735
+        x: 606
+        y: 186
+        width: 708
+        height: 708
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fad2b579c6401840800000000000000
-      internalID: 5192728201435208434
+      spriteID: 520e332a8ffcd6480800000000000000
+      internalID: -8904232221461454811
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      TranHaLinh_0: 5192728201435208434
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
