@@ -5,6 +5,8 @@ public class NhanVat : MonoBehaviour
 {
     public Sprite normalImage;
     public Sprite attackImage;
+    public Sprite attackImageFake;
+    public Sprite imageFake;
 
     public bool isTrueChoiceCome { get; internal set; }
     public bool isTrueChoiceOut { get; internal set; }
@@ -15,18 +17,6 @@ public class NhanVat : MonoBehaviour
     public string characterChatOut { get; internal set; }
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnNormal()
     {
@@ -42,9 +32,23 @@ public class NhanVat : MonoBehaviour
         image.enabled = true; 
     }
 
+    public void OnAttackFake()
+    {
+        var image = GetComponent<Image>();
+        image.sprite = attackImageFake;
+        image.enabled = true;
+    }
+
     public void OnInvisible()
     {
         var image = GetComponent<Image>();
         image.enabled = false;
+    }
+
+    public void OnImageFake()
+    {
+        var image = GetComponent<Image>();
+        image.sprite = imageFake;
+        image.enabled = true;
     }
 }

@@ -10,6 +10,10 @@ namespace Assets.script2
 
         public Sprite NormalImage { get; set; }
         public Sprite AttackImage { get; set; }
+
+        public Sprite AttackImageFake { get; set; }
+        public Sprite ImageFake { get; set; }
+
         public bool IsTrueChoiceCome { get; set; } = true;
         public bool IsTrueChoiceOut { get; set; } = true;
 

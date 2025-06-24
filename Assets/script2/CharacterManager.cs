@@ -9,6 +9,8 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
+    [SerializeField] Sprite[] AttackImageFake; // Mảng 2D chứa các Image của nhân vật Out
+    [SerializeField] Sprite[] ImageFake; // Mảng 2D chứa các Image của nhân vật In
     [SerializeField] string[] CharacterNames; // Mảng chứa tên của các nhân vật
     [SerializeField] string[] CharacterChatIn; // Mảng chứa lời thoại nhân vật khi vào
     [SerializeField] string[] CharacterChatOut; // Mảng chứa lời thoại nhân vật khi rời đi
@@ -58,6 +60,8 @@ public class CharacterManager : MonoBehaviour
                 Name = CharacterNames[i],
                 NormalImage = NormalImages[i],
                 AttackImage = AttackImages[i],
+                AttackImageFake = AttackImageFake[i],
+                ImageFake = ImageFake[i],
                 IsTrueChoiceCome = ComeBoolens[i],
                 IsTrueChoiceOut = LeftBoolen[i],
                 CharacterChatIn = CharacterChatIn[i],
@@ -240,24 +244,31 @@ public class CharacterManager : MonoBehaviour
         }
         if (oldCharaters.Any())
         {
-            //Debug.Log($"StartFirstCharacterB: {oldCharaters.Count}");
             randomIndex = random.Next(oldCharaters.Count);
             CharacterData oldCharacter = oldCharaters[randomIndex];
             currentCharacterData = oldCharacter; // Lưu dữ liệu của nhân vật hiện tại để check kết quả lựa chọn
-            //oldCharaters.RemoveAt(randomIndex);
             sprayedOldCharacter.Add(oldCharacter); // Thêm nhân vật out rời đi bằng sprayed vào danh sách sprayedOldCharacter
-            //Debug.Log($"RemoveAt: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
             RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector3(0, 130, 0); // Đặt vị trí của nhân vật mới
             rect.sizeDelta = new Vector3(520, 380);        // kích thước của nhân vật mới
             var nv = CurrentCharater.GetComponent<NhanVat>();
+            nv.imageFake = oldCharacter.ImageFake; // Lấy hình ảnh fake của nhân vật Out
+            nv.attackImageFake = oldCharacter.AttackImageFake; // Lấy hình ảnh fake của nhân vật Out
             nv.normalImage = oldCharacter.NormalImage;
             nv.attackImage = oldCharacter.AttackImage;
             nv.isTrueChoiceOut = oldCharacter.IsTrueChoiceOut; // Lấy kết quả lựa chọn khi rời đi
+            if (nv.isTrueChoiceOut == false)
+            {
+                nv.OnImageFake(); // Hiển thị hình ảnh fake nếu kết quả lựa chọn là sai
+            }
+            else
+            {
+                nv.OnNormal(); // Hiển thị hình ảnh bình thường nếu kết quả lựa chọn là đúng
+            }
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeB");
-            nv.OnNormal();
+            //nv.OnNormal();
             yield return new WaitForSecondsRealtime(5f);
             characterChatManager.StartCoroutine(characterChatManager.InstantiateChatOut()); // Tạo lời thoại cho nhân vật khi ra
             CoinCharacterManager.InstantiateCoin();
@@ -288,7 +299,15 @@ public class CharacterManager : MonoBehaviour
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("LeftB");
         var nv = CurrentCharater.GetComponent<NhanVat>();
-        nv.OnAttack();
+        if (nv.isTrueChoiceOut == false)
+        {
+            nv.OnAttackFake(); // Hiển thị hình ảnh attack fake nếu kết quả lựa chọn là sai
+        }
+        else
+        {
+            nv.OnAttack(); // Hiển thị hình ảnh attack bình thường nếu kết quả lựa chọn là đúng
+        }
+        //nv.OnAttack();
         yield return new WaitForSecondsRealtime(5f);
         nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
         StartCoroutine(StartCharacterOut());

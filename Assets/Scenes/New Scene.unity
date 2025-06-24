@@ -4540,7 +4540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1187145523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4696,9 +4696,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalImages:
-  - {fileID: 2895643323710446338, guid: 946983e9825540d45b83b262b008f973, type: 3}
+  - {fileID: -7113199044131043370, guid: 28fb91fd6515f20418633adc55953eed, type: 3}
   AttackImages:
-  - {fileID: -8904232221461454811, guid: efbd81209a5c5b940b39f3c1ee558c2d, type: 3}
+  - {fileID: -7282320138662542107, guid: 7a596852a96302d429d211422d5a340a, type: 3}
+  AttackImageFake:
+  - {fileID: -7030818633066122801, guid: 9ab0cd8c78cfd3144b12d1d725ce4170, type: 3}
+  ImageFake:
+  - {fileID: -2240585132181175488, guid: 9800763bf19ef1740ba7c4378d89a0dd, type: 3}
   CharacterNames:
   - Milan
   CharacterChatIn:
@@ -4707,7 +4711,7 @@ MonoBehaviour:
   - 1out
   CharacterId: 01000000
   ComeBoolens: 01
-  LeftBoolen: 01
+  LeftBoolen: 00
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
   SprayRange: {fileID: 1051149722}
   characterNoteManager: {fileID: 1465169037}
