@@ -4696,22 +4696,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalImages:
-  - {fileID: -7113199044131043370, guid: 28fb91fd6515f20418633adc55953eed, type: 3}
+  - {fileID: 1090217281897295437, guid: 80e2793838e76b84da33dd3101829e6b, type: 3}
+  - {fileID: -4646698770154453813, guid: 56d7dda44da0ddf439ca7302400fc1ce, type: 3}
+  - {fileID: -201573519503496745, guid: 3618e2b98ca7e9745a6eacac579f1fd1, type: 3}
+  - {fileID: -7113199044131043370, guid: 9cc4f777b3031bc4291dc092e09c1a2a, type: 3}
+  - {fileID: -7371509505491802261, guid: f4d5bdcc7c4f8684db396ef6bcb019c1, type: 3}
+  - {fileID: 7874165937181065234, guid: 24f8159db5f6a174da16bce4aad407a9, type: 3}
+  - {fileID: -3859184905860354796, guid: 8fba0730b12069046a946ad9f641fe2e, type: 3}
+  - {fileID: 909758543591562390, guid: 741f9c29d8bf1fb4e981fd8a4be8270f, type: 3}
+  - {fileID: -5971662592992598791, guid: 11c33a80311e9124b9f470dadfd14dce, type: 3}
   AttackImages:
-  - {fileID: -7282320138662542107, guid: 7a596852a96302d429d211422d5a340a, type: 3}
+  - {fileID: -7628637011407722719, guid: 21222922bbc18c6489db101f77ff4d12, type: 3}
+  - {fileID: 1929943079815973108, guid: 1ea54b6c9660c9b4ea1a9e061f4fa44d, type: 3}
+  - {fileID: -6341297235405165188, guid: 88dde37a31c5fb4439b27866cb5bc270, type: 3}
+  - {fileID: -7282320138662542107, guid: 61886e36b1660254eba7751418870c40, type: 3}
+  - {fileID: -1978916273450201969, guid: f3326b580687a044dbf18bbed6645364, type: 3}
+  - {fileID: -8877174996122314567, guid: e7838d1a598931f48b4d1b73aca75773, type: 3}
+  - {fileID: 3844590720811973920, guid: 49f124a0eb5b1a745817e4a612632a7d, type: 3}
+  - {fileID: 2245795687539166865, guid: b1be26a3fb416ef428c3dfaee1357c1a, type: 3}
+  - {fileID: 4637563655845456386, guid: 51e20184e1770154ba2b1130062a5237, type: 3}
   AttackImageFake:
   - {fileID: -7030818633066122801, guid: 9ab0cd8c78cfd3144b12d1d725ce4170, type: 3}
+  - {fileID: -7030818633066122801, guid: 9ab0cd8c78cfd3144b12d1d725ce4170, type: 3}
+  - {fileID: -7030818633066122801, guid: 9ab0cd8c78cfd3144b12d1d725ce4170, type: 3}
+  - {fileID: -7030818633066122801, guid: 69f01a0707fcb9e40b0b000956c1a07d, type: 3}
+  - {fileID: 0}
+  - {fileID: 1654044654667075, guid: ec5c79b191071454a83a94ab24f6afb9, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 680494745111836237, guid: 546cc663fec19a446a87baf993844b29, type: 3}
   ImageFake:
   - {fileID: -2240585132181175488, guid: 9800763bf19ef1740ba7c4378d89a0dd, type: 3}
+  - {fileID: -2240585132181175488, guid: 9800763bf19ef1740ba7c4378d89a0dd, type: 3}
+  - {fileID: -2240585132181175488, guid: 9800763bf19ef1740ba7c4378d89a0dd, type: 3}
+  - {fileID: -2240585132181175488, guid: d27dce0ee0a62074abd3a8d8546f379c, type: 3}
+  - {fileID: 0}
+  - {fileID: 5415009420925002338, guid: b120844da7a98f043909962e53c53bac, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: -7345094429571580672, guid: 4b16c132d86e4fd40abc5d0a5d291319, type: 3}
+  NormalImages2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: -3760853521484126227, guid: ece6846e9f92a934089dd41947903d70, type: 3}
+  - {fileID: 8344591707611427582, guid: 401d5bc0af24b5c4a84bdfd4c78b29cd, type: 3}
+  - {fileID: 0}
+  AttackImages2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 5343223452078831697, guid: f9052730b640a8a448f66d94bfd6096c, type: 3}
+  - {fileID: -6890260594999980855, guid: c5e1b261a6d033b4bb55a195d7e94995, type: 3}
+  - {fileID: 0}
   CharacterNames:
-  - Milan
+  - Nichole
+  - Jefferey
+  - Federico
+  - Hollis
+  - Keith
+  - Vanessa
+  - Lauren
+  - Jason
+  - Madeleine
   CharacterChatIn:
-  - 1in
+  - Moring sir. I come to work
+  - Hello. I want go to my home
+  - Morning, I meet my friend
+  - Morning,  Go home.
+  - Hi, Go to my mom house
+  - Morning,  go to work
+  - Hello handsome guy. Can you take me to my house
+  - what are you looking for? I just finished my work.
+  - Hi, back to my house
   CharacterChatOut:
-  - 1out
-  CharacterId: 01000000
-  ComeBoolens: 01
-  LeftBoolen: 00
+  - The wearther so hot, checkout please
+  - This place smell like dog
+  - Checkout please
+  - Every day is so crowded like this, it's tiring.
+  - Checkout please, I hate this building
+  - Checkout please
+  - Checkout
+  - Checkout please
+  - Checkout
+  CharacterId: 010000000200000003000000040000000500000006000000070000000800000009000000
+  ComeBoolens: 010100010001010101
+  LeftBoolen: 010101000100010100
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
   SprayRange: {fileID: 1051149722}
   characterNoteManager: {fileID: 1465169037}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: efbd81209a5c5b940b39f3c1ee558c2d
+guid: 1af4bd3c9c59a044e8e6dcc1581e1e9a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8904232221461454811
-    second: "Thi\u1EBFt k\u1EBF ch\u01B0a c\xF3 t\xEAn (3)_0"
+      213: 3333694491293649642
+    second: char3.3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Thi\u1EBFt k\u1EBF ch\u01B0a c\xF3 t\xEAn (3)_0"
+      name: char3.3_0
       rect:
         serializedVersion: 2
         x: 606
         y: 186
         width: 708
-        height: 708
+        height: 707
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 520e332a8ffcd6480800000000000000
-      internalID: -8904232221461454811
+      spriteID: aea0c372a79a34e20800000000000000
+      internalID: 3333694491293649642
       vertices: []
       indices: 
       edges: []

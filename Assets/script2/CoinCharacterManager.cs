@@ -19,8 +19,8 @@ public class CoinCharacterManager : MonoBehaviour
 
 
         // Bước 1: Tạo UI object gắn vào canvas
-        GameObject uiObject = Instantiate(coinPrefab, canvasRect);
-        RectTransform uiRect = uiObject.GetComponent<RectTransform>();
+        newPrefabCoin = Instantiate(coinPrefab, canvasRect);
+        RectTransform uiRect = newPrefabCoin.GetComponent<RectTransform>();
 
         // Bước 2: Chuyển WorldPos của đối tượng rỗng → ScreenPoint
         Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, targetTransform.position);

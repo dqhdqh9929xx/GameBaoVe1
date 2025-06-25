@@ -11,6 +11,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImageFake; // Mảng 2D chứa các Image của nhân vật Out
     [SerializeField] Sprite[] ImageFake; // Mảng 2D chứa các Image của nhân vật In
+    [SerializeField] Sprite[] NormalImages2; // Mảng chứa các hình ảnh ghi chú của nhân vật thay đổi diện mạo 2
+    [SerializeField] Sprite[] AttackImages2; // Mảng chứa các hình ảnh ghi chú của nhân vật thay đổi diện mạo 2
     [SerializeField] string[] CharacterNames; // Mảng chứa tên của các nhân vật
     [SerializeField] string[] CharacterChatIn; // Mảng chứa lời thoại nhân vật khi vào
     [SerializeField] string[] CharacterChatOut; // Mảng chứa lời thoại nhân vật khi rời đi
@@ -62,6 +64,8 @@ public class CharacterManager : MonoBehaviour
                 AttackImage = AttackImages[i],
                 AttackImageFake = AttackImageFake[i],
                 ImageFake = ImageFake[i],
+                NormalImage2 = NormalImages2[i],
+                AttackImage2 = AttackImages2[i],
                 IsTrueChoiceCome = ComeBoolens[i],
                 IsTrueChoiceOut = LeftBoolen[i],
                 CharacterChatIn = CharacterChatIn[i],
@@ -257,15 +261,30 @@ public class CharacterManager : MonoBehaviour
             nv.attackImageFake = oldCharacter.AttackImageFake; // Lấy hình ảnh fake của nhân vật Out
             nv.normalImage = oldCharacter.NormalImage;
             nv.attackImage = oldCharacter.AttackImage;
+            nv.normalImage2 = oldCharacter.NormalImage2; // Lấy hình ảnh bình thường 2 của nhân vật Out
+            nv.attackImage2 = oldCharacter.AttackImage2; // Lấy hình ảnh attack 2 của nhân vật Out
             nv.isTrueChoiceOut = oldCharacter.IsTrueChoiceOut; // Lấy kết quả lựa chọn khi rời đi
-            if (nv.isTrueChoiceOut == false)
+            nv.characterId = oldCharacter.Id; // Lấy id của nhân vật
+            if (nv.isTrueChoiceOut == false && nv.characterId != 7 && nv.characterId != 8)
             {
                 nv.OnImageFake(); // Hiển thị hình ảnh fake nếu kết quả lựa chọn là sai
+                Debug.Log("Ảnh nhân vật giả mạo");
             }
             else
             {
                 nv.OnNormal(); // Hiển thị hình ảnh bình thường nếu kết quả lựa chọn là đúng
+                Debug.Log("Ảnh nhân vật đúng");
             }
+            if (nv.characterId == 7 || nv.characterId == 8 )
+            {
+                nv.OnNormal2(); // Hiển thị hình ảnh bình thường 2 nếu nhân vật có id là 7
+                Debug.Log("Ảnh nhân vật đặc biệt");
+            }
+            //else
+            //{
+            //    nv.OnNormal(); // Hiển thị hình ảnh bình thường nếu nhân vật không có id là 7
+            //    Debug.Log("Ảnh nhân vật đúng");
+            //}
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeB");
             //nv.OnNormal();
@@ -299,14 +318,26 @@ public class CharacterManager : MonoBehaviour
         Animator animator = CurrentCharater.GetComponent<Animator>();
         animator.SetTrigger("LeftB");
         var nv = CurrentCharater.GetComponent<NhanVat>();
-        if (nv.isTrueChoiceOut == false)
+        if (nv.isTrueChoiceOut == false && nv.characterId != 7 && nv.characterId != 8)
         {
             nv.OnAttackFake(); // Hiển thị hình ảnh attack fake nếu kết quả lựa chọn là sai
+            Debug.Log("Ảnh nhân vật giả mạo tấn công");
         }
         else
         {
             nv.OnAttack(); // Hiển thị hình ảnh attack bình thường nếu kết quả lựa chọn là đúng
+            Debug.Log("Ảnh nhân vật đúng tấn công");
         }
+        if (nv.characterId == 7 || nv.characterId == 8)
+        {
+            nv.OnAttack2(); // Hiển thị hình ảnh attack 2 nếu nhân vật có id là 7
+            Debug.Log("Ảnh nhân vật đặc biệt tấn công");
+        }
+        //else
+        //{
+        //    nv.OnAttack(); // Hiển thị hình ảnh attack bình thường nếu nhân vật không có id là 7
+        //    Debug.Log("Ảnh nhân vật thường tấn công");
+        //}
         //nv.OnAttack();
         yield return new WaitForSecondsRealtime(5f);
         nv.OnInvisible(); // ẩn nhân vật sau khi bị attack
