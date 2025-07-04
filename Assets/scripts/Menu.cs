@@ -35,6 +35,6 @@ public class Menu : MonoBehaviour
 
     public void OnPlayButtonClickedBattleStart()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Menu");
     }
 }
