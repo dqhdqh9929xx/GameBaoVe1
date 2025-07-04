@@ -54,6 +54,10 @@ public class CharacterManager : MonoBehaviour
     public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out                                                 
     void Start()
     {
+
+
+
+
         for (int i = 0; i < NormalImages.Length; i++)
         {
             characters.Add(new CharacterData
@@ -114,7 +118,7 @@ public class CharacterManager : MonoBehaviour
 
     public void isTrueChoiceOutCoin()
     {
-        if (sprayedOldCharacter[indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
+        if (sprayedOldCharacter [indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
         {
             //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceOutCoin++; // Tăng chỉ số lựa chọn sai khi bấm Coin cho nhân vật Out
@@ -363,6 +367,9 @@ public class CharacterManager : MonoBehaviour
         else
         {
             gameWinMenu.SetActive(true);
+            PlayerData.level++; // Increment the level 
+            PlayerData playerData = new PlayerData(PlayerData.level); // Create an instance of PlayerData  
+            playerData.SaveToPrefs(); // Save the data using the instance method  
         }
     }
 }
