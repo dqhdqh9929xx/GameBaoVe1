@@ -51,12 +51,17 @@ public class CharacterManager : MonoBehaviour
     public static int indexWrongChoiceInTicket = 0; // lưu số lần chọn sai khi bấm ticket cho nhân vật in
     public static int indexWrongChoiceOutCoin = 0; // lưu số lần chọn sai khi bấm coin cho nhân vật out
     public static int indexWrongChoiceInSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật in
-    public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out                                                 
+    public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out
+    public PlayerData PlayerData; // Tham chiếu đến PlayerData để lưu trữ dữ liệu người chơi
     void Start()
     {
+        //PlayerPrefs.DeleteKey("PlayerData"); // Tạm reset để test
 
+        //PlayerData loadedData = PlayerData.LoadFromPrefs();
+        //// gán lại level từ dữ liệu load được
+        //PlayerData.level = loadedData != null ? loadedData.level : 1;
 
-
+        PlayerData player = PlayerData.Instance;
 
         for (int i = 0; i < NormalImages.Length; i++)
         {
@@ -76,7 +81,7 @@ public class CharacterManager : MonoBehaviour
                 CharacterChatOut = CharacterChatOut[i]
             });
         }
-        if (PlayerData.level != 1) // Kiểm tra nếu level khác level 1 thì không cần hướng dẫn game
+        if (player.level != 1) // Kiểm tra nếu level khác level 1 thì không cần hướng dẫn game
         {
             StartCoroutine(StartCharacterIn());
         }
@@ -358,14 +363,15 @@ public class CharacterManager : MonoBehaviour
         {
             gameOverMenu.SetActive(true);
             GameOverMenu.ShowWrongChoice();
-
         }
         else
         {
+            PlayerData player = PlayerData.Instance;
+            player.level++; // Tăng level
+            player.SaveToPrefs(); // ✅ Lưu đúng dữ liệu đã tăng
+
             gameWinMenu.SetActive(true);
-            PlayerData.level++; // Increment the level 
-            PlayerData playerData = new PlayerData(PlayerData.level); // Create an instance of PlayerData  
-            playerData.SaveToPrefs(); // Save the data using the instance method  
         }
     }
+
 }

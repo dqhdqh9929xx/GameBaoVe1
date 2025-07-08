@@ -3,33 +3,44 @@
 [System.Serializable]
 public class PlayerData
 {
-    public static int level = 1;
+    public int level = 1;
+
+    private static PlayerData _instance;
+
+    // Truy cập PlayerData hiện tại
+    public static PlayerData Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = LoadFromPrefs();
+            }
+            return _instance;
+        }
+    }
 
     public PlayerData(int level)
     {
-        PlayerData.level = level; // Fixed: Access static member using the class name
+        this.level = level;
     }
 
-    // Convert object thành JSON
     public string ToJson()
     {
         return JsonUtility.ToJson(this);
     }
 
-    // Convert JSON thành object
     public static PlayerData FromJson(string json)
     {
         return JsonUtility.FromJson<PlayerData>(json);
     }
 
-    // Lưu vào PlayerPrefs
     public void SaveToPrefs()
     {
         PlayerPrefs.SetString("PlayerData", ToJson());
         PlayerPrefs.Save();
     }
 
-    // Tải từ PlayerPrefs
     public static PlayerData LoadFromPrefs()
     {
         if (PlayerPrefs.HasKey("PlayerData"))
