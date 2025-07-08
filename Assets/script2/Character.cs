@@ -24,6 +24,8 @@ namespace Assets.script2
         public string CharacterChatIn { get; set; }
         public string CharacterChatOut { get; set; }
 
+        public bool IsTrueChoiceChangeImage2 { get; set; } = true;
+
 
 
 

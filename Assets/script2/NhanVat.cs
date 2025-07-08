@@ -17,6 +17,7 @@ public class NhanVat : MonoBehaviour
     public int characterId { get; internal set; }
     public string characterChatIn { get; internal set; }
     public string characterChatOut { get; internal set; }
+    public bool isTrueChoiceChangeImage2 { get; internal set; }
 
 
 

@@ -1,13 +1,13 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 
-public class CharacterNoteName : MonoBehaviour
+public class CharacterNoteName1 : MonoBehaviour
 {
     private int NameIndex;
 
     [SerializeField] GameObject prefabsCharacterNoteName;
     public Transform FirstNoteNameCharacter;
-    public CharacterManager characterManager;
+    public CharacterManagerNext characterManager;
 
     private int SpawnLocal = 0;
 
@@ -16,7 +16,7 @@ public class CharacterNoteName : MonoBehaviour
         Vector3 localPosName = FirstNoteNameCharacter.InverseTransformPoint(transform.position);
         Vector3 spawnLocalPosName = new Vector3(localPosName.x, localPosName.y - SpawnLocal, localPosName.z);
 
-        NameIndex = CharacterManager.randomIndex;
+        NameIndex = CharacterManagerNext.randomIndex;
         var currentChar = characterManager.characters[NameIndex];
 
         GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);

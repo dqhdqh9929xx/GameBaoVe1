@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManagerNext : MonoBehaviour
 {
     [SerializeField] Sprite[] NormalImages; // Mảng 2D chứa các Image của nhân vật
     [SerializeField] Sprite[] AttackImages; // Mảng 2D chứa các Image của nhân vật
@@ -28,9 +28,9 @@ public class CharacterManager : MonoBehaviour
     public List<CharacterData> SprayedCharacter = new(); //  danh sách nhân vật in đã rời đi bằng sprayed
     private System.Random random = new System.Random();
     public static bool createNoteCharacter = false; // Biến này để kiểm tra xem có cần tạo ghi chú cho nhân vật hay không
-    public CharacterNoteManager characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
+    public CharacterNoteManagerNext characterNoteManager; // Tham chiếu đến CharacterNoteManager để tạo ghi chú cho nhân vật
     public CoinCharacterManager CoinCharacterManager; // Tham chiếu đến CoinCharacterManager để tạo tiền cho nhân vật
-    public TicketCharacterManager TicketCharacterManager; // Tham chiếu đến TicketCharacterManager để tạo Ticket cho nhân vật
+    public TicketCharacterManagerNext TicketCharacterManager; // Tham chiếu đến TicketCharacterManager để tạo Ticket cho nhân vật
     public static bool CanBtnTicket = false; // kiểm tra xem có thể bấm nút Ticket hay không
     public static bool CanBtnSpray = false; // kiểm tra xem có thể bấm nút Spray hay không
     public btnTicket btnTicket; // Tham chiếu đến nút Ticket để kiểm tra trạng thái bấm nút
@@ -41,8 +41,8 @@ public class CharacterManager : MonoBehaviour
     public static int indexCharacterOutSprayedToCheck = 0; // Chỉ số của nhân vật Out cần kiểm tra kết quả lựa chọn khi bị attack
     private static bool isSprayed = false; // Biến để kiểm tra xem có nhân vật nào bị attack hay không
     public CharacterData currentCharacterData; // Biến để lưu dữ liệu của nhân vật hiện tại
-    public CharacterChatManager characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
-    public CharacterNoteName CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
+    public CharacterChatManagerNext characterChatManager; // Tham chiếu đến CharacterChatManager để xử lý lời thoại nhân vật
+    public CharacterNoteName1 CharacterNoteName; // Tham chiếu đến CharacterNoteName để tạo tên cho nhân vật
     //public static int indexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai của nhân vật
     //public int endIndexWrongChoice = 0; // Biến để lưu chỉ số lựa chọn sai cuối cùng của người chơi
     public GameObject gameWinMenu; // Tham chiếu đến menu chiến thắng
@@ -76,7 +76,7 @@ public class CharacterManager : MonoBehaviour
                 CharacterChatOut = CharacterChatOut[i]
             });
         }
-        //StartCoroutine(StartCharacterIn());
+        StartCoroutine(StartCharacterIn());
     }
 
     public void isEndGuidanceGame()
@@ -87,7 +87,7 @@ public class CharacterManager : MonoBehaviour
     public void isTrueChoiceInTicket()
     {
         if (oldCharaters[indexCharacterInTicketToCheck].IsTrueChoiceCome == false)
-         {
+        {
             //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceInTicket++; // Tăng chỉ số lựa chọn sai khi bấm Ticket cho nhân vật In
         }
@@ -118,7 +118,7 @@ public class CharacterManager : MonoBehaviour
 
     public void isTrueChoiceOutCoin()
     {
-        if (sprayedOldCharacter [indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
+        if (sprayedOldCharacter[indexCharacterOutCoinToCheck].IsTrueChoiceOut == false)
         {
             //indexWrongChoice++; // Tăng chỉ số lựa chọn sai
             indexWrongChoiceOutCoin++; // Tăng chỉ số lựa chọn sai khi bấm Coin cho nhân vật Out
@@ -199,8 +199,8 @@ public class CharacterManager : MonoBehaviour
             //Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
             RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
-            rect.anchoredPosition =  new Vector3 (0, 130, 0); // Đặt vị trí của nhân vật mới
-            rect.sizeDelta = new Vector3 (520, 380);        // kích thước của nhân vật mới
+            rect.anchoredPosition = new Vector3(0, 130, 0); // Đặt vị trí của nhân vật mới
+            rect.sizeDelta = new Vector3(520, 380);        // kích thước của nhân vật mới
 
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.normalImage = randomCharacter.NormalImage;

@@ -3,15 +3,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterChatManager : MonoBehaviour
+public class CharacterChatManagerNext : MonoBehaviour
 {
-    public CharacterManager characterManager;
+    public CharacterManagerNext characterManager;
     public int chatIndex;
     public GameObject chatWindow;
 
     public IEnumerator InstantiateChatIn()
     {
-        chatIndex = CharacterManager.randomIndex;
+        chatIndex = CharacterManagerNext.randomIndex;
         chatWindow.SetActive(true);
         var currentChatChar = characterManager.characters[chatIndex];
         var chatChar = this.GetComponent<TextMeshProUGUI>();
@@ -23,7 +23,7 @@ public class CharacterChatManager : MonoBehaviour
     }
     public IEnumerator InstantiateChatOut()
     {
-        chatIndex = CharacterManager.randomIndex;
+        chatIndex = CharacterManagerNext.randomIndex;
         chatWindow.SetActive(true);
         var currentChatChar = characterManager.oldCharaters[chatIndex];
         var chatChar = this.GetComponent<TextMeshProUGUI>();

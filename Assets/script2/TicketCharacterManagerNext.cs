@@ -2,13 +2,13 @@
 using TMPro;
 using UnityEngine;
 
-public class TicketCharacterManager : MonoBehaviour
+public class TicketCharacterManagerNext : MonoBehaviour
 {
     public GameObject ticketPrefab;
     public static bool isClickedExitTicket = false;
     private GameObject newPrefabTicket;
     //public Vector3 Origin;
-    public CharacterManager characterManager;
+    public CharacterManagerNext characterManager;
     public TicketCharacter ticketCharacter = null;
     //public TMP_Text nameText;
     public Transform targetTransform; // Transform của Canvas Ticket 
@@ -59,9 +59,9 @@ public class TicketCharacterManager : MonoBehaviour
 
     private IEnumerator ShowLargTicketAndName()
     {
-        if(ticketCharacter == null) yield break;
+        if (ticketCharacter == null) yield break;
 
-        var nameIndex = CharacterManager.randomIndex;
+        var nameIndex = CharacterManagerNext.randomIndex;
         var currentChar = characterManager.currentCharacterData;
         ticketCharacter.canvasRect = CanvasRectTicketFullScreen; // tham chiếu đến RectTransform của Canvas  TicketFullScreen
         ticketCharacter.ShowFullscreen(currentChar.Name, targetRectTicketFullScreen.position); // truyền tên nhân vật và vị trí của đối tượng TicketFullScreen
