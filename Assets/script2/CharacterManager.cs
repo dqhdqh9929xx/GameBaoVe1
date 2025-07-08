@@ -76,6 +76,10 @@ public class CharacterManager : MonoBehaviour
                 CharacterChatOut = CharacterChatOut[i]
             });
         }
+        if (PlayerData.level != 1) // Kiểm tra nếu level khác level 1 thì không cần hướng dẫn game
+        {
+            StartCoroutine(StartCharacterIn());
+        }
         //StartCoroutine(StartCharacterIn());
     }
 
