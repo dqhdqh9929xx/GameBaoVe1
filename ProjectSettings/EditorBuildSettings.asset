@@ -6,17 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Battle.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: b7cfa4530d36dd945b3d79963f581a37
   - enabled: 1
+    path: Assets/Scenes/Battle.unity
+    guid: 54eb1171e8161a940880c12fd2fdc421
+  - enabled: 1
     path: Assets/Scenes/Day1.unity
     guid: 13a29d6c9f2feaa448a1d0b6b17f817f
-  - enabled: 1
-    path: Assets/Scenes/Day2.2.unity
-    guid: b4992537edf321a46a822ffe2d2e0b5e
   - enabled: 1
     path: Assets/Scenes/Day2.unity
     guid: d51f2b2baea27ec4c8ea14dd75bd97c4

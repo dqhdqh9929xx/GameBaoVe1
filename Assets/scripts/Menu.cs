@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public PlayerData PlayerData; // Giả sử PlayerData là một scriptable object hoặc singleton chứa dữ liệu người chơi
-    
+    public PlayerData PlayerData; // Assuming PlayerData is a scriptable object or singleton containing player data  
+    public TMP_Text textContinue; // Corrected type for TextMeshPro text field  
+
     public void OnPlayButtonClickedBattle()
     {
         PlayerData player = PlayerData.Instance;
@@ -13,7 +15,6 @@ public class Menu : MonoBehaviour
         {
             SceneManager.LoadScene("Day1");
         }
-
         else if (player.level == 2)
         {
             SceneManager.LoadScene("Day2");
@@ -34,7 +35,16 @@ public class Menu : MonoBehaviour
         {
             Debug.LogError("Invalid level: " + player.level);
         }
+    }
 
+    public void UpdateNewOrOld()
+    {
+        textContinue.text = "Continue Game"; // Assuming this is the text for continuing a game
+    }
+    
+    public void UpdateEndGame()
+    {
+        textContinue.text = "End Game"; // Assuming this is the text for ending a game
     }
 
     public void OnPlayButtonClickedBattleStart()

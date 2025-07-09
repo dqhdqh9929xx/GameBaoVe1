@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7443756053782179069, guid: 5e36c57c71a5b1a408bc808352dc3e03, type: 3}
+  m_Sprite: {fileID: -2705021839764037152, guid: 1b5bc63eab88291468d4aac6a607be23, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3199,8 +3199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5786297}
-  m_AnchoredPosition: {x: -2.7725, y: 107.11245}
-  m_SizeDelta: {x: 663.47, y: 314.23514}
+  m_AnchoredPosition: {x: -7.6147, y: 119.9512}
+  m_SizeDelta: {x: 1016.9556, y: 487.0865}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813134326
 MonoBehaviour:
@@ -3222,7 +3222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3450748927124675292, guid: 3075212891ef8674eb957c6e6059919e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e36c57c71a5b1a408bc808352dc3e03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4822,7 +4822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1187145523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5004,12 +5004,13 @@ MonoBehaviour:
   CoinCharacterManager: {fileID: 1069278937}
   TicketCharacterManager: {fileID: 788817947}
   btnTicket: {fileID: 645591043}
-  randomIndex: 0
   characterChatManager: {fileID: 1761562039}
   CharacterNoteName: {fileID: 674192477}
   gameWinMenu: {fileID: 2136394760}
   GameOverMenu: {fileID: 2035140385}
   gameOverMenu: {fileID: 2035140381}
+  PlayerData:
+    level: 0
 --- !u!1 &1316359815
 GameObject:
   m_ObjectHideFlags: 0
