@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5321974105165874e9ce750d0893fd09
+guid: 8008338a2d5f91248b5d9a75df57b5dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8804249449442310546
-    second: 2v_0
+      213: -5090451054968167029
+    second: WindowNight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2v_0
+      name: WindowNight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e66001cc5c501d580800000000000000
-      internalID: -8804249449442310546
+      spriteID: b852c126cb51b59b0800000000000000
+      internalID: -5090451054968167029
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      2v_0: -8804249449442310546
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

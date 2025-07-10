@@ -53,6 +53,7 @@ public class CharacterManager : MonoBehaviour
     public static int indexWrongChoiceInSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật in
     public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out
     public PlayerData PlayerData; // Tham chiếu đến PlayerData để lưu trữ dữ liệu người chơi
+    public WindowView WindowView; // Tham chiếu đến WindowView để thay đổi hình ảnh cửa sổ
     void Start()
     {
         //PlayerPrefs.DeleteKey("PlayerData"); // Tạm reset để test
@@ -232,6 +233,7 @@ public class CharacterManager : MonoBehaviour
         else
         {
             StartCoroutine(StartCharacterOut());
+            WindowView.ChangeWindowView(); // Thay đổi hình ảnh cửa sổ khi không còn nhân vật nào trong danh sách characters
         }
     }
     public IEnumerator StartCharacterOut()
