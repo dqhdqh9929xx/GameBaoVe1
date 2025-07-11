@@ -4939,7 +4939,7 @@ MonoBehaviour:
   - Checkout
   - Checkout please
   - Checkout
-  CharacterId: 010000000200000003000000040000000500000006000000070000000800000009000000
+  IsTrueChangeImage2: 
   ComeBoolens: 010100010001010101
   LeftBoolen: 010101000100010100
   CharacterPrefab: {fileID: 4199062199547165811, guid: d84065d1941efa041a8d51af968586ed, type: 3}
@@ -4948,12 +4948,14 @@ MonoBehaviour:
   CoinCharacterManager: {fileID: 1069278937}
   TicketCharacterManager: {fileID: 788817947}
   btnTicket: {fileID: 645591043}
-  randomIndex: 0
   characterChatManager: {fileID: 1761562039}
   CharacterNoteName: {fileID: 674192477}
   gameWinMenu: {fileID: 2136394760}
   GameOverMenu: {fileID: 2035140385}
   gameOverMenu: {fileID: 2035140381}
+  PlayerData:
+    level: 0
+  WindowView: {fileID: 0}
 --- !u!1 &1326762209
 GameObject:
   m_ObjectHideFlags: 0
@@ -6788,7 +6790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IndexWrongChoice: {fileID: 1566200523}
-  characterManager: {fileID: 0}
 --- !u!1 &2073607066
 GameObject:
   m_ObjectHideFlags: 0
@@ -7071,6 +7072,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671e365fa3080ff4c9cad2310b9fba6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerData:
+    level: 0
+  textContinue: {fileID: 0}
 --- !u!1 &2107143158
 GameObject:
   m_ObjectHideFlags: 0

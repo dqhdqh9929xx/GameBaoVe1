@@ -25,7 +25,7 @@ public class CharacterNoteName : MonoBehaviour
         var textComp = newNote.GetComponent<TextMeshProUGUI>();
         if (textComp != null)
         {
-            textComp.text = currentChar.Name;
+            textComp.text = $"{currentChar.Name}:";
         }
 
         SpawnLocal += 100;
