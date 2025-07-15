@@ -209,7 +209,7 @@ public class CharacterManager : MonoBehaviour
             //Debug.Log($"RemoveAtIndexList: {randomIndex}");
             CurrentCharater = Instantiate(CharacterPrefab, this.transform);
             RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
-            rect.anchoredPosition =  new Vector3 (0, 130, 0); // Đặt vị trí của nhân vật mới
+            rect.anchoredPosition =  new Vector3 (0, 50, 0); // Đặt vị trí của nhân vật mới
             rect.sizeDelta = new Vector3 (520, 380);        // kích thước của nhân vật mới
 
             var nv = CurrentCharater.GetComponent<NhanVat>();
@@ -220,7 +220,7 @@ public class CharacterManager : MonoBehaviour
             Animator animator = CurrentCharater.GetComponent<Animator>();
             animator.SetTrigger("ComeA");
             yield return new WaitForSecondsRealtime(5f);
-            characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
+            //characterNoteManager.InstantiateCharacterNote(); // Tạo ghi chú cho nhân vật nếu cần thiết
             CharacterNoteName.InstantiateCharacterName(); // Tạo tên cho nhân vật nếu cần thiết
             characterChatManager.StartCoroutine(characterChatManager.InstantiateChatIn()); // Tạo lời thoại cho nhân vật khi vào
             CanBtnTicket = true; // Cho phép nút Ticket hoạt động sau khi nhân vật đến vị trí đúng
@@ -269,7 +269,7 @@ public class CharacterManager : MonoBehaviour
             sprayedOldCharacter.Add(oldCharacter); // Thêm nhân vật out rời đi bằng sprayed vào danh sách sprayedOldCharacter
             CurrentCharater = Instantiate(CharacterPrefab, this.transform); // tạo lại nhân vật mới từ prefab
             RectTransform rect = CurrentCharater.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector3(0, 130, 0); // Đặt vị trí của nhân vật mới
+            rect.anchoredPosition = new Vector3(0, 50, 0); // Đặt vị trí của nhân vật mới
             rect.sizeDelta = new Vector3(520, 380);        // kích thước của nhân vật mới
             var nv = CurrentCharater.GetComponent<NhanVat>();
             nv.imageFake = oldCharacter.ImageFake; // Lấy hình ảnh fake của nhân vật Out

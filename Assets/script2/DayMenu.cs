@@ -8,18 +8,26 @@ public class DayMenu : MonoBehaviour
 
     void Start()
     {
+
         PlayerData player = PlayerData.Instance;
 
         dayLevel.text = "Day " + player.level.ToString();
         Debug.Log("Current Day Level: " + player.level);
 
+
         if (player.level > 1 || player.level < 5)
         {
             Menu.UpdateNewOrOld();
         }
+        
         if (player.level == 5)
         {
             Menu.UpdateEndGame();
+        }
+
+        if (player.level == 1)
+        {
+            Menu.NewGameText(); // Update the text for starting a new game
         }
 
     }

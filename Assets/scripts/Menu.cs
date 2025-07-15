@@ -47,6 +47,11 @@ public class Menu : MonoBehaviour
         textContinue.text = "End Game"; // Assuming this is the text for ending a game
     }
 
+    public void NewGameText()
+    {
+        textContinue.text = "Start Game"; // Assuming this is the text for starting a new game
+    }
+
     public void OnPlayButtonClickedBattleStart()
     {
         SceneManager.LoadScene("Menu");

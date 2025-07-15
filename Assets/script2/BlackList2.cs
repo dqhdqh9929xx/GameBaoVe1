@@ -17,8 +17,4 @@ public class BlackList2 : MonoBehaviour
         blackList1.SetActive(true); // Show the previous panel
     }
 
-    public void buttonExit()
-    {
-        blackList2.SetActive(false); // Show the previous panel
-    }
 }
