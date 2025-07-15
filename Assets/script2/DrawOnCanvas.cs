@@ -6,8 +6,8 @@ public class DrawOnCanvas : MonoBehaviour
     public RawImage rawImage;
     public Color drawColor = Color.black;
     public int brushSize = 5;
-
     private Texture2D drawTexture;
+    public bool isDrawingEnabled = true;
 
     void Start()
     {
@@ -25,28 +25,47 @@ public class DrawOnCanvas : MonoBehaviour
         drawTexture.Apply();
         rawImage.texture = drawTexture;
     }
+    
+    private void DisableDrawing()
+    {
+        CountdownTimer.endTimeToDraw -= CantDrawing; // Hủy đăng ký sự kiện nếu không cần thiết nữa
+    }
+
+    private void DrawEnabled()
+    {
+        CountdownTimer.endTimeToDraw += CantDrawing; // Đăng ký sự kiện để tắt vẽ khi hết thời gian
+    }
+
+
+    private void CantDrawing()
+    {
+        isDrawingEnabled = false;
+    }
 
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (isDrawingEnabled)
         {
-            Vector2 localPos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                rawImage.rectTransform,
-                Input.mousePosition,
-                null,
-                out localPos
-            );
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 localPos;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    rawImage.rectTransform,
+                    Input.mousePosition,
+                    null,
+                    out localPos
+                );
 
-            Rect rect = rawImage.rectTransform.rect;
-            float px = (localPos.x - rect.x) / rect.width;
-            float py = (localPos.y - rect.y) / rect.height;
+                Rect rect = rawImage.rectTransform.rect;
+                float px = (localPos.x - rect.x) / rect.width;
+                float py = (localPos.y - rect.y) / rect.height;
 
-            int texX = Mathf.FloorToInt(px * drawTexture.width);
-            int texY = Mathf.FloorToInt(py * drawTexture.height);
+                int texX = Mathf.FloorToInt(px * drawTexture.width);
+                int texY = Mathf.FloorToInt(py * drawTexture.height);
 
-            DrawAtPosition(texX, texY);
+                DrawAtPosition(texX, texY);
+            }
         }
     }
 

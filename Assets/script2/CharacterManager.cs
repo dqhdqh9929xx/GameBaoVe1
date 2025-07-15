@@ -145,6 +145,8 @@ public class CharacterManager : MonoBehaviour
             btnTicket.btnTicketClicked = false; // Reset trạng thái nút Ticket sau khi bấm
             CanBtnTicket = false; // Reset trạng thái không cho spam nút Ticket
             CancelInvoke("isDeterminedTicket");
+            //CountdownTimer.isCounting = true;
+            //CountdownTimer.timeRemaining = 5f; // Reset thời gian đếm ngược về 5 giây
         }
     }
     public void isDeterminedSprayIn()
@@ -157,6 +159,9 @@ public class CharacterManager : MonoBehaviour
             isSprayed = true; // Đánh dấu là đã có nhân vật bị attack
             StartCoroutine(CharacterAttackedAndLeftIn()); // Khởi động hàm rời nhân vật sau khi bị attack
             CancelInvoke("isDeterminedSprayIn");
+            //CountdownTimer.isCounting = true;
+            //CountdownTimer.timeRemaining = 5f; // Reset thời gian đếm ngược về 5 giây
+            //DrawOnCanvas.isDrawingEnabled = true; // Bật vẽ lại sau khi bấm nút Ticket
         }
     }
     public void isDeterminedSprayOut()
