@@ -7,7 +7,7 @@ public class DrawOnCanvas : MonoBehaviour
     public Color drawColor = Color.black;
     public int brushSize = 5;
     private Texture2D drawTexture;
-    public bool isDrawingEnabled = true;
+    public static bool isDrawingEnabled = true;
 
     void Start()
     {
@@ -25,22 +25,27 @@ public class DrawOnCanvas : MonoBehaviour
         drawTexture.Apply();
         rawImage.texture = drawTexture;
     }
-    
-    private void DisableDrawing()
-    {
-        CountdownTimer.endTimeToDraw -= CantDrawing; // Hủy đăng ký sự kiện nếu không cần thiết nữa
-    }
 
-    private void DrawEnabled()
-    {
-        CountdownTimer.endTimeToDraw += CantDrawing; // Đăng ký sự kiện để tắt vẽ khi hết thời gian
-    }
+    //private void DisableDrawing()
+    //{
+    //    CountdownTimer.endTimeToDraw -= CantDrawing; // Hủy đăng ký sự kiện nếu không cần thiết nữa
+    //}
+
+    //private void DrawEnabled()
+    //{
+    //    CountdownTimer.endTimeToDraw += CantDrawing; // Đăng ký sự kiện để tắt vẽ khi hết thời gian
+    //}
 
 
-    private void CantDrawing()
+    public void CantDrawing()
     {
         isDrawingEnabled = false;
     }
+
+    public void CanDrawing()
+    {
+        isDrawingEnabled = true;
+    }    
 
 
     void Update()

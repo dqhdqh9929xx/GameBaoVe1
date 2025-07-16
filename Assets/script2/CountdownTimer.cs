@@ -18,15 +18,17 @@ public class CountdownTimer : MonoBehaviour
         {
             if (timeRemaining > 0)
             {
+                DrawOnCanvas.isDrawingEnabled = true; // Bật vẽ khi đếm ngược
                 timeRemaining -= Time.deltaTime;
                 UpdateTimerDisplay();
             }
             else
             {
+                timerText.enabled = false; // Ẩn Text khi đếm ngược xong
                 isCounting = false;
                 UpdateTimerDisplay();
-                endTimeToDraw?.Invoke(); // Gọi sự kiện khi đếm ngược xong
-                //OnCountdownFinished(); // Gọi hàm khi đếm ngược xong
+                //endTimeToDraw?.Invoke(); // Gọi sự kiện khi đếm ngược xong
+                OnCountdownFinished(); // Gọi hàm khi đếm ngược xong
             }
         }
     }
@@ -37,15 +39,16 @@ public class CountdownTimer : MonoBehaviour
         timerText.text = seconds.ToString();
     }
 
-    //void OnCountdownFinished()
-    //{
-    //    Debug.Log("Countdown Finished!");
-    //}
+    void OnCountdownFinished()
+    {
+        Debug.Log("Countdown Finished!");
+        DrawOnCanvas.isDrawingEnabled = false;
+    }
 
     public void ResetTimeCount()
     {
         timeRemaining = 5f; // Đặt lại thời gian đếm ngược
-        isCounting = true; // Bắt đầu đếm ngược
+        //isCounting = true; // Bắt đầu đếm ngược
         UpdateTimerDisplay(); // Cập nhật hiển thị thời gian
     }    
 }

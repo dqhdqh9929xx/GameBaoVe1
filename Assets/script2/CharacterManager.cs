@@ -54,6 +54,8 @@ public class CharacterManager : MonoBehaviour
     public static int indexWrongChoiceOutSprayed = 0; // lưu số lần chọn sai khi bấm spray cho nhân vật out
     public PlayerData PlayerData; // Tham chiếu đến PlayerData để lưu trữ dữ liệu người chơi
     public WindowView WindowView; // Tham chiếu đến WindowView để thay đổi hình ảnh cửa sổ
+    public CountdownTimer countdownTimer; // Kéo đối tượng DrawOnCanvas vào đây trong Inspector
+
     void Start()
     {
         //PlayerPrefs.DeleteKey("PlayerData"); // Tạm reset để test
@@ -190,6 +192,7 @@ public class CharacterManager : MonoBehaviour
             nv.OnInvisible();
             Destroy(CurrentCharater);
             CurrentCharater = null;
+            countdownTimer.ResetTimeCount(); // Reset thời gian đếm ngược về 5 giây
             if (isSprayed == true)
             {
                 SprayedCharacter.Add(currentCharacterData); // Thêm nhân vật In đã rời đi bằng sprayed vào danh sách SprayedCharacter

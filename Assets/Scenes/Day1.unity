@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 848163314}
+  timerText: {fileID: 0}
 --- !u!1 &253268651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 848163314}
+  timerText: {fileID: 1947908867}
 --- !u!1 &254382418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2745,6 +2747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 254382418}
+  timerText: {fileID: 0}
 --- !u!114 &359134221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,6 +2895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 1068232522}
+  timerText: {fileID: 0}
 --- !u!114 &365334111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8383,7 +8387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1187145523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8820,6 +8824,7 @@ MonoBehaviour:
   PlayerData:
     level: 0
   WindowView: {fileID: 813134328}
+  countdownTimer: {fileID: 1971513693}
 --- !u!1 &1256899698
 GameObject:
   m_ObjectHideFlags: 0
@@ -11388,6 +11393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 1042208446}
+  timerText: {fileID: 0}
 --- !u!114 &1779309402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11819,6 +11825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteBook: {fileID: 1256899698}
+  timerText: {fileID: 0}
 --- !u!114 &1803486002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12560,7 +12567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13185,7 +13192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1947908867}
-  DrawOnCanvas: {fileID: 0}
 --- !u!1 &2008333647
 GameObject:
   m_ObjectHideFlags: 0
