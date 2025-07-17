@@ -17,4 +17,11 @@ public class BlackList2 : MonoBehaviour
         blackList1.SetActive(true); // Show the previous panel
     }
 
+    public void buttonExit()
+    {
+        blackList2.SetActive(false); // Hide the current panel
+        // Optionally, you can add logic to return to the main menu or another scene
+    }
+
+
 }

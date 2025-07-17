@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8b33749a07bcc4a4888b62a2b4a51031
+guid: 07530252ab0e5144cbe82da05c61267f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8426660162826366463
-    second: guessList1-Day1_0
+      213: 3947445879566513773
+    second: day2-char1-nor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guessList1-Day1_0
+      name: day2-char1-nor_0
       rect:
         serializedVersion: 2
-        x: 621
-        y: 303
-        width: 678
-        height: 473
+        x: 703
+        y: 155
+        width: 514
+        height: 715
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1029ccf6a3d7e0b80800000000000000
-      internalID: -8426660162826366463
+      spriteID: d6634adec1528c630800000000000000
+      internalID: 3947445879566513773
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      guessList1-Day1_0: -8426660162826366463
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

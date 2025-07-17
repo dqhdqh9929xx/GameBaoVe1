@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d8f6778e238dc5d428014c37690637e2
+guid: a687f9732bdb7ae4ea1bf6533a60429e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1976331620902328256
-    second: blackList1-Day1_0
+      213: 5218985517107477250
+    second: Day3-Guess1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackList1-Day1_0
+      name: Day3-Guess1_0
       rect:
         serializedVersion: 2
-        x: 621
-        y: 303
-        width: 678
-        height: 473
+        x: 675
+        y: 340
+        width: 570
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c7514e53275d6b10800000000000000
-      internalID: 1976331620902328256
+      spriteID: 20b791b2daf8d6840800000000000000
+      internalID: 5218985517107477250
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      blackList1-Day1_0: 1976331620902328256
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

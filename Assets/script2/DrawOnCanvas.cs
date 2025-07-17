@@ -9,6 +9,10 @@ public class DrawOnCanvas : MonoBehaviour
     private Texture2D drawTexture;
     public static bool isDrawingEnabled = true;
 
+    public Texture2D newCursorTexture; // Texture2D làm con trỏ chuột
+    public Vector2 hotspot; // Vị trí của điểm nóng trong con trỏ
+
+
     void Start()
     {
         Texture2D originalTex = rawImage.texture as Texture2D;
@@ -24,34 +28,22 @@ public class DrawOnCanvas : MonoBehaviour
         drawTexture.SetPixels(originalTex.GetPixels());
         drawTexture.Apply();
         rawImage.texture = drawTexture;
+
+        hotspot = new Vector2((newCursorTexture.width / 2) - 15, newCursorTexture.height / 2);
     }
 
-    //private void DisableDrawing()
-    //{
-    //    CountdownTimer.endTimeToDraw -= CantDrawing; // Hủy đăng ký sự kiện nếu không cần thiết nữa
-    //}
-
-    //private void DrawEnabled()
-    //{
-    //    CountdownTimer.endTimeToDraw += CantDrawing; // Đăng ký sự kiện để tắt vẽ khi hết thời gian
-    //}
 
 
-    public void CantDrawing()
-    {
-        isDrawingEnabled = false;
-    }
-
-    public void CanDrawing()
-    {
-        isDrawingEnabled = true;
-    }    
 
 
-    void Update()
+void Update()
     {
         if (isDrawingEnabled)
         {
+            if (newCursorTexture != null && ButtonNoteBook.isOpen == true)
+            {
+                Cursor.SetCursor(newCursorTexture, hotspot, CursorMode.Auto);
+            }
             if (Input.GetMouseButton(0))
             {
                 Vector2 localPos;
