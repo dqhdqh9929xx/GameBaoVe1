@@ -8,7 +8,10 @@ public class btnTicket : MonoBehaviour
     public void OnClickedBtnTicket()
     {
         Animator animator = GetComponent<Animator>();
-        animator.SetTrigger("btnTicket");
-        btnTicketClicked = true;        
+        if (CharacterManager.CanBtnTicket == true)
+        {
+            animator.SetTrigger("btnTicket");
+            btnTicketClicked = true;
+        }          
     }
 }

@@ -23,6 +23,7 @@ public class ButtonNoteBook : MonoBehaviour
         NoteBook.SetActive(false);
         isOpen = false; // Đánh dấu sổ tay đã đóng
         Debug.Log("Sổ tay đã đóng!");
-
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);  // Thay đổi con trỏ ngay khi đóng
     }
+
 }

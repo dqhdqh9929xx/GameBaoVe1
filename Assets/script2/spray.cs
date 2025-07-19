@@ -1,10 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spray : MonoBehaviour
 {
     public static bool isSprayActive = false;
 
     public Vector3 Origin;
+
+    public static float timeRemaining = 5f;
 
     private void Start()
     {
@@ -18,10 +20,11 @@ public class Spray : MonoBehaviour
 
     void Update()
     {
-        if (isSprayActive)
+        if (isSprayActive && timeRemaining > 0)
         {
             Vector2 mousePos = Input.mousePosition;
             transform.position = mousePos;
+            timeRemaining -= Time.deltaTime; // sau 5 giây sẽ trả lại vị trí ban đầu
         }
         else
         {

@@ -7,7 +7,7 @@ public class CountdownTimer : MonoBehaviour
 {
     public TMP_Text timerText; // Kéo Text UI vào đây trong Inspector
 
-    public static float timeRemaining = 5f;
+    public static float timeRemaining = 30f;
     public static bool isCounting = false;
     //public DrawOnCanvas DrawOnCanvas; // Kéo đối tượng DrawOnCanvas vào đây trong Inspector
     public static event Action endTimeToDraw;
@@ -47,7 +47,7 @@ public class CountdownTimer : MonoBehaviour
 
     public void ResetTimeCount()
     {
-        timeRemaining = 5f; // Đặt lại thời gian đếm ngược
+        timeRemaining = 30f; // Đặt lại thời gian đếm ngược
         //isCounting = true; // Bắt đầu đếm ngược
         UpdateTimerDisplay(); // Cập nhật hiển thị thời gian
     }    

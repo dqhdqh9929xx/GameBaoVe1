@@ -250,8 +250,7 @@ MonoBehaviour:
   rawImage: {fileID: 25488553}
   drawColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
-  newCursorTexture: {fileID: 0}
-  hotspot: {x: 0, y: 0}
+  newCursorTexture: {fileID: 2800000, guid: 11ea70e4ded91eb43bd64108465b403f, type: 3}
 --- !u!114 &25488553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3492,8 +3491,7 @@ MonoBehaviour:
   rawImage: {fileID: 515446326}
   drawColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
-  newCursorTexture: {fileID: 0}
-  hotspot: {x: 0, y: 0}
+  newCursorTexture: {fileID: 2800000, guid: 11ea70e4ded91eb43bd64108465b403f, type: 3}
 --- !u!114 &515446326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6495,8 +6493,7 @@ MonoBehaviour:
   rawImage: {fileID: 1077463009}
   drawColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
-  newCursorTexture: {fileID: 0}
-  hotspot: {x: 0, y: 0}
+  newCursorTexture: {fileID: 2800000, guid: 11ea70e4ded91eb43bd64108465b403f, type: 3}
 --- !u!114 &1077463009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10132,7 +10129,6 @@ MonoBehaviour:
   drawColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
   newCursorTexture: {fileID: 2800000, guid: 11ea70e4ded91eb43bd64108465b403f, type: 3}
-  hotspot: {x: 0, y: 0}
 --- !u!1 &1869446774
 GameObject:
   m_ObjectHideFlags: 0
@@ -10186,8 +10182,7 @@ MonoBehaviour:
   rawImage: {fileID: 1869446777}
   drawColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
-  newCursorTexture: {fileID: 0}
-  hotspot: {x: 0, y: 0}
+  newCursorTexture: {fileID: 2800000, guid: 11ea70e4ded91eb43bd64108465b403f, type: 3}
 --- !u!114 &1869446777
 MonoBehaviour:
   m_ObjectHideFlags: 0

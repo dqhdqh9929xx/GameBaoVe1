@@ -23,11 +23,9 @@ public class CharacterNoteName : MonoBehaviour
             Vector3 localPosName = FirstNoteNameCharacter.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosName = new Vector3(localPosName.x - 600, localPosName.y + 300, localPosName.z);
 
-            NameIndex = CharacterManager.randomIndex;
-            var currentChar = characterManager.characters[NameIndex];
+            //NameIndex = CharacterManager.randomIndex;
+            var currentChar = characterManager.currentCharacterData;
 
-            Debug.Log($"Character Name: {currentChar.Name}");
-            Debug.Log($"NameIndex : {NameIndex}");
 
             GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);
             newNote.transform.SetParent(FirstNoteNameCharacter, false);
@@ -42,11 +40,10 @@ public class CharacterNoteName : MonoBehaviour
         {
             Vector3 localPosName = FirstNoteNameCharacter2.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosName = new Vector3(localPosName.x - 600, localPosName.y + 300, localPosName.z);
-            NameIndex = CharacterManager.randomIndex;
-            var currentChar = characterManager.characters[NameIndex];
+            //NameIndex = CharacterManager.randomIndex;
+            var currentChar = characterManager.currentCharacterData;
 
-            Debug.Log($"Character Name: {currentChar.Name}");
-            Debug.Log($"NameIndex : {NameIndex}");
+
 
             GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);
             newNote.transform.SetParent(FirstNoteNameCharacter2, false);
@@ -60,10 +57,9 @@ public class CharacterNoteName : MonoBehaviour
         {
             Vector3 localPosName = FirstNoteNameCharacter3.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosName = new Vector3(localPosName.x - 600, localPosName.y + 300, localPosName.z);
-            var currentChar = characterManager.characters[NameIndex];
+            var currentChar = characterManager.currentCharacterData;
 
-            Debug.Log($"Character Name: {currentChar.Name}");
-            Debug.Log($"NameIndex : {NameIndex}");
+
 
             GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);
             newNote.transform.SetParent(FirstNoteNameCharacter3, false);
@@ -77,11 +73,10 @@ public class CharacterNoteName : MonoBehaviour
         {
             Vector3 localPosName = FirstNoteNameCharacter4.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosName = new Vector3(localPosName.x - 600, localPosName.y + 300, localPosName.z);
-            NameIndex = CharacterManager.randomIndex;
-            var currentChar = characterManager.characters[NameIndex];
+            //NameIndex = CharacterManager.randomIndex;
+            var currentChar = characterManager.currentCharacterData;
 
-            Debug.Log($"Character Name: {currentChar.Name}");
-            Debug.Log($"NameIndex : {NameIndex}");
+
 
 
             GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);
@@ -96,11 +91,9 @@ public class CharacterNoteName : MonoBehaviour
         {
             Vector3 localPosName = FirstNoteNameCharacter5.InverseTransformPoint(transform.position);
             Vector3 spawnLocalPosName = new Vector3(localPosName.x - 600, localPosName.y + 300, localPosName.z);
-            NameIndex = CharacterManager.randomIndex;
-            var currentChar = characterManager.characters[NameIndex];
+            //NameIndex = CharacterManager.randomIndex;
+            var currentChar = characterManager.currentCharacterData;
 
-            Debug.Log($"Character Name: {currentChar.Name}");
-            Debug.Log($"NameIndex : {NameIndex}");
 
 
             GameObject newNote = Instantiate(prefabsCharacterNoteName, spawnLocalPosName, Quaternion.identity);

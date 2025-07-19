@@ -10,7 +10,12 @@ public class VolumnSetting : MonoBehaviour
 
     public void SetMusicVolume()
     {
-        float volume = musicSlider.value; // Get the value from the slider
-        myMixer.SetFloat("music", volume); // Set the volume in the AudioMixer
-    }    
+        float volume = musicSlider.value;
+
+        // Convert to decibel
+        float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+
+        myMixer.SetFloat("music", dB);
+    }
+
 }

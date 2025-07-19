@@ -192,7 +192,7 @@ public class CharacterManager : MonoBehaviour
             nv.OnInvisible();
             Destroy(CurrentCharater);
             CurrentCharater = null;
-            countdownTimer.ResetTimeCount(); // Reset thời gian đếm ngược về 5 giây
+            countdownTimer.ResetTimeCount(); // Reset thời gian đếm ngược về 30 giây
             if (isSprayed == true)
             {
                 SprayedCharacter.Add(currentCharacterData); // Thêm nhân vật In đã rời đi bằng sprayed vào danh sách SprayedCharacter
